@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 /*EAS12337350
  * This script will handle the information and options available when a player lands on a tile. Will have options and success rates
  * 
@@ -10,12 +10,12 @@ using TMPro;
 public class TileScript : MonoBehaviour
 {
     //Lets the game know that the current character is on this tile
-    bool isCurrentCharacterTile;
+    public bool isCurrentCharacterTile;
     public bool startOrEndTile;
 
-
+    public Button tileButton;
     //Holds all the tiles this tile is next to
-    public List<TileScript> LocalTiles = new List<TileScript>();
+    public List<TileScript> localTiles = new List<TileScript>();
 
     public void EnterTile() 
     { 
@@ -25,10 +25,22 @@ public class TileScript : MonoBehaviour
     { 
         //All actions that occur when a character leaves the tile
     }
-    public List<TileScript> ReturnLocalTiles()
+
+    public void ShowMoveSpaces()
     {
-        //This function returns the list of local tiles without the tile that called it
-        //This will check the list and remove the tile that called this function
+        //Makes the button on the adjoining tiles interactible
+        foreach(TileScript tile in localTiles)
+        {
+            tile.tileButton.interactable = true;
+        }
+    }
+    public void HideMoveSpaces()
+    {
+        //Makes the button on the adjoining tiles non-interactible
+        foreach (TileScript tile in localTiles)
+        {
+            tile.tileButton.interactable = false;
+        }
     }
 
     public void FindEventData()
