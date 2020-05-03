@@ -13,7 +13,11 @@ public class TileScript : MonoBehaviour
     public bool isCurrentCharacterTile;
     public bool startOrEndTile;
 
+
     public Button tileButton;
+    //The radius of the locate local tiles function
+    [SerializeField]
+    int localArea = 3;
     //Holds all the tiles this tile is next to
     public List<TileScript> localTiles = new List<TileScript>();
 
@@ -47,5 +51,22 @@ public class TileScript : MonoBehaviour
     {
         //This will check the type of tile, then find the appropriate data from gameManager
         //Then this will fill in the correct information and assign the correct functions for outcomes based on the data found
+    }
+
+    public void LocateLocalTiles()
+    {
+        localTiles.Clear();
+        //This function is used in the editor to find the adjacent tiles and populate the localTiles list
+        //Uses an overlapSphere to find local colliders and checks them for tileScripts
+        Collider[] coliders = Physics.OverlapSphere(transform.position, localArea);
+        foreach(Collider col in coliders)
+        {
+            if (col.gameObject.GetComponent<TileScript>())
+            {
+                localTiles.Add(col.gameObject.GetComponent<TileScript>());
+            }
+            //Checks the local list for this instance of tileScript and removes it
+            if (localTiles.Contains(this)) { localTiles.Remove(this); }
+        }
     }
 }
