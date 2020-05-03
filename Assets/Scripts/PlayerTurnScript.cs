@@ -22,6 +22,7 @@ public class PlayerTurnScript : MonoBehaviour
     //When the player clicks on a tile, it is stored here
     public int player=0;
     public float tokenSpeed = 2f;
+    float tokenStep;
 
     [SerializeField]
     int spacesToMove = 0;
@@ -32,8 +33,10 @@ public class PlayerTurnScript : MonoBehaviour
     {
         if(Vector3.Distance(characters[player].gameToken.transform.position, characters[player].currentTile.transform.position) > 0.1f)
         {
-            float step = tokenSpeed * Time.deltaTime;
-            characters[player].gameToken.transform.position = Vector3.MoveTowards(characters[player].previousTiles.Peek().transform.position, characters[player].currentTile.transform.position,step);
+            Debug.Log("Moving");
+            tokenStep += Time.fixedDeltaTime * tokenSpeed;
+            //Moves from last tile to current tile using speed to calculate step per second
+            characters[player].gameToken.transform.position = Vector3.MoveTowards(characters[player].lastTile.transform.position, characters[player].currentTile.transform.position,tokenStep);
         }
     }
     public void RollDice(int numOfDice,int addedValueToDice)
@@ -66,32 +69,41 @@ public class PlayerTurnScript : MonoBehaviour
 
     public void MoveCharacter(TileScript nextTile)
     {
-        //The last tile will be exited and the new one will become the current one.
-        characters[player].currentTile.LeaveTile();
-        characters[player].currentTile.HideMoveSpaces();
-        //The last tile will be added to the previous tiles, unless the token is going backwards
-        if (characters[player].previousTiles.Contains(nextTile)) 
+        if (spacesToMove > 0)
         {
-            characters[player].previousTiles.Pop();
-            //Add a space, as the player is moving backwards
-            spacesToMove++;
+            //The last tile will be exited and the new one will become the current one.
+            characters[player].currentTile.LeaveTile();
+            characters[player].currentTile.HideMoveSpaces();
+            //The last tile will be added to the previous tiles, unless the token is going backwards
+            if (characters[player].previousTiles.Contains(nextTile))
+            {
+                characters[player].previousTiles.Pop();
+                //Add a space, as the player is moving backwards
+                spacesToMove++;
+            }
+            else
+            {
+                //Remove a space
+                characters[player].previousTiles.Push(characters[player].currentTile);
+                spacesToMove--;
+            }
+            //Stores the previous tile as the last tile for movement purposes
+            characters[player].lastTile = characters[player].currentTile;
+            characters[player].currentTile = nextTile;
+            tokenStep = 0;
+            Debug.Log("The last tile was: " + characters[player].previousTiles.Peek());
+            Debug.Log("The current tile is: " + characters[player].currentTile);
+            StartCoroutine(WaitForMove(2f));
         }
-        else
-        {
-            //Remove a space
-            characters[player].previousTiles.Push(characters[player].currentTile);
-            spacesToMove--;
-        }
-        characters[player].currentTile = nextTile;
-        WaitForMove(2f);
     }
 
     IEnumerator WaitForMove(float waitTime)
     {
+        Debug.Log("The enumerator is happening");
         yield return new WaitForSeconds(waitTime);
         characters[player].currentTile.EnterTile();
         //Once you run out of spaces to move, the moving phase of the turn is over
-        if (spacesToMove >= 0)
+        if (spacesToMove > 0)
         {
             characters[player].currentTile.ShowMoveSpaces();
         }
@@ -103,5 +115,15 @@ public class Character
     public GameObject gameToken;
     public CharacterSheet charSheet;
     public TileScript currentTile;
+    public TileScript lastTile;
     public Stack<TileScript> previousTiles = new Stack<TileScript>();
+
+    public Character(GameObject charToken, CharacterSheet sheet, TileScript startTile)
+    {
+        gameToken = charToken;
+        charSheet = sheet;
+        currentTile = startTile;
+        lastTile = startTile;
+        currentTile.ShowMoveSpaces();
+    }
 }
