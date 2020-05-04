@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     public List<TileEventData> enemyEventsData;
     public List<TileEventData> trapsEventsData;
+    public List<TileEventData> questEventsData;
 
     public List<TileScript> mapTiles;
 

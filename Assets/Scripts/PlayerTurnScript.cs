@@ -13,7 +13,9 @@ public class PlayerTurnScript : MonoBehaviour
     //This stores the character data, allows for multiple players
     public List<Character> characters = new List<Character>();
 
+    TileEventData tileEvent = null;
     //When a tile is found, text will appear with description and buttons
+    public GameObject eventPanel;
     public TMP_Text eventDescriptionText;
     public TMP_Text buttonName1;
     public TMP_Text buttonName2;
@@ -39,15 +41,11 @@ public class PlayerTurnScript : MonoBehaviour
             characters[player].gameToken.transform.position = Vector3.MoveTowards(characters[player].lastTile.transform.position, characters[player].currentTile.transform.position,tokenStep);
         }
     }
-    public void RollDice(int numOfDice,int addedValueToDice)
-    {
-        //This function will represent the dice roll. This will produce a random number as an outcome
-        //The dice roll can be influenced by number of dice, abilities or some other factor. The script will need to accomodate this
-        int roll = Random.Range(1*numOfDice, 7*numOfDice);
-        spacesToMove = roll + addedValueToDice;
-    }
+
     public void RollDice()
     {
+        //This function will represent the dice roll. This will produce a random number as an outcome
+        //The dice roll can be influenced by number of dice, abilities or some other factor. The script will need to accomodate this!!
         int roll = Random.Range(1, 7);
         spacesToMove = roll;
     }
@@ -90,9 +88,8 @@ public class PlayerTurnScript : MonoBehaviour
             //Stores the previous tile as the last tile for movement purposes
             characters[player].lastTile = characters[player].currentTile;
             characters[player].currentTile = nextTile;
+            //Resets the step counter for the token move function, allowing it to begin moving again
             tokenStep = 0;
-            Debug.Log("The last tile was: " + characters[player].previousTiles.Peek());
-            Debug.Log("The current tile is: " + characters[player].currentTile);
             StartCoroutine(WaitForMove(2f));
         }
     }
@@ -106,6 +103,12 @@ public class PlayerTurnScript : MonoBehaviour
         if (spacesToMove > 0)
         {
             characters[player].currentTile.ShowMoveSpaces();
+        }
+        else 
+        {
+            //The move phase is over and the event phase begins
+            tileEvent = characters[player].currentTile.LandOnTile();
+            eventPanel.SetActive(true);
         }
     }
 }

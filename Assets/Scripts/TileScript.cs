@@ -9,17 +9,24 @@ using UnityEngine.UI;
 
 public class TileScript : MonoBehaviour
 {
-    //Lets the game know that the current character is on this tile
-    public bool isCurrentCharacterTile;
+    public enum eventType { None, Enemy, Trap, PositiveEvent, NegativeEvent, RandomEvent, Random, Quest }
+    public eventType tileType;
+
     public bool startOrEndTile;
 
-
+    GameManager manager;
     public Button tileButton;
     //The radius of the locate local tiles function
-    [SerializeField]
+    [SerializeField][Tooltip("The radius of the locate local tiles function")]
     int localArea = 3;
     //Holds all the tiles this tile is next to
     public List<TileScript> localTiles = new List<TileScript>();
+
+    private void Start()
+    {
+        tileButton = transform.GetChild(0).GetComponentInChildren<Button>();
+        manager = FindObjectOfType<GameManager>();
+    }
 
     public void EnterTile() 
     { 
@@ -28,6 +35,46 @@ public class TileScript : MonoBehaviour
     public void LeaveTile() 
     { 
         //All actions that occur when a character leaves the tile
+    }
+    public TileEventData LandOnTile()
+    {
+        //This will check the type of tile, then find the appropriate data from gameManager
+        //Then this will fill in the correct information and assign the correct functions for outcomes based on the data found.//This may be changed if events are level specific!!
+        switch (tileType)
+        {
+            case eventType.None:
+                return null;
+            case eventType.Enemy:
+                int rand = Random.Range(0, manager.enemyEventsData.Count);
+                return manager.enemyEventsData[rand];
+            case eventType.Trap:
+                int rand2 = Random.Range(0, manager.trapsEventsData.Count);
+                return manager.trapsEventsData[rand2];
+            case eventType.PositiveEvent:
+                int rand3 = Random.Range(0, manager.positiveEventsData.Count);
+                return manager.positiveEventsData[rand3];
+            case eventType.NegativeEvent:
+                int rand4 = Random.Range(0, manager.negativeEventsData.Count);
+                return manager.negativeEventsData[rand4];
+            case eventType.RandomEvent:
+                List<TileEventData> combinedEventList = new List<TileEventData>();
+                combinedEventList.AddRange(manager.positiveEventsData);
+                combinedEventList.AddRange(manager.negativeEventsData);
+                int rand5 = Random.Range(0, combinedEventList.Count);
+                return combinedEventList[rand5];
+            case eventType.Random:
+                List<TileEventData> combinedEventList2 = new List<TileEventData>();
+                combinedEventList2.AddRange(manager.positiveEventsData);
+                combinedEventList2.AddRange(manager.negativeEventsData);
+                combinedEventList2.AddRange(manager.enemyEventsData);
+                combinedEventList2.AddRange(manager.trapsEventsData);
+                int rand7 = Random.Range(0, combinedEventList2.Count);
+                return combinedEventList2[rand7];
+            case eventType.Quest:
+                int rand6 = Random.Range(0, manager.questEventsData.Count);
+                return manager.questEventsData[rand6];
+        }
+        return null;
     }
 
     public void ShowMoveSpaces()
@@ -46,12 +93,7 @@ public class TileScript : MonoBehaviour
             tile.tileButton.interactable = false;
         }
     }
-
-    public void FindEventData()
-    {
-        //This will check the type of tile, then find the appropriate data from gameManager
-        //Then this will fill in the correct information and assign the correct functions for outcomes based on the data found
-    }
+    
 
     public void LocateLocalTiles()
     {

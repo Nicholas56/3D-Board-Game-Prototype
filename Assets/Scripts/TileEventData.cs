@@ -8,9 +8,6 @@ using UnityEngine;
  [CreateAssetMenu]
 public class TileEventData : ScriptableObject
 {
-    public enum eventType { Enemy, Trap, Event, Quest}
-    public eventType type;
-
     [TextArea(10, 20)]
     public string eventDescription = "";
 
