@@ -8,7 +8,7 @@ using UnityEngine;
  [CreateAssetMenu]
 public class TileEventData : ScriptableObject
 {
-    [TextArea(10, 20)]
+    [TextArea(5, 20)]
     public string eventDescription = "";
 
     public eventOption[] eventOptionList = new eventOption[3];

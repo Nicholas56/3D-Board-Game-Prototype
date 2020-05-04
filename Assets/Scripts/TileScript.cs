@@ -14,7 +14,7 @@ public class TileScript : MonoBehaviour
 
     public bool startOrEndTile;
 
-    GameManager manager;
+    GameData manager;
     public Button tileButton;
     //The radius of the locate local tiles function
     [SerializeField][Tooltip("The radius of the locate local tiles function")]
@@ -25,7 +25,35 @@ public class TileScript : MonoBehaviour
     private void Start()
     {
         tileButton = transform.GetChild(0).GetComponentInChildren<Button>();
-        manager = FindObjectOfType<GameManager>();
+        manager = FindObjectOfType<GameData>();
+        //The visual appearance of the tile will change depending on the type of tile
+        switch (tileType)
+        {
+            case eventType.None:
+                gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.grey);
+                break;
+            case eventType.Enemy:
+                gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
+                break;
+            case eventType.Trap:
+                gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.yellow);
+                break;
+            case eventType.PositiveEvent:
+                gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.blue);
+                break;
+            case eventType.NegativeEvent:
+                gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.black);
+                break;
+            case eventType.RandomEvent:
+                gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.white);
+                break;
+            case eventType.Random:
+                gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.green);
+                break;
+            case eventType.Quest:
+                gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.cyan);
+                break;
+        }
     }
 
     public void EnterTile() 

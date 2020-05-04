@@ -10,12 +10,13 @@ using UnityEngine.SceneManagement;
 public class LevelSelectScript : MonoBehaviour
 {
     //This will hold all the scenes available
-    public List<Scene> levels = new List<Scene>();
+    public List<Level> levels = new List<Level>();
 
-    public void LoadLevel()
+    public void LoadLevel(int levelNum)
     {
         //This will take an input and select from the list above which level to load
         //Level should be loaded on top of previous scene, not replace
+        SceneManager.LoadScene(levelNum);
     }
 }
 
@@ -25,6 +26,8 @@ public class Level
     public string levelName;
     [TextArea(5,15)]
     public string levelDescription;
-    public Scene levelScene;
+    public int levelSceneIndex;
 
+    public bool randomItemDistribution;
+    public int numOfItems;
 }

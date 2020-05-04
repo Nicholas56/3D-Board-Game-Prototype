@@ -2,29 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 /*EAS12337350
- * This script will hold various lists of monsters, traps, events and other data that the game requires. 
+ * This script will handle save data 
  * This will offer static function for other classes
  */
 
 public class GameManager : MonoBehaviour
 {
-    //These two will be combined for a list of all events, to randomly pick from
-    public List<TileEventData> positiveEventsData;
-    public List<TileEventData> negativeEventsData;
-
-    public List<TileEventData> enemyEventsData;
-    public List<TileEventData> trapsEventsData;
-    public List<TileEventData> questEventsData;
-
-    public List<TileScript> mapTiles;
-
     public List<CharacterSheet> savedCharacters;
+    public static List<CharacterSheet> playerCharacters = new List<CharacterSheet>();
 
-    public void FindAllMapTiles()
+    //Each level will have a specific data file with all the pertinent data
+    public GameData levelData;
+
+    private void Awake()
     {
-        //This will search for all map tiles when a new map is selected and place them in the correct list
+        levelData.FindAllMapTiles();
     }
-
     public void LoadCharacters()
     {
         //This will find the saved JSON list of characters and store them here for use

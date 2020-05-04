@@ -13,6 +13,7 @@ public class PlayerTurnScript : MonoBehaviour
     //This stores the character data, allows for multiple players
     public List<Character> characters = new List<Character>();
 
+    public TileScript startingTile;
     TileEventData tileEvent = null;
     //When a tile is found, text will appear with description and buttons
     public GameObject eventPanel;
@@ -28,9 +29,20 @@ public class PlayerTurnScript : MonoBehaviour
 
     [SerializeField]
     int spacesToMove = 0;
+    public TMP_Text movesToGo;
 
     List<TileScript> tilesMovedOverInTurn = new List<TileScript>();
 
+    private void Start()
+    {
+        //Beginning of the game, all characters are loaded and the tokens placed
+        for (int i = 0; i < GameManager.playerCharacters.Count; i++)
+        {
+            GameObject token = Instantiate(GameManager.playerCharacters[i].token, startingTile.transform.position, Quaternion.identity);
+            Character character = new Character(token, GameManager.playerCharacters[i], startingTile);
+            characters.Add(character);
+        }
+    }
     private void FixedUpdate()
     {
         if(Vector3.Distance(characters[player].gameToken.transform.position, characters[player].currentTile.transform.position) > 0.1f)
@@ -48,11 +60,17 @@ public class PlayerTurnScript : MonoBehaviour
         //The dice roll can be influenced by number of dice, abilities or some other factor. The script will need to accomodate this!!
         int roll = Random.Range(1, 7);
         spacesToMove = roll;
+        UpdateMovesToGo();
     }
 
     public void ToggleOptionMenu()
     {
         //This opens the option menu or closes it
+    }
+
+    void UpdateMovesToGo()
+    {
+        movesToGo.text = "" + spacesToMove;
     }
 
     public void ResetTurn()
@@ -85,6 +103,7 @@ public class PlayerTurnScript : MonoBehaviour
                 characters[player].previousTiles.Push(characters[player].currentTile);
                 spacesToMove--;
             }
+            UpdateMovesToGo();
             //Stores the previous tile as the last tile for movement purposes
             characters[player].lastTile = characters[player].currentTile;
             characters[player].currentTile = nextTile;

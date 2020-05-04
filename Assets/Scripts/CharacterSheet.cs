@@ -6,14 +6,28 @@ using UnityEngine;
  * This information will be saved using the character manager.
  */
 
-public class CharacterSheet : MonoBehaviour
+public class CharacterSheet 
 {
     public string characterName;
 
+    public int powerLevel;
+
+    public int maxHealth;
+    public int attack;
+    public int defence;
+
+    public GameObject token;
+
     //Other stats as later decided
 
-    public CharacterSheet()
+    public CharacterSheet(string defaultName, int powerLvl, int maxHP, int attk, int def, GameObject defaultToken)
     {
         //Constructor for a new character sheet
+        characterName = defaultName;
+        powerLevel = powerLvl;
+        maxHealth = maxHP;
+        attack = attk;
+        defence = def;
+        token = defaultToken;
     }
 }
