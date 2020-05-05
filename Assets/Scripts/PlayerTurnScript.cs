@@ -14,22 +14,20 @@ public class PlayerTurnScript : MonoBehaviour
     public List<Character> characters = new List<Character>();
 
     public TileScript startingTile;
+
+    public bool isEvent = false;
     TileEventData tileEvent = null;
     //When a tile is found, text will appear with description and buttons
     public GameObject eventPanel;
-    public TMP_Text eventDescriptionText;
-    public TMP_Text buttonName1;
-    public TMP_Text buttonName2;
-    public TMP_Text buttonName3;
 
     //When the player clicks on a tile, it is stored here
     public int player=0;
     public float tokenSpeed = 2f;
     float tokenStep;
 
-    [SerializeField]
-    int spacesToMove = 0;
+    public int spacesToMove = 0;
     public TMP_Text movesToGo;
+    public TMP_Text playerHealth;
 
     List<TileScript> tilesMovedOverInTurn = new List<TileScript>();
 
@@ -40,14 +38,15 @@ public class PlayerTurnScript : MonoBehaviour
         {
             GameObject token = Instantiate(GameManager.playerCharacters[i].token, startingTile.transform.position, Quaternion.identity);
             Character character = new Character(token, GameManager.playerCharacters[i], startingTile);
+            character.health = GameManager.playerCharacters[i].maxHealth;
             characters.Add(character);
         }
+        UpdatePlayerHealth();
     }
     private void FixedUpdate()
     {
         if(Vector3.Distance(characters[player].gameToken.transform.position, characters[player].currentTile.transform.position) > 0.1f)
         {
-            Debug.Log("Moving");
             tokenStep += Time.fixedDeltaTime * tokenSpeed;
             //Moves from last tile to current tile using speed to calculate step per second
             characters[player].gameToken.transform.position = Vector3.MoveTowards(characters[player].lastTile.transform.position, characters[player].currentTile.transform.position,tokenStep);
@@ -68,19 +67,33 @@ public class PlayerTurnScript : MonoBehaviour
         //This opens the option menu or closes it
     }
 
+    public TileEventData GetTileData()
+    {
+        return tileEvent;
+    }
+
     void UpdateMovesToGo()
     {
         movesToGo.text = "" + spacesToMove;
     }
 
+    public void UpdatePlayerHealth()
+    {
+        playerHealth.text = "" + characters[player].health + "/" + characters[player].charSheet.maxHealth;
+    }
+
     public void ResetTurn()
     {
+        eventPanel.SetActive(false);
         spacesToMove = 0;
+        UpdateMovesToGo();
         tilesMovedOverInTurn.Clear();
         //Resets preveiously traversed tiles
         characters[player].previousTiles.Clear();
         //Cycles through player numbers
         player = (player + 1) % characters.Count;
+        characters[player].currentTile.ShowMoveSpaces();
+        UpdatePlayerHealth();
     }
 
     public void MoveCharacter(TileScript nextTile)
@@ -115,7 +128,6 @@ public class PlayerTurnScript : MonoBehaviour
 
     IEnumerator WaitForMove(float waitTime)
     {
-        Debug.Log("The enumerator is happening");
         yield return new WaitForSeconds(waitTime);
         characters[player].currentTile.EnterTile();
         //Once you run out of spaces to move, the moving phase of the turn is over
@@ -125,10 +137,24 @@ public class PlayerTurnScript : MonoBehaviour
         }
         else 
         {
-            //The move phase is over and the event phase begins
-            tileEvent = characters[player].currentTile.LandOnTile();
-            eventPanel.SetActive(true);
+            if (!characters[player].currentTile.endTile)
+            {
+                //The move phase is over and the event phase begins
+                tileEvent = characters[player].currentTile.LandOnTile();
+                eventPanel.SetActive(true);
+                isEvent = true;
+            }
         }
+    }
+
+    public void TeleportPlayer(int teleportNum)
+    {
+        GameManager data = gameObject.GetComponent<GameManager>();
+        TileScript destinationTile = data.mapTiles[teleportNum];
+        Debug.Log("Tile to go to: " + destinationTile + " Data: " + data.mapTiles[3]);
+        characters[player].currentTile = destinationTile;
+        characters[player].lastTile = destinationTile;
+        characters[player].previousTiles.Clear();
     }
 }
 
@@ -139,6 +165,8 @@ public class Character
     public TileScript currentTile;
     public TileScript lastTile;
     public Stack<TileScript> previousTiles = new Stack<TileScript>();
+
+    public int health;
 
     public Character(GameObject charToken, CharacterSheet sheet, TileScript startTile)
     {

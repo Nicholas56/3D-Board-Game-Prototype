@@ -13,11 +13,28 @@ public class GameManager : MonoBehaviour
 
     //Each level will have a specific data file with all the pertinent data
     public GameData levelData;
+    Camera mainCamera;
+
+    public List<TileScript> mapTiles = new List<TileScript>();
 
     private void Awake()
     {
-        levelData.FindAllMapTiles();
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        FindAllMapTiles(mainCamera);
     }
+    public void FindAllMapTiles(Camera eventCamera)
+    {
+        mapTiles.Clear();
+        //This will search for all map tiles when a new map is selected and place them in the correct list
+        GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
+        for (int i = 0; i < tiles.Length; i++)
+        {
+            mapTiles.Add(tiles[i].GetComponent<TileScript>());
+            tiles[i].GetComponent<TileScript>().LocateLocalTiles();
+            tiles[i].GetComponentInChildren<Canvas>().worldCamera = eventCamera;
+        }
+    }
+
     public void LoadCharacters()
     {
         //This will find the saved JSON list of characters and store them here for use

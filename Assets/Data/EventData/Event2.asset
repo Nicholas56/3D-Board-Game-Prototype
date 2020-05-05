@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bed98f83a1540c46a1fc7976cedaa09, type: 3}
+  m_Name: Event2
+  m_EditorClassIdentifier: 
+  type: 0
+  eventName: Full course meal
+  eventDescription: You find a full course meal laid out in front of you. Here, in
+    the middle of nowhere.
+  eventVisual: {fileID: 0}
+  eventHealth: 0
+  eventAttack: 0
+  eventDefence: 0
+  eventDamage: 0
+  eventReward: 0
+  eventOptionList:
+  - optionName: Eat everything
+    successRate: 5
+    successOutcomeText: This is just what you needed. The food heals you so much.
+    failureOutcomeText: Um, you ate too much. It has no effect. Bad luck.
+    willChangePower: 0
+    powerChange: 0
+    willChangeHealth: 1
+    healthChange: 5
+    willTeleport: 0
+    teleportTo: 0
+  - optionName: Eat dessert
+    successRate: 2
+    successOutcomeText: Yum. Dessert is the best. You feel the sugary healing.
+    failureOutcomeText: Leaving your vegetables! I don't think so. No healing for
+      you!
+    willChangePower: 0
+    powerChange: 0
+    willChangeHealth: 1
+    healthChange: 1
+    willTeleport: 0
+    teleportTo: 0
+  - optionName: Pass
+    successRate: 0
+    successOutcomeText: You walk away. This is just too damn suspicious!
+    failureOutcomeText: 
+    willChangePower: 0
+    powerChange: 0
+    willChangeHealth: 0
+    healthChange: 0
+    willTeleport: 0
+    teleportTo: 0

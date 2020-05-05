@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestMap.unity
     guid: d5d20432cf2708d448f246a81e6a7591
+  - enabled: 1
+    path: Assets/Scenes/TrapMap.unity
+    guid: 39b1d6ebe48baa147a2643c4e4b7e2a0
   m_configObjects: {}

@@ -17,18 +17,5 @@ public class GameData : ScriptableObject
 
     public List<AbilityData> abilitiesData;
 
-    public List<TileScript> mapTiles;
-
     public List<CharacterSheet> savedCharacters;
-
-    public void FindAllMapTiles()
-    {
-        //This will search for all map tiles when a new map is selected and place them in the correct list
-        GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
-        for (int i = 0; i < tiles.Length; i++)
-        {
-            mapTiles.Add(tiles[i].GetComponent<TileScript>());
-            tiles[i].GetComponent<TileScript>().LocateLocalTiles();
-        }
-    }
 }

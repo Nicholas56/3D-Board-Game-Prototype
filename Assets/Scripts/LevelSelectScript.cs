@@ -18,6 +18,12 @@ public class LevelSelectScript : MonoBehaviour
         //Level should be loaded on top of previous scene, not replace
         SceneManager.LoadScene(levelNum);
     }
+
+    public static void ReturnToMainMenu()
+    {
+        //This will load the first scene
+        SceneManager.LoadScene(0);
+    }
 }
 
 [System.Serializable]

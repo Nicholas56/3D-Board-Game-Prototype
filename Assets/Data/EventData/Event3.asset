@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bed98f83a1540c46a1fc7976cedaa09, type: 3}
+  m_Name: Event3
+  m_EditorClassIdentifier: 
+  type: 0
+  eventName: Magic Ring
+  eventDescription: You see a magic ring on the floor. I wonder what happens when
+    you step on it?
+  eventVisual: {fileID: 0}
+  eventHealth: 0
+  eventAttack: 0
+  eventDefence: 0
+  eventDamage: 0
+  eventReward: 0
+  eventOptionList:
+  - optionName: Step on it
+    successRate: 1
+    successOutcomeText: The ring lights up. Seems like you're going on a trip!
+    failureOutcomeText: The magic fizzles. Huh, that was a disappointment!
+    willChangePower: 0
+    powerChange: 0
+    willChangeHealth: 0
+    healthChange: 0
+    willTeleport: 1
+    teleportTo: 3
+  - optionName: Pass
+    successRate: 0
+    successOutcomeText: You walk past the ring, giving it a wide berth.
+    failureOutcomeText: 
+    willChangePower: 0
+    powerChange: 0
+    willChangeHealth: 0
+    healthChange: 0
+    willTeleport: 0
+    teleportTo: 0

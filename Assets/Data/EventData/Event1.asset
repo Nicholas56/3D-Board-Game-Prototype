@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bed98f83a1540c46a1fc7976cedaa09, type: 3}
+  m_Name: Event1
+  m_EditorClassIdentifier: 
+  type: 0
+  eventName: Well of Power
+  eventDescription: 'You found a well of power! Well done!
+
+    Will you drink?'
+  eventVisual: {fileID: 0}
+  eventHealth: 0
+  eventAttack: 0
+  eventDefence: 0
+  eventDamage: 0
+  eventReward: 0
+  eventOptionList:
+  - optionName: Drink
+    successRate: 3
+    successOutcomeText: You feel the power coursing through you. Nice!
+    failureOutcomeText: Hmm, it just tastes like regular water.
+    willChangePower: 1
+    powerChange: 10
+    willChangeHealth: 0
+    healthChange: 0
+    willTeleport: 0
+    teleportTo: 0
+  - optionName: Pass
+    successRate: 0
+    successOutcomeText: You move on. You weren't thirsty anyway
+    failureOutcomeText: 
+    willChangePower: 0
+    powerChange: 0
+    willChangeHealth: 0
+    healthChange: 0
+    willTeleport: 0
+    teleportTo: 0

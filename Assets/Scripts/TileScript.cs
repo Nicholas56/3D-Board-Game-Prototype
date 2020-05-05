@@ -12,9 +12,9 @@ public class TileScript : MonoBehaviour
     public enum eventType { None, Enemy, Trap, PositiveEvent, NegativeEvent, RandomEvent, Random, Quest }
     public eventType tileType;
 
-    public bool startOrEndTile;
+    public bool endTile;
 
-    GameData manager;
+    GameManager manager;
     public Button tileButton;
     //The radius of the locate local tiles function
     [SerializeField][Tooltip("The radius of the locate local tiles function")]
@@ -25,7 +25,7 @@ public class TileScript : MonoBehaviour
     private void Start()
     {
         tileButton = transform.GetChild(0).GetComponentInChildren<Button>();
-        manager = FindObjectOfType<GameData>();
+        manager = FindObjectOfType<GameManager>();
         //The visual appearance of the tile will change depending on the type of tile
         switch (tileType)
         {
@@ -57,8 +57,9 @@ public class TileScript : MonoBehaviour
     }
 
     public void EnterTile() 
-    { 
+    {
         //All actions that occur when a character lands on the tile
+        if (endTile) { LevelSelectScript.ReturnToMainMenu(); }
     }
     public void LeaveTile() 
     { 
@@ -73,34 +74,34 @@ public class TileScript : MonoBehaviour
             case eventType.None:
                 return null;
             case eventType.Enemy:
-                int rand = Random.Range(0, manager.enemyEventsData.Count);
-                return manager.enemyEventsData[rand];
+                int rand = Random.Range(0, manager.levelData.enemyEventsData.Count);
+                return manager.levelData.enemyEventsData[rand];
             case eventType.Trap:
-                int rand2 = Random.Range(0, manager.trapsEventsData.Count);
-                return manager.trapsEventsData[rand2];
+                int rand2 = Random.Range(0, manager.levelData.trapsEventsData.Count);
+                return manager.levelData.trapsEventsData[rand2];
             case eventType.PositiveEvent:
-                int rand3 = Random.Range(0, manager.positiveEventsData.Count);
-                return manager.positiveEventsData[rand3];
+                int rand3 = Random.Range(0, manager.levelData.positiveEventsData.Count);
+                return manager.levelData.positiveEventsData[rand3];
             case eventType.NegativeEvent:
-                int rand4 = Random.Range(0, manager.negativeEventsData.Count);
-                return manager.negativeEventsData[rand4];
+                int rand4 = Random.Range(0, manager.levelData.negativeEventsData.Count);
+                return manager.levelData.negativeEventsData[rand4];
             case eventType.RandomEvent:
                 List<TileEventData> combinedEventList = new List<TileEventData>();
-                combinedEventList.AddRange(manager.positiveEventsData);
-                combinedEventList.AddRange(manager.negativeEventsData);
+                combinedEventList.AddRange(manager.levelData.positiveEventsData);
+                combinedEventList.AddRange(manager.levelData.negativeEventsData);
                 int rand5 = Random.Range(0, combinedEventList.Count);
                 return combinedEventList[rand5];
             case eventType.Random:
                 List<TileEventData> combinedEventList2 = new List<TileEventData>();
-                combinedEventList2.AddRange(manager.positiveEventsData);
-                combinedEventList2.AddRange(manager.negativeEventsData);
-                combinedEventList2.AddRange(manager.enemyEventsData);
-                combinedEventList2.AddRange(manager.trapsEventsData);
+                combinedEventList2.AddRange(manager.levelData.positiveEventsData);
+                combinedEventList2.AddRange(manager.levelData.negativeEventsData);
+                combinedEventList2.AddRange(manager.levelData.enemyEventsData);
+                combinedEventList2.AddRange(manager.levelData.trapsEventsData);
                 int rand7 = Random.Range(0, combinedEventList2.Count);
                 return combinedEventList2[rand7];
             case eventType.Quest:
-                int rand6 = Random.Range(0, manager.questEventsData.Count);
-                return manager.questEventsData[rand6];
+                int rand6 = Random.Range(0, manager.levelData.questEventsData.Count);
+                return manager.levelData.questEventsData[rand6];
         }
         return null;
     }

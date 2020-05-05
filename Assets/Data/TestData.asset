@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22fd4713d7eaeec43bd2c04b9ab3bfed, type: 3}
   m_Name: TestData
   m_EditorClassIdentifier: 
-  positiveEventsData: []
+  positiveEventsData:
+  - {fileID: 11400000, guid: ad88a117da0b3d042ab39f63bbbb601e, type: 2}
   negativeEventsData: []
   enemyEventsData: []
-  trapsEventsData: []
+  trapsEventsData:
+  - {fileID: 11400000, guid: 621badea4907d8c44be59dc55c45a680, type: 2}
+  - {fileID: 11400000, guid: 37084bae30e11ca46a8f91a417e4a336, type: 2}
   questEventsData: []
   abilitiesData: []
-  mapTiles: []
