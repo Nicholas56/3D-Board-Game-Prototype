@@ -29,4 +29,9 @@ public class CameraScript : MonoBehaviour
         transform.position = token.position;
         transform.SetParent(token);
     }
+
+    public void ResetToken()
+    {
+        token = null;
+    }
 }

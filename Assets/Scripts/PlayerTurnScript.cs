@@ -94,6 +94,7 @@ public class PlayerTurnScript : MonoBehaviour
         //Cycles through player numbers
         player = (player + 1) % characters.Count;
         characters[player].currentTile.ShowMoveSpaces();
+        FindObjectOfType<CameraScript>().ResetToken();
         UpdatePlayerHealth();
     }
 

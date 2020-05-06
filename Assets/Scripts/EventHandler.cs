@@ -168,11 +168,7 @@ public class EventHandler : MonoBehaviour
         {
             eventDescription.text = "The enemy has killed you! Oh dear!";
             yield return new WaitForSeconds(1);
-            //The player health is restored, power is taken away and the player is sent to the main menu
-            player.characters[player.player].health = player.characters[player.player].charSheet.maxHealth;
-            player.characters[player.player].charSheet.powerLevel -= 10;
-
-            LevelSelectScript.ReturnToMainMenu();
+            PlayerDeath();
         }
         enemyTurnPanel.SetActive(false);
     }
@@ -183,12 +179,26 @@ public class EventHandler : MonoBehaviour
         EndEvent();
         eventDescription.text = "You appear to have died! Bad luck!";
         yield return new WaitForSeconds(1);
-        //The player health is restored, power is taken away and the player is sent to the main menu
-        player.characters[player.player].health = player.characters[player.player].charSheet.maxHealth;
-        player.characters[player.player].charSheet.powerLevel -= 10;
-        
-        LevelSelectScript.ReturnToMainMenu();
-        
+        PlayerDeath();
+    }
+
+    void PlayerDeath()
+    {
+        if (GameManager.playerCharacters.Count == 1)
+        {
+            //The player health is restored, power is taken away and the player is sent to the main menu
+            player.characters[player.player].health = player.characters[player.player].charSheet.maxHealth;
+            player.characters[player.player].charSheet.powerLevel -= 10;
+
+            LevelSelectScript.ReturnToMainMenu();
+        }
+        else
+        {
+            Character deadChar = player.characters[player.player];
+            player.ResetTurn();
+            Destroy(deadChar.gameToken);
+            player.characters.Remove(deadChar);
+        }
     }
     void UpdateEnemyHealth()
     {
