@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 /*EAS12337350
  * This script will handle save data 
  * This will offer static function for other classes
@@ -8,7 +9,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public List<CharacterSheet> savedCharacters;
+    public List<CharSave> savedCharacters = new List<CharSave>();
     public static List<CharacterSheet> playerCharacters = new List<CharacterSheet>();
 
     //Each level will have a specific data file with all the pertinent data
@@ -36,17 +37,51 @@ public class GameManager : MonoBehaviour
     }
 
     public void LoadCharacters()
-    {
-        //This will find the saved JSON list of characters and store them here for use
+    {//Allows for a max of 18 characters
+        savedCharacters.Clear();
+        for (int i = 0; i < 18; i++)
+        {
+            //This will find the saved JSON list of characters and store them here for use
+            if (File.Exists(Application.persistentDataPath + "/charSave.save" + i))
+            {//Finds the string and converts it into CharSave data to be put into the list of savedCharacters
+                string JSONSTring = File.ReadAllText(Application.persistentDataPath + "/charSave.save" + i);
+                savedCharacters.Add( JsonUtility.FromJson<CharSave>(JSONSTring));
+            }
+
+        }
     }
 
-    public void SaveCharacters()
+    public bool SaveCheck()
+    {//this checks if the player's computer contains saves for this game
+        if (!File.Exists(Application.persistentDataPath + "/charSave.save" + 0))
+        {
+            return true;
+        }
+        else { return false; }
+    }
+
+    public void SaveCharacter(CharSave save ,int saveFileNumber)
     {
         //This will store the list of characters as a string and create a JSON save file
+        string JSONString = JsonUtility.ToJson(save);
+
+        File.WriteAllText(Application.persistentDataPath + "/charSave.save" + saveFileNumber, JSONString);
+
+        LoadCharacters();
     }
 
-    public void DeleteCharacter()
+    public void DeleteCharacter(int fileNum)
     {
-        //This will remove the current character from the save list, which will therefore not be saved
+        //This will delete all data, then reconstruct it from the savedCharacter data
+        for (int i = 0; i < savedCharacters.Count; i++)
+        {
+            File.Delete(Application.persistentDataPath + "/charSave.save" + i);
+        }
+        savedCharacters.Remove(savedCharacters[fileNum]);
+        for (int i = 0; i < savedCharacters.Count; i++)
+        {
+            string JSONString = JsonUtility.ToJson(savedCharacters[i]);
+            File.WriteAllText(Application.persistentDataPath + "/charSave.save" + i, JSONString);
+        }
     }
 }
