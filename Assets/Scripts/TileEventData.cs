@@ -18,6 +18,7 @@ public class TileEventData : ScriptableObject
 
     public Image eventVisual;
 
+    public int maxHealth;
     public int eventHealth;
     public int eventAttack;
     public int eventDefence;
@@ -48,4 +49,6 @@ public class eventOption
     public bool willTeleport;
     [Tooltip("This number should be lower than number of map tiles")]
     public int teleportTo;
+
+    public bool isAttack;
 }

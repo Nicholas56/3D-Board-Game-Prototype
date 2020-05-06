@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bed98f83a1540c46a1fc7976cedaa09, type: 3}
+  m_Name: Enemy1
+  m_EditorClassIdentifier: 
+  type: 1
+  eventName: Goblin
+  eventDescription: 'A wild Goblin appears! He looks mean!
+
+    It''s time to fight!'
+  eventVisual: {fileID: 0}
+  maxHealth: 6
+  eventHealth: 0
+  eventAttack: 4
+  eventDefence: 1
+  eventDamage: 0
+  eventReward: 10
+  eventOptionList:
+  - optionName: Fight
+    successRate: 2
+    successOutcomeText: You strike the goblin!
+    failureOutcomeText: You missed!
+    willChangePower: 0
+    powerChange: 0
+    willChangeHealth: 0
+    healthChange: 0
+    willTeleport: 0
+    teleportTo: 0
+    isAttack: 1

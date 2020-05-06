@@ -36,6 +36,7 @@ public class PlayerTurnScript : MonoBehaviour
         //Beginning of the game, all characters are loaded and the tokens placed
         for (int i = 0; i < GameManager.playerCharacters.Count; i++)
         {
+            Debug.Log(GameManager.playerCharacters.Count);
             GameObject token = Instantiate(GameManager.playerCharacters[i].token, startingTile.transform.position, Quaternion.identity);
             Character character = new Character(token, GameManager.playerCharacters[i], startingTile);
             character.health = GameManager.playerCharacters[i].maxHealth;

@@ -45,8 +45,12 @@ public class CharacterManagerScript : MonoBehaviour
     private void Start()
     {
         manager = gameObject.GetComponent<GameManager>();
-        CreateNewCharacterSheet();
-        GameManager.playerCharacters.Add(currentCharacter);
+        if (GameManager.playerCharacters.Count == 0)
+        {
+            CreateNewCharacterSheet();
+            GameManager.playerCharacters.Add(currentCharacter);
+        }
+        else { currentCharacter = GameManager.playerCharacters[0]; }
         DisplayStats();
         manager.LoadCharacters();
         CharacterSelectBoxes();
