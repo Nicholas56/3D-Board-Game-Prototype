@@ -15,6 +15,9 @@ public class GameData : ScriptableObject
     public List<TileEventData> trapsEventsData;
     public List<TileEventData> questEventsData;
 
+    public List<int> itemData;
+    public GameObject itemPrefab;
+
     public List<AbilityData> abilitiesData;
 
     public List<CharacterSheet> savedCharacters;

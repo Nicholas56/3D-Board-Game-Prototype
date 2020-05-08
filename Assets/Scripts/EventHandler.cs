@@ -11,6 +11,7 @@ using TMPro;
 public class EventHandler : MonoBehaviour
 {
     public PlayerTurnScript player;
+    public EventEffects action;
     TileEventData data;
 
     public List<GameObject> actionButtons = new List<GameObject>();
@@ -112,6 +113,7 @@ public class EventHandler : MonoBehaviour
         }
     }
 
+
     public void CheckSuccess(int optionNum)
     {
         player.RollDice();
@@ -120,6 +122,7 @@ public class EventHandler : MonoBehaviour
             //Actions to take if successful
             eventDescription.text = data.eventOptionList[optionNum].successOutcomeText;
             EventEffects(optionNum);
+            action.Effects(data.eventOptionList[optionNum], this);
         }
         else
         {
@@ -133,7 +136,6 @@ public class EventHandler : MonoBehaviour
         else
         {//For all events other than Enemy, the turn will end after one button press
             EndEvent();
-            StartCoroutine(WaitForEventEnd());
         }
     }
 
@@ -156,13 +158,15 @@ public class EventHandler : MonoBehaviour
         yield return new WaitForSeconds(2);
         //The enemy rolls the dice and damage is calculated
         player.RollDice();
-        player.characters[player.player].health -= ((player.spacesToMove + data.eventAttack) - player.characters[player.player].charSheet.defence);
+        player.characters[player.player].health -= ((player.spacesToMove + data.eventAttack) - 
+            (player.characters[player.player].charSheet.defence + player.characters[player.player].tempDefence));
         player.UpdatePlayerHealth();
         //Depending on the outcome of the attack, the battle message is read, if dead, player is sent to main menu
         if (player.characters[player.player].health > 0)
         {
-            eventDescription.text = "The enemy attacks! It deals: " + ((player.spacesToMove + data.eventAttack) - player.characters[player.player].charSheet.defence) + " damage!\n" +
-                "The enemy has " + data.eventHealth + " health left.";
+            eventDescription.text = "The enemy attacks! It deals: " + ((player.spacesToMove + data.eventAttack) - 
+                (player.characters[player.player].charSheet.defence + player.characters[player.player].tempDefence)) + 
+                " damage!\n" + "The enemy has " + data.eventHealth + " health left.";
         }
         else
         {
@@ -200,17 +204,19 @@ public class EventHandler : MonoBehaviour
             player.characters.Remove(deadChar);
         }
     }
+
     void UpdateEnemyHealth()
     {
         enemyHealth.GetComponentInChildren<TMP_Text>().text = "" + data.eventHealth + "/" + data.maxHealth;
     }
 
-    void EndEvent()
+    public void EndEvent()
     {
         for (int i = 0; i < actionButtons.Count; i++)
         {
             actionButtons[i].SetActive(false);
         }
+        StartCoroutine(WaitForEventEnd());
     }
 
     void GetEventData()

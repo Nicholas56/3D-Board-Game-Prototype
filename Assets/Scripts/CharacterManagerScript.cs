@@ -198,7 +198,7 @@ public class CharacterManagerScript : MonoBehaviour
                 }
             }
         }
-        CharSave save = new CharSave(currentCharacter.characterName, currentCharacter.powerLevel, currentCharacter.maxHealth, currentCharacter.attack, currentCharacter.defence, currentToken, index);
+        CharSave save = new CharSave(currentCharacter.characterName, currentCharacter.powerLevel, currentCharacter.maxHealth, currentCharacter.attack, currentCharacter.defence, currentToken,currentCharacter.itemList, index);
 
         if (NameCheck(currentCharacter.characterName)) { }
         else { fileSaveNum = manager.savedCharacters.Count; }
@@ -234,9 +234,10 @@ public class CharSave
 
     public int tokenIndex;
 
+    public List<int> itemList;
     public List<int> abilityIndex;
 
-    public CharSave(string charName, int charLvl, int health, int attk, int def, int token, List<int> abilities)
+    public CharSave(string charName, int charLvl, int health, int attk, int def, int token, List<int>  items, List<int> abilities)
     {
         characterName = charName;
         charLevel = charLvl;
@@ -244,6 +245,7 @@ public class CharSave
         charAttack = attk;
         charDefence = def;
         tokenIndex = token;
+        itemList = items;
         abilityIndex = abilities;
     }
 }

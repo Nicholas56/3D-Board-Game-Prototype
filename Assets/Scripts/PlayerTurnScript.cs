@@ -29,6 +29,8 @@ public class PlayerTurnScript : MonoBehaviour
     public TMP_Text movesToGo;
     public TMP_Text playerHealth;
 
+    public List<int> itemList = new List<int>();
+
     List<TileScript> tilesMovedOverInTurn = new List<TileScript>();
 
     private void Start()
@@ -36,13 +38,13 @@ public class PlayerTurnScript : MonoBehaviour
         //Beginning of the game, all characters are loaded and the tokens placed
         for (int i = 0; i < GameManager.playerCharacters.Count; i++)
         {
-            Debug.Log(GameManager.playerCharacters.Count);
             GameObject token = Instantiate(GameManager.playerCharacters[i].token, startingTile.transform.position, Quaternion.identity);
             Character character = new Character(token, GameManager.playerCharacters[i], startingTile);
             character.health = GameManager.playerCharacters[i].maxHealth;
             characters.Add(character);
         }
         UpdatePlayerHealth();
+        itemList = new List<int>(FindObjectOfType<GameManager>().levelData.itemData);
     }
     private void FixedUpdate()
     {
@@ -73,7 +75,7 @@ public class PlayerTurnScript : MonoBehaviour
         return tileEvent;
     }
 
-    void UpdateMovesToGo()
+    public void UpdateMovesToGo()
     {
         movesToGo.text = "" + spacesToMove;
     }
@@ -89,19 +91,24 @@ public class PlayerTurnScript : MonoBehaviour
         spacesToMove = 0;
         UpdateMovesToGo();
         tilesMovedOverInTurn.Clear();
+        //Provides check for temporary stats
+        if (characters[player].tempCounter > 0) { characters[player].tempCounter--; }
+        TempStatCheck();
         //Resets preveiously traversed tiles
         characters[player].previousTiles.Clear();
         //Cycles through player numbers
         player = (player + 1) % characters.Count;
         characters[player].currentTile.ShowMoveSpaces();
         FindObjectOfType<CameraScript>().ResetToken();
+        tileEvent = null;
         UpdatePlayerHealth();
     }
 
     public void MoveCharacter(TileScript nextTile)
     {
         if (spacesToMove > 0)
-        {
+        {//If the inventory is open, it will be closed
+            gameObject.GetComponent<InGameMenu>().DisplayInventory(true);
             //The last tile will be exited and the new one will become the current one.
             characters[player].currentTile.LeaveTile();
             characters[player].currentTile.HideMoveSpaces();
@@ -142,11 +149,26 @@ public class PlayerTurnScript : MonoBehaviour
             if (!characters[player].currentTile.endTile)
             {
                 //The move phase is over and the event phase begins
-                tileEvent = characters[player].currentTile.LandOnTile();
-                eventPanel.SetActive(true);
-                isEvent = true;
+                StartEvent();
             }
         }
+    }
+
+    public void StartEvent()
+    {
+        tileEvent = characters[player].currentTile.LandOnTile();
+        eventPanel.SetActive(true);
+        isEvent = true;
+    }
+
+    public void AddItem()
+    {//This adds one of the level items to the players inventory and removes the item from the level instance
+        Debug.Log("Length of itemList is " + itemList.Count);
+        int rand = Random.Range(0, itemList.Count);
+        characters[player].charSheet.itemList.Add(itemList[rand]);
+        itemList.Remove(itemList[rand]);
+        //This removes the previous tiles list from player
+        characters[player].previousTiles.Clear();
     }
 
     public void TeleportPlayer(int teleportNum)
@@ -157,6 +179,16 @@ public class PlayerTurnScript : MonoBehaviour
         characters[player].currentTile = destinationTile;
         characters[player].lastTile = destinationTile;
         characters[player].previousTiles.Clear();
+    }
+
+    void TempStatCheck()
+    {//If the temp counter drops to 0, the temp stats are removed
+        if (characters[player].tempCounter < 1)
+        {
+            characters[player].tempHealth = 0;
+            characters[player].tempAttack = 0;
+            characters[player].tempDefence = 0;
+        }
     }
 }
 
@@ -169,6 +201,12 @@ public class Character
     public Stack<TileScript> previousTiles = new Stack<TileScript>();
 
     public int health;
+    //Temporary stats
+    public int tempCounter;
+
+    public int tempHealth;
+    public int tempAttack;
+    public int tempDefence;
 
     public Character(GameObject charToken, CharacterSheet sheet, TileScript startTile)
     {

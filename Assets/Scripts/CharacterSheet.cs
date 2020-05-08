@@ -20,6 +20,7 @@ public class CharacterSheet
     public GameObject token;
     public Image charVisual;
 
+    public List<int> itemList;
     public List<AbilityData> abilityList;
 
     //Other stats as later decided
@@ -34,6 +35,7 @@ public class CharacterSheet
         defence = def;
         token = defaultToken;
 
+        itemList = new List<int>();
         abilityList = new List<AbilityData>();
     }
 
@@ -47,6 +49,7 @@ public class CharacterSheet
         defence = def;
         token = defaultToken;
 
+        itemList = new List<int>();
         abilityList = abilities;
     }
 }

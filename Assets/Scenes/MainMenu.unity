@@ -8456,6 +8456,7 @@ GameObject:
   - component: {fileID: 1831778030}
   - component: {fileID: 1831778029}
   - component: {fileID: 1831778032}
+  - component: {fileID: 1831778033}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -8551,6 +8552,18 @@ MonoBehaviour:
   levelSelectScreen: {fileID: 674297336}
   characterSheetScreen: {fileID: 1361629158}
   settingsScreen: {fileID: 1199129715}
+--- !u!114 &1831778033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831778028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45c4d824d88f0db4dabb98f365949c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1856860095
 PrefabInstance:
   m_ObjectHideFlags: 0

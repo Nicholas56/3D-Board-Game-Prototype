@@ -17,6 +17,6 @@ MonoBehaviour:
   enemyEventsData: []
   trapsEventsData: []
   questEventsData: []
+  itemData: 00000000
+  itemPrefab: {fileID: 0}
   abilitiesData: []
-  mapTiles: []
-  savedCharacters: []

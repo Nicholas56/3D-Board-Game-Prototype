@@ -9,7 +9,7 @@ using UnityEngine.UI;
  [CreateAssetMenu]
 public class TileEventData : ScriptableObject
 {
-    public enum tileEventType { Event, Enemy, Trap, Quest }
+    public enum tileEventType { Event, Enemy, Trap, Quest, Item }
     public tileEventType type;
 
     public string eventName;
@@ -51,4 +51,20 @@ public class eventOption
     public int teleportTo;
 
     public bool isAttack;
+
+    //For Items
+    public bool isStop;
+    public bool isAddMove;
+    public int moveChange;
+
+    public bool isInstaKill;
+
+    public bool isAddTempHP;
+    public int tempHP;
+    public bool isAddTempAtk;
+    public int tempAtk;
+    public bool isAddTempDef;
+    public int tempDef;
+    [Tooltip("This is the number of turns, the temp boost will last")]
+    public int tempDuration;
 }

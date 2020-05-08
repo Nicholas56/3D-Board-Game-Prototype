@@ -13,6 +13,7 @@ public class TileScript : MonoBehaviour
     public eventType tileType;
 
     public bool endTile;
+    public bool hasItem;
 
     GameManager manager;
     public Button tileButton;
@@ -60,6 +61,14 @@ public class TileScript : MonoBehaviour
     {
         //All actions that occur when a character lands on the tile
         if (endTile) { LevelSelectScript.ReturnToMainMenu(); }
+
+        if (hasItem)
+        {
+            //The player gets an item added to their item list. The Item object is removed
+            hasItem = false;
+            FindObjectOfType<PlayerTurnScript>().AddItem();
+            Destroy(transform.GetChild(1).gameObject);
+        }
     }
     public void LeaveTile() 
     { 
@@ -123,6 +132,11 @@ public class TileScript : MonoBehaviour
         }
     }
     
+    public void ButtonAction()
+    {
+        PlayerTurnScript player = FindObjectOfType<PlayerTurnScript>();
+        player.MoveCharacter(this);
+    }
 
     public void LocateLocalTiles()
     {
