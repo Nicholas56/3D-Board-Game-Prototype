@@ -78,10 +78,11 @@ public class EventHandler : MonoBehaviour
         if (chara.trapDodge)
         {
             eventDescription.text = "Your Trap-Dodge ability activates! No harm befalls you.";
+            EndEvent();
         }
         else
         {
-            int dealtDamage = (data.eventDamage - chara.charSheet.defence);
+            int dealtDamage = (data.eventDamage - (chara.Defence+chara.tempDefence));
             //Checks that defence isn't greater than damage, else deal no damage, not negative damage
             if (dealtDamage < 0) { dealtDamage = 0; }
             //Checks to see if temp health can be used to mitigate damage
@@ -158,17 +159,19 @@ public class EventHandler : MonoBehaviour
         player.StopRoll();
         Character chara = player.characters[player.player];
         int enemyAttack = (player.spacesToMove + data.eventAttack);
-        int playerDef = (chara.charSheet.defence + chara.tempDefence);
+        int playerDef = (chara.Defence + chara.tempDefence);
+        int damageDealt = enemyAttack - playerDef;
+        if (damageDealt < 0) { damageDealt = 0; }
         //Allows temp health to mitigate damage
-        if(chara.tempHealth> (enemyAttack - playerDef)) { chara.tempHealth -= (enemyAttack - playerDef); } else 
-        { chara.health -= (enemyAttack - playerDef) - chara.tempHealth; }
+        if(chara.tempHealth> damageDealt) { chara.tempHealth -= damageDealt; } else 
+        { chara.health -= damageDealt - chara.tempHealth; }
         player.UpdatePlayerHealth();
 
         //Depending on the outcome of the attack, the battle message is read, if dead, player is sent to main menu
         if (chara.health > 0)
         {
             eventDescription.text = "The enemy attacks! It deals: " + ((player.spacesToMove + data.eventAttack) - 
-                (chara.charSheet.defence + chara.tempDefence)) + 
+                (chara.Defence + chara.tempDefence)) + 
                 " damage!\n" + "The enemy has " + data.eventHealth + " health left.";
         }
         else
@@ -194,7 +197,7 @@ public class EventHandler : MonoBehaviour
         if (GameManager.playerCharacters.Count == 1)
         {
             //The player health is restored, power is taken away and the player is sent to the main menu
-            player.characters[player.player].health = player.characters[player.player].charSheet.maxHealth;
+            player.characters[player.player].health = player.characters[player.player].MaxHealth;
             player.characters[player.player].charSheet.powerLevel -= 10;
 
             LevelSelectScript.ReturnToMainMenu();

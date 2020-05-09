@@ -63,7 +63,10 @@ public class CharacterManagerScript : MonoBehaviour
             currentCharacter = presetArcher; SaveCharacter();
             CharacterSheet presetMage = new CharacterSheet("Mage", 0, 8, 5, 4, tokenObject[0]);
             currentCharacter = presetMage; SaveCharacter();
-            CharacterSheet presetStealth = new CharacterSheet("Stealth", 0, 9, 8, 2, tokenObject[0]);
+            List<int> list = new List<int>();
+            list.Add(300);
+            CharacterSheet presetStealth = new CharacterSheet("Stealth", 0, 9, 8, 2, tokenObject[0], list);
+            Debug.Log(presetStealth.abilityList[0]);
             currentCharacter = presetStealth; SaveCharacter();
             CharacterSheet presetWarrior = new CharacterSheet("Warrior", 0, 12, 4, 6, tokenObject[0]);
             currentCharacter = presetWarrior; SaveCharacter();
@@ -132,11 +135,13 @@ public class CharacterManagerScript : MonoBehaviour
 
     public void DisplayStats()
     {
+        int level;
+        if(Mathf.CeilToInt(currentCharacter.powerLevel / 100) < 1) { level = 1; } else { level = Mathf.CeilToInt(currentCharacter.powerLevel / 100); }
         charNameInput.text = currentCharacter.characterName;
         charPower.text = "" + currentCharacter.powerLevel;
-        charHealth.text = "" + currentCharacter.maxHealth;
-        charAttack.text = "" + currentCharacter.attack;
-        charDefence.text = "" + currentCharacter.defence;
+        charHealth.text = "" + currentCharacter.maxHealth * level;
+        charAttack.text = "" + currentCharacter.attack * level;
+        charDefence.text = "" + currentCharacter.defence * level;
 
         for (int i = 0; i < abilityBoxHolder.childCount; i++)
         {
@@ -184,7 +189,7 @@ public class CharacterManagerScript : MonoBehaviour
     {
         //Changes the data to save format and calls the save function from game manager
         CharSave save = new CharSave(currentCharacter.characterName, currentCharacter.powerLevel, currentCharacter.maxHealth, 
-            currentCharacter.attack, currentCharacter.defence, currentToken,currentCharacter.itemList, currentCharacter.abilityList);
+            currentCharacter.attack, currentCharacter.defence, currentToken,currentCharacter.itemList, currentCharacter.abilityList, currentCharacter.moveVar,currentCharacter.rollFix);
 
         if (NameCheck(currentCharacter.characterName)) { }
         else { fileSaveNum = manager.savedCharacters.Count; }
@@ -223,7 +228,10 @@ public class CharSave
     public List<int> itemList;
     public List<int> abilityIndex;
 
-    public CharSave(string charName, int charLvl, int health, int attk, int def, int token, List<int>  items, List<int> abilities)
+    public int moveVar;
+    public int rollFix;
+
+    public CharSave(string charName, int charLvl, int health, int attk, int def, int token, List<int>  items, List<int> abilities, int extraMove, int diceFix)
     {
         characterName = charName;
         charLevel = charLvl;
@@ -233,5 +241,7 @@ public class CharSave
         tokenIndex = token;
         itemList = items;
         abilityIndex = abilities;
+        moveVar = extraMove;
+        rollFix = diceFix;
     }
 }

@@ -22,7 +22,7 @@ public class EventEffects: MonoBehaviour
             if (option.isAttack)
             {
                 TileEventData data = player.GetTileData();
-                data.eventHealth -= (chara.charSheet.attack + chara.tempAttack + player.spacesToMove - data.eventDefence);
+                data.eventHealth -= (chara.Attack + chara.tempAttack + player.spacesToMove - data.eventDefence);
                 handler.enemyHealth.GetComponentInChildren<TMP_Text>().text = "" + data.eventHealth + "/" + data.maxHealth;
             }
             if (option.isInstaKill && player.GetTileData().type == TileEventData.tileEventType.Enemy)

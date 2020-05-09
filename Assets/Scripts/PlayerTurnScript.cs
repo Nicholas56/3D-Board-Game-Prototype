@@ -47,6 +47,8 @@ public class PlayerTurnScript : MonoBehaviour
             GameObject token = Instantiate(GameManager.playerCharacters[i].token, startingTile.transform.position, Quaternion.identity);
             Character character = new Character(token, GameManager.playerCharacters[i], startingTile);
             character.health = GameManager.playerCharacters[i].maxHealth;
+            if (character.charSheet.abilityList.Contains(300)) { character.trapDodge = true; }
+            if (character.charSheet.abilityList.Contains(600)) { character.teleport = true; }
             characters.Add(character);
         }
         UpdatePlayerHealth();
@@ -118,11 +120,11 @@ public class PlayerTurnScript : MonoBehaviour
     {
         if (characters[player].tempHealth > 0)
         {
-            playerHealth.text = "" + characters[player].health + "(" + characters[player].tempHealth + ")/" + characters[player].charSheet.maxHealth;
+            playerHealth.text = "" + characters[player].health + "(" + characters[player].tempHealth + ")/" + characters[player].MaxHealth;
         }
         else
         {
-            playerHealth.text = "" + characters[player].health + "/" + characters[player].charSheet.maxHealth;
+            playerHealth.text = "" + characters[player].health + "/" + characters[player].MaxHealth;
         }
     }
 
@@ -139,6 +141,9 @@ public class PlayerTurnScript : MonoBehaviour
         characters[player].previousTiles.Clear();
         //Cycles through player numbers
         player = (player + 1) % characters.Count;
+        //Random Teleportation
+        if (characters[player].teleport) { TeleportPlayer
+                (Random.Range(0, FindObjectOfType<GameManager>().mapTiles.Count)); }
         characters[player].currentTile.ShowMoveSpaces();
         FindObjectOfType<CameraScript>().ResetToken();
         tileEvent = null;
@@ -212,12 +217,15 @@ public class PlayerTurnScript : MonoBehaviour
     }
 
     public void AddAbility(int abilityID)
-    {
-        //This can be called by item, or by event and adds the ability id to the characters list of id's
-        characters[player].charSheet.abilityList.Add(abilityID);
-        //This calls the static class, ability effects, using the static list of abilities in AbilityScript
-        AbilityEffects.AbilityEffect(AbilityScript.GetAbility(abilityID), this);
-        UpdatePlayerHealth();
+    {//There is a limit of five abilities per character
+        if (characters[player].charSheet.abilityList.Count < 5)
+        {
+            //This can be called by item, or by event and adds the ability id to the characters list of id's
+            characters[player].charSheet.abilityList.Add(abilityID);
+            //This calls the static class, ability effects, using the static list of abilities in AbilityScript
+            AbilityEffects.AbilityEffect(AbilityScript.GetAbility(abilityID), this);
+            UpdatePlayerHealth();
+        }
     }
 
 
@@ -253,6 +261,23 @@ public class Character
     public TileScript currentTile;
     public TileScript lastTile;
     public Stack<TileScript> previousTiles = new Stack<TileScript>();
+
+    public int Power { 
+        get 
+        { 
+            if (Mathf.CeilToInt(charSheet.powerLevel / 100) < 1) 
+            { 
+                return 1; 
+            } 
+            else 
+            { 
+                return Mathf.CeilToInt(charSheet.powerLevel / 100); 
+            } 
+        } 
+    }
+    public int MaxHealth { get { return charSheet.maxHealth * Power; } }
+    public int Attack { get { return charSheet.attack * Power; } }
+    public int Defence { get { return charSheet.defence * Power; } }
 
     public int health;
     //Temporary stats
