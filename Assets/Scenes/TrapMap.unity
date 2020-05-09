@@ -1107,7 +1107,7 @@ PrefabInstance:
     - target: {fileID: 8519082344983963140, guid: 9b88244a31808754592d158026ea51e1,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RollDice
+      value: RollToggle
       objectReference: {fileID: 0}
     - target: {fileID: 8519082346062413101, guid: 9b88244a31808754592d158026ea51e1,
         type: 3}

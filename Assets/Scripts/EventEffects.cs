@@ -48,9 +48,13 @@ public class EventEffects: MonoBehaviour
         if (option.willTeleport)
         {
             player.TeleportPlayer(option.teleportTo);
-        } 
-    
-        
+        }
+
+        //ABILITIES
+        if (option.isAddAbility)
+        {//Adds the given ability
+            player.AddAbility(option.abilityIdNum);
+        }
 
         //DICE //Dice manipulation will occur here
         if (option.isStop)

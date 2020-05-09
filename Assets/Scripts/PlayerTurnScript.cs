@@ -27,9 +27,15 @@ public class PlayerTurnScript : MonoBehaviour
 
     public int spacesToMove = 0;
     public TMP_Text movesToGo;
+    public bool isRoll;
+    public int rollAddedValue;
+    public int rollFixValue;
+
     public TMP_Text playerHealth;
 
     public List<int> itemList = new List<int>();
+    public List<int> abilityList = new List<int>();
+    
 
     List<TileScript> tilesMovedOverInTurn = new List<TileScript>();
 
@@ -45,6 +51,7 @@ public class PlayerTurnScript : MonoBehaviour
         }
         UpdatePlayerHealth();
         itemList = new List<int>(FindObjectOfType<GameManager>().levelData.itemData);
+        abilityList = new List<int>(FindObjectOfType<GameManager>().levelData.abilitiesData);
     }
     private void FixedUpdate()
     {
@@ -54,15 +61,42 @@ public class PlayerTurnScript : MonoBehaviour
             //Moves from last tile to current tile using speed to calculate step per second
             characters[player].gameToken.transform.position = Vector3.MoveTowards(characters[player].lastTile.transform.position, characters[player].currentTile.transform.position,tokenStep);
         }
+        if (isRoll)
+        {
+            RollDice();
+        }
     }
 
     public void RollDice()
     {
         //This function will represent the dice roll. This will produce a random number as an outcome
         //The dice roll can be influenced by number of dice, abilities or some other factor. The script will need to accomodate this!!
-        int roll = Random.Range(1, 7);
+        int roll = Random.Range(1 + rollAddedValue, 7 + rollAddedValue);
         spacesToMove = roll;
         UpdateMovesToGo();
+    }
+
+    public void BeginRoll() 
+    {
+        isRoll = true;
+        if (characters[player].charSheet.moveVar != 0) { rollAddedValue = characters[player].charSheet.moveVar; } else { rollAddedValue = 0; }
+        if (characters[player].charSheet.rollFix != 0) { rollFixValue = characters[player].charSheet.rollFix; } else { rollFixValue = 0; }
+    }
+    public void StopRoll() 
+    { 
+        isRoll = false;
+        //If the dice roll has been fixed, the number is set
+        if (rollFixValue > 0) { spacesToMove = rollFixValue; }
+        UpdateMovesToGo();
+    }
+
+    public void RollToggle()
+    {
+        if (isRoll)
+        {
+            StopRoll();
+        }
+        else { BeginRoll(); }
     }
 
     public void ToggleOptionMenu()
@@ -82,7 +116,14 @@ public class PlayerTurnScript : MonoBehaviour
 
     public void UpdatePlayerHealth()
     {
-        playerHealth.text = "" + characters[player].health + "/" + characters[player].charSheet.maxHealth;
+        if (characters[player].tempHealth > 0)
+        {
+            playerHealth.text = "" + characters[player].health + "(" + characters[player].tempHealth + ")/" + characters[player].charSheet.maxHealth;
+        }
+        else
+        {
+            playerHealth.text = "" + characters[player].health + "/" + characters[player].charSheet.maxHealth;
+        }
     }
 
     public void ResetTurn()
@@ -106,7 +147,7 @@ public class PlayerTurnScript : MonoBehaviour
 
     public void MoveCharacter(TileScript nextTile)
     {
-        if (spacesToMove > 0)
+        if (spacesToMove > 0  && !isRoll)
         {//If the inventory is open, it will be closed
             gameObject.GetComponent<InGameMenu>().DisplayInventory(true);
             //The last tile will be exited and the new one will become the current one.
@@ -163,7 +204,6 @@ public class PlayerTurnScript : MonoBehaviour
 
     public void AddItem()
     {//This adds one of the level items to the players inventory and removes the item from the level instance
-        Debug.Log("Length of itemList is " + itemList.Count);
         int rand = Random.Range(0, itemList.Count);
         characters[player].charSheet.itemList.Add(itemList[rand]);
         itemList.Remove(itemList[rand]);
@@ -171,13 +211,27 @@ public class PlayerTurnScript : MonoBehaviour
         characters[player].previousTiles.Clear();
     }
 
+    public void AddAbility(int abilityID)
+    {
+        //This can be called by item, or by event and adds the ability id to the characters list of id's
+        characters[player].charSheet.abilityList.Add(abilityID);
+        //This calls the static class, ability effects, using the static list of abilities in AbilityScript
+        AbilityEffects.AbilityEffect(AbilityScript.GetAbility(abilityID), this);
+        UpdatePlayerHealth();
+    }
+
+
     public void TeleportPlayer(int teleportNum)
     {
-        GameManager data = gameObject.GetComponent<GameManager>();
-        TileScript destinationTile = data.mapTiles[teleportNum];
-        Debug.Log("Tile to go to: " + destinationTile + " Data: " + data.mapTiles[3]);
-        characters[player].currentTile = destinationTile;
-        characters[player].lastTile = destinationTile;
+        GameManager data = FindObjectOfType<GameManager>();
+        if (teleportNum < data.mapTiles.Count)
+        {
+            TileScript destinationTile = data.mapTiles[teleportNum];
+            characters[player].currentTile = destinationTile;
+            characters[player].lastTile = destinationTile;
+            //the effects of entering a tile still occur
+            characters[player].currentTile.EnterTile();
+        }
         characters[player].previousTiles.Clear();
     }
 
@@ -207,6 +261,10 @@ public class Character
     public int tempHealth;
     public int tempAttack;
     public int tempDefence;
+
+    //Ability traits
+    public bool trapDodge;
+    public bool teleport;
 
     public Character(GameObject charToken, CharacterSheet sheet, TileScript startTile)
     {

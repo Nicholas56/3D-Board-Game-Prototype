@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 621badea4907d8c44be59dc55c45a680, type: 2}
   - {fileID: 11400000, guid: 37084bae30e11ca46a8f91a417e4a336, type: 2}
   questEventsData: []
-  itemData: 000000000a0000000b000000150000001e000000
+  itemData: 3c0000003c0000003c0000003c0000003c000000
   itemPrefab: {fileID: 575302374768638504, guid: 9e7e28243d4cffe44aca963961c3c6f0,
     type: 3}
-  abilitiesData: []
+  abilitiesData: 0000000000000000000000000000000000000000

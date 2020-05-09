@@ -13,6 +13,7 @@ public class EventHandler : MonoBehaviour
     public PlayerTurnScript player;
     public EventEffects action;
     TileEventData data;
+    int optionNumber;
 
     public List<GameObject> actionButtons = new List<GameObject>();
 
@@ -43,6 +44,8 @@ public class EventHandler : MonoBehaviour
             }
             enemyHealth.SetActive(false);
 
+
+            eventDescription.text = data.eventDescription;
             switch (data.type)
             {//Depending on the type of event, the name and description are changed
                 case TileEventData.tileEventType.Event:
@@ -64,64 +67,56 @@ public class EventHandler : MonoBehaviour
                     break;
             }
             eventVisual = data.eventVisual;
-            if (player.characters[player.player].health <= 0)
-            {
-                StartCoroutine(Death());
-            }
-            else
-            {
-                eventDescription.text = data.eventDescription;
-            }
+            
             player.isEvent = false;
         }
     }
 
     public void DealTrapDamage()
     {
-        int dealtDamage = (data.eventDamage - player.characters[player.player].charSheet.defence);
-        //Checks that defence isn't greater than damage, else deal no damage, not negative damage
-        if (dealtDamage < 0) { dealtDamage = 0; }
-        player.characters[player.player].health -= dealtDamage;
-        player.UpdatePlayerHealth();
-    }
-
-    public void EventEffects(int optionNum)
-    {
-        //This will perform different effect based on the event specifications
-        //This is the effect for changing the player's power level
-        if (data.eventOptionList[optionNum].willChangePower)
+        Character chara = player.characters[player.player];
+        if (chara.trapDodge)
         {
-            player.characters[player.player].charSheet.powerLevel += data.eventOptionList[optionNum].powerChange;
+            eventDescription.text = "Your Trap-Dodge ability activates! No harm befalls you.";
         }
-        //This is the effect for changing the player's health
-        if (data.eventOptionList[optionNum].willChangeHealth)
+        else
         {
-            player.characters[player.player].health += data.eventOptionList[optionNum].healthChange;
-        }
-        //This is the effect for teleporting
-        if (data.eventOptionList[optionNum].willTeleport)
-        {
-            player.TeleportPlayer(data.eventOptionList[optionNum].teleportTo);
-        }
-
-        //COMBAT
-        //This is the effect for standard attack
-        if (data.eventOptionList[optionNum].isAttack)
-        {
-            data.eventHealth -= (player.spacesToMove - data.eventDefence);
-            UpdateEnemyHealth();
+            int dealtDamage = (data.eventDamage - chara.charSheet.defence);
+            //Checks that defence isn't greater than damage, else deal no damage, not negative damage
+            if (dealtDamage < 0) { dealtDamage = 0; }
+            //Checks to see if temp health can be used to mitigate damage
+            if (chara.tempHealth > dealtDamage) { chara.tempHealth -= dealtDamage; }
+            else
+            { chara.health -= dealtDamage - chara.tempHealth; }
+            player.UpdatePlayerHealth();
+            //If player dies from trap event, death occurs here
+            if (player.characters[player.player].health <= 0)
+            {
+                StartCoroutine(Death());
+            }
         }
     }
-
-
+    
     public void CheckSuccess(int optionNum)
     {
-        player.RollDice();
+        if (player.isRoll)
+        {
+            player.StopRoll();
+            EventAction(optionNumber);
+        }
+        else
+        {
+            player.BeginRoll();
+            ButtonHide(optionNum);
+            optionNumber = optionNum;
+        } 
+    }
+
+    void EventAction(int optionNum) { 
         if (player.spacesToMove > data.eventOptionList[optionNum].successRate)
         {
             //Actions to take if successful
             eventDescription.text = data.eventOptionList[optionNum].successOutcomeText;
-            EventEffects(optionNum);
             action.Effects(data.eventOptionList[optionNum], this);
         }
         else
@@ -129,6 +124,7 @@ public class EventHandler : MonoBehaviour
             //Actions to take if not successful
             eventDescription.text = data.eventOptionList[optionNum].failureOutcomeText;
         }
+        //COMBAT
         if (data.type == TileEventData.tileEventType.Enemy && data.eventHealth > 0)
         {//If the event is an Enemy and it still has health, the enemy gets a turn
             StartCoroutine(EnemyTurn());
@@ -157,15 +153,22 @@ public class EventHandler : MonoBehaviour
         enemyTurnPanel.SetActive(true);
         yield return new WaitForSeconds(2);
         //The enemy rolls the dice and damage is calculated
-        player.RollDice();
-        player.characters[player.player].health -= ((player.spacesToMove + data.eventAttack) - 
-            (player.characters[player.player].charSheet.defence + player.characters[player.player].tempDefence));
+        player.BeginRoll();
+        yield return new WaitForSeconds(1);
+        player.StopRoll();
+        Character chara = player.characters[player.player];
+        int enemyAttack = (player.spacesToMove + data.eventAttack);
+        int playerDef = (chara.charSheet.defence + chara.tempDefence);
+        //Allows temp health to mitigate damage
+        if(chara.tempHealth> (enemyAttack - playerDef)) { chara.tempHealth -= (enemyAttack - playerDef); } else 
+        { chara.health -= (enemyAttack - playerDef) - chara.tempHealth; }
         player.UpdatePlayerHealth();
+
         //Depending on the outcome of the attack, the battle message is read, if dead, player is sent to main menu
-        if (player.characters[player.player].health > 0)
+        if (chara.health > 0)
         {
             eventDescription.text = "The enemy attacks! It deals: " + ((player.spacesToMove + data.eventAttack) - 
-                (player.characters[player.player].charSheet.defence + player.characters[player.player].tempDefence)) + 
+                (chara.charSheet.defence + chara.tempDefence)) + 
                 " damage!\n" + "The enemy has " + data.eventHealth + " health left.";
         }
         else
@@ -208,6 +211,18 @@ public class EventHandler : MonoBehaviour
     void UpdateEnemyHealth()
     {
         enemyHealth.GetComponentInChildren<TMP_Text>().text = "" + data.eventHealth + "/" + data.maxHealth;
+    }
+
+    void ButtonHide(int buttonNum)
+    {
+        for (int i = 0; i < actionButtons.Count; i++)
+        {
+            if (i == buttonNum) { }
+            else
+            {
+                actionButtons[i].SetActive(false);
+            }
+        }
     }
 
     public void EndEvent()

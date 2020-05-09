@@ -115,12 +115,7 @@ public class CharacterManagerScript : MonoBehaviour
         CharSave sheet = manager.savedCharacters[saveFile];
         if (sheet.abilityIndex.Count > 0)
         {
-            List<AbilityData> abilities = new List<AbilityData>();
-            for (int i = 0; i < sheet.abilityIndex.Count; i++)
-            {
-                //This matches the index to the master list of abilities in game manager
-                abilities.Add(manager.levelData.abilitiesData[sheet.abilityIndex[i]]);
-            }
+            List<int> abilities = new List<int>(sheet.abilityIndex);
             currentCharacter = new CharacterSheet(sheet.characterName, sheet.charLevel, sheet.charMaxHealth, sheet.charAttack, sheet.charDefence, tokenObject[sheet.tokenIndex], abilities);
         }
         else { currentCharacter = new CharacterSheet(sheet.characterName, sheet.charLevel, sheet.charMaxHealth, sheet.charAttack, sheet.charDefence, tokenObject[sheet.tokenIndex]); }
@@ -143,12 +138,13 @@ public class CharacterManagerScript : MonoBehaviour
         charAttack.text = "" + currentCharacter.attack;
         charDefence.text = "" + currentCharacter.defence;
 
-        if (currentCharacter.abilityList.Count > 0)
+        for (int i = 0; i < abilityBoxHolder.childCount; i++)
         {
-            for (int i = 0; i < currentCharacter.abilityList.Count; i++)
+            abilityBoxHolder.GetChild(i).gameObject.SetActive(false);
+            if (currentCharacter.abilityList.Count > i)
             {
-                GameObject box = Instantiate(abilityBox, abilityBoxHolder);
-                box.GetComponentInChildren<TMP_Text>().text = currentCharacter.abilityList[i].abilityName;
+                abilityBoxHolder.GetChild(i).gameObject.SetActive(true);
+                abilityBoxHolder.GetChild(i).GetComponentInChildren<TMP_Text>().text = AbilityScript.GetAbility(currentCharacter.abilityList[i]).abilityName;
             }
         }
     }
@@ -186,19 +182,9 @@ public class CharacterManagerScript : MonoBehaviour
 
     public void SaveCharacter()
     {
-        List<int> index = new List<int>();
         //Changes the data to save format and calls the save function from game manager
-        if (currentCharacter.abilityList.Count > 0)
-        {//If the character has abilities, this is compared to the master data list of abilities and the index is saved
-            for (int i = 0; i < currentCharacter.abilityList.Count; i++)
-            {
-                if (manager.levelData.abilitiesData.Contains(currentCharacter.abilityList[i]))
-                {
-                    index[i] = manager.levelData.abilitiesData.IndexOf(currentCharacter.abilityList[i]);
-                }
-            }
-        }
-        CharSave save = new CharSave(currentCharacter.characterName, currentCharacter.powerLevel, currentCharacter.maxHealth, currentCharacter.attack, currentCharacter.defence, currentToken,currentCharacter.itemList, index);
+        CharSave save = new CharSave(currentCharacter.characterName, currentCharacter.powerLevel, currentCharacter.maxHealth, 
+            currentCharacter.attack, currentCharacter.defence, currentToken,currentCharacter.itemList, currentCharacter.abilityList);
 
         if (NameCheck(currentCharacter.characterName)) { }
         else { fileSaveNum = manager.savedCharacters.Count; }

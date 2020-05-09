@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 /*EAS12337350
- * This scriptable object will hold data on what effects an ability has
+ * This scriptable object will hold data on what effects an ability has// MAY BE REDUNDANT!!
  */
  [CreateAssetMenu]
 public class AbilityData : ScriptableObject

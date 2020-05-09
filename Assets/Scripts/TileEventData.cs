@@ -58,6 +58,8 @@ public class eventOption
     public int moveChange;
 
     public bool isInstaKill;
+    public bool isAddAbility;
+    public int abilityIdNum;
 
     public bool isAddTempHP;
     public int tempHP;

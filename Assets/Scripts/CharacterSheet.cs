@@ -21,7 +21,10 @@ public class CharacterSheet
     public Image charVisual;
 
     public List<int> itemList;
-    public List<AbilityData> abilityList;
+    public List<int> abilityList;
+    //Ability base stats
+    public int moveVar;
+    public int rollFix;
 
     //Other stats as later decided
 
@@ -36,10 +39,11 @@ public class CharacterSheet
         token = defaultToken;
 
         itemList = new List<int>();
-        abilityList = new List<AbilityData>();
+        abilityList = new List<int>();
+
     }
 
-    public CharacterSheet(string defaultName, int powerLvl, int maxHP, int attk, int def, GameObject defaultToken, List<AbilityData> abilities)
+    public CharacterSheet(string defaultName, int powerLvl, int maxHP, int attk, int def, GameObject defaultToken, List<int> abilities)
     {
         //Constructor for a new character sheet
         characterName = defaultName;

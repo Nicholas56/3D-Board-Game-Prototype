@@ -10,7 +10,7 @@ public class ItemScript: MonoBehaviour
     {
         gameItems.Clear();
         List<Item> items = new List<Item>();
-        {
+        {//Number at the end is the item ID
             items.Add(new Item(Item.itemType.Stop, "Stop", 0, 0, 00));
             //MOVE boosters
             items.Add(new Item(Item.itemType.Move, "Move + 1", 1, 0, 10));
@@ -36,8 +36,27 @@ public class ItemScript: MonoBehaviour
             items.Add(new Item(Item.itemType.TempDef, "Def Boost:2*2", 2, 2, 42));
             items.Add(new Item(Item.itemType.TempDef, "Def Boost:3", 3, 1, 43));
             items.Add(new Item(Item.itemType.TempDef, "Def Boost:3*2", 3, 2, 44));
-
+            //InstaKill Item
             items.Add(new Item(Item.itemType.InstaKill, "InstaKill", 0, 0, 50));
+            //ABILITY BOONS
+            items.Add(new Item(Item.itemType.AbilityAdd, "Learn: s. HP Boon", 001, 0, 60));
+            items.Add(new Item(Item.itemType.AbilityAdd, "Learn: m. HP Boon", 002, 0, 61));
+            items.Add(new Item(Item.itemType.AbilityAdd, "Learn: l. HP Boon", 003, 0, 62));
+            items.Add(new Item(Item.itemType.AbilityAdd, "Learn: s. ATK Boon", 101, 0, 63));
+            items.Add(new Item(Item.itemType.AbilityAdd, "Learn: m. ATK Boon", 102, 0, 64));
+            items.Add(new Item(Item.itemType.AbilityAdd, "Learn: l. ATK Boon", 103, 0, 65));
+            items.Add(new Item(Item.itemType.AbilityAdd, "Learn: s. DEF Boon", 201, 0, 66));
+            items.Add(new Item(Item.itemType.AbilityAdd, "Learn: m. DEF Boon", 202, 0, 67));
+            items.Add(new Item(Item.itemType.AbilityAdd, "Learn: l. DEF Boon", 203, 0, 68));
+            items.Add(new Item(Item.itemType.AbilityAdd, "Learn: s. MV Boon", 401, 0, 69));
+            items.Add(new Item(Item.itemType.AbilityAdd, "Learn: m. MV Boon", 402, 0, 70));
+            items.Add(new Item(Item.itemType.AbilityAdd, "Learn: l. MV Boon", 403, 0, 71));
+            items.Add(new Item(Item.itemType.AbilityAdd, "Learn: Fix 1", 501, 0, 72));
+            items.Add(new Item(Item.itemType.AbilityAdd, "Learn: Fix 2", 502, 0, 73));
+            items.Add(new Item(Item.itemType.AbilityAdd, "Learn: Fix 3", 503, 0, 74));
+            items.Add(new Item(Item.itemType.AbilityAdd, "Learn: Fix 4", 504, 0, 75));
+            items.Add(new Item(Item.itemType.AbilityAdd, "Learn: Fix 5", 505, 0, 76));
+            items.Add(new Item(Item.itemType.AbilityAdd, "Learn: Fix 6", 506, 0, 77));
         }
         //Adds the items to the static list
         gameItems.AddRange(items);
@@ -45,20 +64,13 @@ public class ItemScript: MonoBehaviour
 
     public static Item GetItem(int id)
     {
-        for (int i = 0; i < gameItems.Count; i++)
-        {
-            if(gameItems[i].itemID == id)
-            {
-                return gameItems[i];
-            }
-        }
-        return null;
+        return gameItems.Find(x => x.itemID == id);
     }
 }
 
-public class Item
+public struct Item
 {
-    public enum itemType { Stop, Move, InstaKill, TempHP, TempAtk, TempDef }
+    public enum itemType { Stop, Move, InstaKill, TempHP, TempAtk, TempDef, AbilityAdd }
     public itemType iType;
 
     public string itemName;

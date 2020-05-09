@@ -28,6 +28,7 @@ public class ItemEffects : MonoBehaviour
                 //Alters the temporary health boost of player
                 chara.tempHealth += item.value;
                 chara.tempCounter +=item.tempDuration;
+                player.UpdatePlayerHealth();
                 break;
             case Item.itemType.TempAtk:
                 //Alters the temporary health boost of player
@@ -47,6 +48,10 @@ public class ItemEffects : MonoBehaviour
                     data.eventHealth -= data.maxHealth * 2;
                     FindObjectOfType<EventHandler>().EndEvent();
                 }
+                break;
+            case Item.itemType.AbilityAdd:
+                //This adds the listed ability to the characters current abilities
+                player.AddAbility(item.value);
                 break;
         }
     }
