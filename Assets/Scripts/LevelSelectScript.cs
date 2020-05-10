@@ -26,6 +26,7 @@ public class LevelSelectScript : MonoBehaviour
     }
 }
 
+//This is if the need for more description, so an new UI panel can be filled with info
 [System.Serializable]
 public class Level
 {

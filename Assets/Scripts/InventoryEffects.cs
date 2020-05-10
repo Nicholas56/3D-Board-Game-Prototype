@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 /*EAS12337350
- * This script will list all the effects called when an item is used
+ * This static class will hold all the effects, when using an item from the inventory
  */
 
-public class ItemEffects : MonoBehaviour
+public static  class InventoryEffects
 {
-    PlayerTurnScript player;
-    public void SetPlayerTurn(PlayerTurnScript turnScript) { player = turnScript; }
-    public void ItemEffect(Item item)
+    public static void ItemEffect(Item item, PlayerTurnScript player)
     {
         Character chara = player.characters[player.player];
         switch (item.iType)
@@ -27,7 +25,7 @@ public class ItemEffects : MonoBehaviour
             case Item.itemType.TempHP:
                 //Alters the temporary health boost of player
                 chara.tempHealth += item.value;
-                chara.tempCounter +=item.tempDuration;
+                chara.tempCounter += item.tempDuration;
                 player.UpdatePlayerHealth();
                 break;
             case Item.itemType.TempAtk:
@@ -46,7 +44,7 @@ public class ItemEffects : MonoBehaviour
                 if (data.type == TileEventData.tileEventType.Enemy)
                 {
                     data.eventHealth -= data.maxHealth * 2;
-                    FindObjectOfType<EventHandler>().EndEvent();
+                    player.gameObject.GetComponent<EventHandler>().EndEvent();
                 }
                 break;
             case Item.itemType.AbilityAdd:

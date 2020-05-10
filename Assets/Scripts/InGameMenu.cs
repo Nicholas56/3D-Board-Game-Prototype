@@ -9,7 +9,6 @@ using TMPro;
 public class InGameMenu : MonoBehaviour
 {
     PlayerTurnScript player;
-    public ItemEffects effects;
 
     public GameObject inventory;
     GameObject[] inventorySlots;
@@ -19,7 +18,6 @@ public class InGameMenu : MonoBehaviour
     {
         GetItemList();
         player = gameObject.GetComponent<PlayerTurnScript>();
-        effects.SetPlayerTurn(player);
         gameObject.GetComponent<EventEffects>().SetPlayerTurn(player);
     }
 
@@ -57,7 +55,7 @@ public class InGameMenu : MonoBehaviour
     public void ItemUse(int itemIndex)
     {//This activates the effect of the item in the inventory from the static list in ItemScript
         CharacterSheet sheet = player.characters[player.player].charSheet;
-        effects.ItemEffect(ItemScript.GetItem(sheet.itemList[itemIndex + startItem]));
+        InventoryEffects.ItemEffect(ItemScript.GetItem(sheet.itemList[itemIndex + startItem]), player);
         //Then the item is removed and the list updated
         player.characters[player.player].charSheet.itemList.RemoveAt(itemIndex + startItem);
         ShowItemList();
