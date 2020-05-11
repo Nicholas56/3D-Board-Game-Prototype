@@ -17,11 +17,15 @@ public class GameManager : MonoBehaviour
     Camera mainCamera;
 
     public List<TileScript> mapTiles = new List<TileScript>();
+    public List<AudioSource> audios;
+    public static bool muteMusic;
+    public static bool muteSound;
 
     private void Awake()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         FindAllMapTiles(mainCamera);
+        if (muteMusic) { audios[0].mute = true; }
     }
     public void FindAllMapTiles(Camera eventCamera)
     {
@@ -85,5 +89,20 @@ public class GameManager : MonoBehaviour
             string JSONString = JsonUtility.ToJson(savedCharacters[i]);
             File.WriteAllText(Application.persistentDataPath + "/charSave.save" + i, JSONString);
         }
+    }
+
+    public void ToggleMuteMusic()
+    {//Mutes the sound from main music track, true for other scenes
+        audios[0].mute = !audios[0].mute;
+        muteMusic = audios[0].mute;
+    }
+
+    public void ToggleMuteSoundEffects()
+    {
+        for (int i = 1; i < audios.Count; i++)
+        {
+            audios[i].mute = !audios[i].mute;
+        }
+        muteSound = audios[1].mute;
     }
 }

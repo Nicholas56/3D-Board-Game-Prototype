@@ -20,11 +20,7 @@ public class CharacterManagerScript : MonoBehaviour
 
     int fileSaveNum = -1;
 
-    [Tooltip("This is a button to allow the player to select previously saved character sheets")]
-    public GameObject charSelectButton;
     public GameObject charSelectHolder;
-
-    public GameObject charSheetPanel;
 
     public TMP_InputField charNameInput;
 
@@ -34,7 +30,6 @@ public class CharacterManagerScript : MonoBehaviour
     public TMP_Text charDefence;
 
     public Transform abilityBoxHolder;
-    public GameObject abilityBox;
 
     public Image charTokenImage;
 

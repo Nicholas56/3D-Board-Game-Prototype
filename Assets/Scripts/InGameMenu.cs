@@ -10,6 +10,8 @@ public class InGameMenu : MonoBehaviour
 {
     PlayerTurnScript player;
 
+    public GameObject options;
+
     public GameObject inventory;
     GameObject[] inventorySlots;
     int startItem = 0;
@@ -28,6 +30,7 @@ public class InGameMenu : MonoBehaviour
         ShowItemList();
     }
     public void DisplayInventory(bool close) { inventory.SetActive(!close); }
+    public void DisplayOptions() { options.SetActive(!options.activeSelf); }
 
     public void GetItemList()
     {//This sets up the inventory for use
