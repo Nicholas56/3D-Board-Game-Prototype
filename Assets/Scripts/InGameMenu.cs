@@ -29,8 +29,8 @@ public class InGameMenu : MonoBehaviour
         startItem = 0;
         ShowItemList();
     }
-    public void DisplayInventory(bool close) { inventory.SetActive(!close); }
-    public void DisplayOptions() { options.SetActive(!options.activeSelf); }
+    public void DisplayInventory(bool close) { inventory.SetActive(!close); options.SetActive(false); }
+    public void DisplayOptions() { options.SetActive(!options.activeSelf); inventory.SetActive(false); }
 
     public void GetItemList()
     {//This sets up the inventory for use

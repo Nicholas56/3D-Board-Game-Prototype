@@ -69,6 +69,7 @@ public class CharacterManagerScript : MonoBehaviour
         //Uses the CharacterSheet constructor to make a new character
         CharacterSheet newCharacter = new CharacterSheet("CharName", 0, 10, 4, 4, tokenObject[0]);
         currentCharacter = newCharacter;
+        DisplayStats();
     }
 
     void CharacterSelectBoxes()
@@ -131,6 +132,7 @@ public class CharacterManagerScript : MonoBehaviour
     public void DisplayStats()
     {
         int level;
+        //This modifies the stats if level is above 1
         if(Mathf.CeilToInt(currentCharacter.powerLevel / 100) < 1) { level = 1; } else { level = Mathf.CeilToInt(currentCharacter.powerLevel / 100); }
         charNameInput.text = currentCharacter.characterName;
         charPower.text = "" + currentCharacter.powerLevel;
