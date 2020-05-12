@@ -30,6 +30,8 @@ public class PlayerTurnScript : MonoBehaviour
     public bool isRoll;
     public int rollAddedValue;
     public int rollFixValue;
+    float rollTimer;
+    int roll;
 
     public TMP_Text playerHealth;
 
@@ -63,9 +65,10 @@ public class PlayerTurnScript : MonoBehaviour
             //Moves from last tile to current tile using speed to calculate step per second
             characters[player].gameToken.transform.position = Vector3.MoveTowards(characters[player].lastTile.transform.position, characters[player].currentTile.transform.position,tokenStep);
         }
-        if (isRoll)
+        if (isRoll && rollTimer<Time.time)
         {
             RollDice();
+            rollTimer = Time.time + 0.1f;
         }
     }
 
@@ -73,8 +76,9 @@ public class PlayerTurnScript : MonoBehaviour
     {
         //This function will represent the dice roll. This will produce a random number as an outcome
         //The dice roll can be influenced by number of dice, abilities or some other factor. The script will need to accomodate this!!
-        int roll = Random.Range(1 + rollAddedValue, 7 + rollAddedValue);
-        spacesToMove = roll;
+        //int roll = Random.Range(1 + rollAddedValue, 7 + rollAddedValue);
+        roll = (roll+1) % 6+rollAddedValue;
+        spacesToMove = roll+1;
         UpdateMovesToGo();
     }
 

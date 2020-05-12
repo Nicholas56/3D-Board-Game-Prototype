@@ -8,18 +8,37 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
+    public float cameraSpeed;
+
     PlayerTurnScript player;
     Transform token;
+    bool freeCamera = false;
     // Start is called before the first frame update
     void Start()
     {
         player = FindObjectOfType<PlayerTurnScript>();
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     // The camera will be able to move away from the player token, though will snap back when free movement ends
     void Update()
     {
         if(player && !token) { FollowToken(); }
+        if (freeCamera)
+        {
+            if (transform.parent == token) { transform.SetParent(null); }
+            if (Input.GetAxis("Mouse X") > 0)
+            {
+                Debug.Log("happens");
+                transform.position += new Vector3(Input.GetAxisRaw("Mouse X") * Time.deltaTime * cameraSpeed, 0.0f,
+                    Input.GetAxisRaw("Mouse Y") * Time.deltaTime * cameraSpeed);
+            }
+            else if (Input.GetAxis("Mouse X") < 0)
+            {
+                transform.position += new Vector3(Input.GetAxisRaw("Mouse X") * Time.deltaTime * cameraSpeed, 0.0f,
+                    Input.GetAxisRaw("Mouse Y") * Time.deltaTime * cameraSpeed);
+            }
+        }
     }
 
     public void FollowToken()
@@ -33,5 +52,15 @@ public class CameraScript : MonoBehaviour
     public void ResetToken()
     {
         token = null;
+    }
+
+    public void FreeCamera()
+    {
+        freeCamera = !freeCamera;
+        if (freeCamera == false)
+        {//If the free camera is turned off, the camera will find the player again
+            transform.position = token.position;
+            transform.SetParent(token);
+        }
     }
 }

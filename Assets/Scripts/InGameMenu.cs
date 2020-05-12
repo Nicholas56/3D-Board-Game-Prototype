@@ -25,7 +25,7 @@ public class InGameMenu : MonoBehaviour
 
     public void DisplayInventory()
     {//This toggles the inventory on button click
-        inventory.SetActive(!inventory.activeSelf);
+        inventory.SetActive(!inventory.activeSelf); options.SetActive(false);
         startItem = 0;
         ShowItemList();
     }

@@ -21,6 +21,7 @@ public class EventHandler : MonoBehaviour
     public TMP_Text eventDescription;
     public Image eventVisual;
 
+    public GameObject rollButton;
     public GameObject enemyHealth;
     public GameObject enemyTurnPanel;
     
@@ -28,6 +29,7 @@ public class EventHandler : MonoBehaviour
     {
         if (player.isEvent)
         {
+            rollButton.SetActive(false);
             GetEventData();
             if (data.eventOptionList.Length > 0)
             {
@@ -146,6 +148,7 @@ public class EventHandler : MonoBehaviour
         }
         yield return new WaitForSeconds(2);
         UpdateEnemyHealth();
+        rollButton.SetActive(true);
         player.ResetTurn();
     }
 
