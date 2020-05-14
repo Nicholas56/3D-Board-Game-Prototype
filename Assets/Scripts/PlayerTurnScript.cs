@@ -269,19 +269,12 @@ public class Character
     public int Power { 
         get 
         { 
-            if (Mathf.CeilToInt(charSheet.powerLevel / 100) < 1) 
-            { 
-                return 1; 
-            } 
-            else 
-            { 
-                return Mathf.CeilToInt(charSheet.powerLevel / 100); 
-            } 
+            return Mathf.CeilToInt(charSheet.powerLevel / 50);             
         } 
     }
-    public int MaxHealth { get { return charSheet.maxHealth * Power; } }
-    public int Attack { get { return charSheet.attack * Power; } }
-    public int Defence { get { return charSheet.defence * Power; } }
+    public int MaxHealth { get { return charSheet.maxHealth +(5 * Power); } }
+    public int Attack { get { return charSheet.attack +(2 * Power); } }
+    public int Defence { get { return charSheet.defence +(2 * Power); } }
 
     public int health;
     //Temporary stats

@@ -133,12 +133,12 @@ public class CharacterManagerScript : MonoBehaviour
     {
         int level;
         //This modifies the stats if level is above 1
-        if(Mathf.CeilToInt(currentCharacter.powerLevel / 100) < 1) { level = 1; } else { level = Mathf.CeilToInt(currentCharacter.powerLevel / 100); }
+        level = Mathf.CeilToInt(currentCharacter.powerLevel / 50);
         charNameInput.text = currentCharacter.characterName;
         charPower.text = "" + currentCharacter.powerLevel;
-        charHealth.text = "" + currentCharacter.maxHealth * level;
-        charAttack.text = "" + currentCharacter.attack * level;
-        charDefence.text = "" + currentCharacter.defence * level;
+        charHealth.text = "" + (currentCharacter.maxHealth +(5 * level));
+        charAttack.text = "" + (currentCharacter.attack + (2 * level));
+        charDefence.text = "" + (currentCharacter.defence +(2 * level));
 
         for (int i = 0; i < abilityBoxHolder.childCount; i++)
         {
@@ -205,6 +205,12 @@ public class CharacterManagerScript : MonoBehaviour
             manager.DeleteCharacter(fileSaveNum);
             CharacterSelectBoxes();
         }
+    }
+
+    public void ChangeNumOfPlayers(Transform toggle)
+    {
+        numOfPlayers = toggle.GetSiblingIndex() +1;
+        Debug.Log(numOfPlayers);
     }
 }
 
