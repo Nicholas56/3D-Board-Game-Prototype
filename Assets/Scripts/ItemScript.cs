@@ -57,6 +57,8 @@ public class ItemScript: MonoBehaviour
             items.Add(new Item(Item.itemType.AbilityAdd, "Learn: Fix 4", 504, 0, 75));
             items.Add(new Item(Item.itemType.AbilityAdd, "Learn: Fix 5", 505, 0, 76));
             items.Add(new Item(Item.itemType.AbilityAdd, "Learn: Fix 6", 506, 0, 77));
+            //Heal Item
+            items.Add(new Item(Item.itemType.Heal, "Heal", 5, 0, 78));
         }
         //Adds the items to the static list
         gameItems.AddRange(items);
@@ -70,7 +72,7 @@ public class ItemScript: MonoBehaviour
 
 public struct Item
 {
-    public enum itemType { Stop, Move, InstaKill, TempHP, TempAtk, TempDef, AbilityAdd }
+    public enum itemType { Stop, Move, InstaKill, TempHP, TempAtk, TempDef, AbilityAdd,Heal }
     public itemType iType;
 
     public string itemName;

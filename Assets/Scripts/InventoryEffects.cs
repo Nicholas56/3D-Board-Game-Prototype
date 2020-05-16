@@ -47,6 +47,15 @@ public static  class InventoryEffects
                     player.gameObject.GetComponent<EventHandler>().EndEvent();
                 }
                 break;
+            case Item.itemType.Heal:
+                //Heals the player
+                chara.health += item.value;
+                if (chara.health>chara.MaxHealth)
+                {
+                    chara.health = chara.MaxHealth;
+                }
+                player.UpdatePlayerHealth();
+                break;
             case Item.itemType.AbilityAdd:
                 //This adds the listed ability to the characters current abilities
                 player.AddAbility(item.value);
