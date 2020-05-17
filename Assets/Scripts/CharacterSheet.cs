@@ -18,7 +18,7 @@ public class CharacterSheet
     public int defence;
 
     public GameObject token;
-    public Image charVisual;
+    public Sprite charVisual;
 
     public List<int> itemList;
     public List<int> abilityList;

@@ -187,6 +187,11 @@ public class PlayerTurnScript : MonoBehaviour
 
     IEnumerator WaitForMove(float waitTime)
     {
+        //This faces the game token in the correct direction and angle
+        GameObject lookAt = new GameObject();
+        lookAt.transform.position = characters[player].currentTile.transform.position + Vector3.up;
+        characters[player].gameToken.transform.GetChild(0).transform.LookAt(lookAt.transform);
+        Destroy(lookAt);
         yield return new WaitForSeconds(waitTime);
         characters[player].currentTile.EnterTile();
         //Once you run out of spaces to move, the moving phase of the turn is over

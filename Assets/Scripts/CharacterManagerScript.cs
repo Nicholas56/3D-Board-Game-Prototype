@@ -35,7 +35,7 @@ public class CharacterManagerScript : MonoBehaviour
 
     public int currentToken;
     public List<GameObject> tokenObject;
-    public List<Image> tokenImage;
+    public List<Sprite> tokenImage;
 
     private void Start()
     {
@@ -47,6 +47,7 @@ public class CharacterManagerScript : MonoBehaviour
         }
         else { currentCharacter = GameManager.playerCharacters[0]; }
         DisplayStats();
+        ChooseToken(0);
         manager.LoadCharacters();
         CharacterSelectBoxes();
     }
@@ -126,7 +127,7 @@ public class CharacterManagerScript : MonoBehaviour
         {
             GameManager.playerCharacters[currentPlayer] = currentCharacter;
         }
-        charTokenImage = tokenImage[sheet.tokenIndex];
+        charTokenImage.sprite = tokenImage[sheet.tokenIndex];
     }
 
     public void DisplayStats()
@@ -155,7 +156,7 @@ public class CharacterManagerScript : MonoBehaviour
     {
         //The selected token is chosen as the current character sheet's token
         currentCharacter.token = tokenObject[tokenIndex];
-        charTokenImage = tokenImage[tokenIndex];
+        charTokenImage.sprite = tokenImage[tokenIndex];
         currentCharacter.charVisual = tokenImage[tokenIndex];
         currentToken = tokenIndex;
     }

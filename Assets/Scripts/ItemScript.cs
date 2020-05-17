@@ -72,7 +72,7 @@ public class ItemScript: MonoBehaviour
 
 public struct Item
 {
-    public enum itemType { Stop, Move, InstaKill, TempHP, TempAtk, TempDef, AbilityAdd,Heal }
+    public enum itemType { Stop, Move, InstaKill, TempHP, TempAtk, TempDef, AbilityAdd, Heal }
     public itemType iType;
 
     public string itemName;

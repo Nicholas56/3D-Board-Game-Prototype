@@ -150,14 +150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10b5baf186c261a42a871baecf06deef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positiveEventsData: []
-  negativeEventsData: []
-  enemyEventsData: []
-  trapsEventsData: []
-  questEventsData: []
-  abilitiesData: []
+  levelData: {fileID: 0}
   mapTiles: []
-  savedCharacters: []
+  audios: []
 --- !u!4 &25431694
 Transform:
   m_ObjectHideFlags: 0
@@ -184,14 +179,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5028bd4bccc0fb4fbc28adb917e1f3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingTile: {fileID: 0}
+  isEvent: 0
   eventPanel: {fileID: 0}
-  eventDescriptionText: {fileID: 0}
-  buttonName1: {fileID: 0}
-  buttonName2: {fileID: 0}
-  buttonName3: {fileID: 0}
   player: 0
   tokenSpeed: 2
   spacesToMove: 0
+  movesToGo: {fileID: 0}
+  isRoll: 0
+  rollAddedValue: 0
+  rollFixValue: 0
+  playerHealth: {fileID: 0}
+  itemList: 
+  abilityList: 
 --- !u!1 &48249301
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,7 +582,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileType: 0
-  startOrEndTile: 0
+  endTile: 0
+  hasItem: 0
   tileButton: {fileID: 931349195}
   localArea: 0
   localTiles:
@@ -986,7 +987,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileType: 0
-  startOrEndTile: 0
+  endTile: 0
+  hasItem: 0
   tileButton: {fileID: 48249302}
   localArea: 0
   localTiles:
@@ -1276,7 +1278,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileType: 0
-  startOrEndTile: 0
+  endTile: 0
+  hasItem: 0
   tileButton: {fileID: 572029606}
   localArea: 3
   localTiles:
@@ -3017,7 +3020,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileType: 0
-  startOrEndTile: 0
+  endTile: 0
+  hasItem: 0
   tileButton: {fileID: 194284767}
   localArea: 3
   localTiles:
@@ -3460,7 +3464,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileType: 0
-  startOrEndTile: 0
+  endTile: 0
+  hasItem: 0
   tileButton: {fileID: 73608059}
   localArea: 0
   localTiles:
@@ -3573,7 +3578,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileType: 0
-  startOrEndTile: 0
+  endTile: 0
+  hasItem: 0
   tileButton: {fileID: 1346479615}
   localArea: 3
   localTiles:
@@ -3839,7 +3845,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileType: 0
-  startOrEndTile: 0
+  endTile: 0
+  hasItem: 0
   tileButton: {fileID: 971244826}
   localArea: 3
   localTiles:
@@ -4086,7 +4093,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileType: 0
-  startOrEndTile: 0
+  endTile: 0
+  hasItem: 0
   tileButton: {fileID: 1896919548}
   localArea: 0
   localTiles:
@@ -4278,6 +4286,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube
       objectReference: {fileID: 0}
+    - target: {fileID: 1980200731414320612, guid: 77dbc43979c912f469e219e4a2e287e5,
+        type: 3}
+      propertyPath: localTiles.Array.data[0]
+      value: 
+      objectReference: {fileID: 175023365}
+    - target: {fileID: 1980200731414320612, guid: 77dbc43979c912f469e219e4a2e287e5,
+        type: 3}
+      propertyPath: localTiles.Array.data[1]
+      value: 
+      objectReference: {fileID: 2062402391}
     - target: {fileID: 1980200731414320613, guid: 77dbc43979c912f469e219e4a2e287e5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4333,16 +4351,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1980200731414320612, guid: 77dbc43979c912f469e219e4a2e287e5,
-        type: 3}
-      propertyPath: localTiles.Array.data[0]
-      value: 
-      objectReference: {fileID: 175023365}
-    - target: {fileID: 1980200731414320612, guid: 77dbc43979c912f469e219e4a2e287e5,
-        type: 3}
-      propertyPath: localTiles.Array.data[1]
-      value: 
-      objectReference: {fileID: 2062402391}
     - target: {fileID: 1980200731668199071, guid: 77dbc43979c912f469e219e4a2e287e5,
         type: 3}
       propertyPath: m_Camera
