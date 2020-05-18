@@ -68,7 +68,7 @@ public class EventHandler : MonoBehaviour
                     eventName.text = "Quest!";
                     break;
             }
-            eventVisual = data.eventVisual;
+            eventVisual.sprite = data.eventVisual;
             
             player.isEvent = false;
         }

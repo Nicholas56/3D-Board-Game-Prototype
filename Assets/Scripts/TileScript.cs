@@ -31,28 +31,28 @@ public class TileScript : MonoBehaviour
         switch (tileType)
         {
             case eventType.None:
-                gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.grey);
+                tileButton.GetComponent<Image>().sprite = manager.levelData.icon[0];
                 break;
             case eventType.Enemy:
-                gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
+                tileButton.GetComponent<Image>().sprite = manager.levelData.icon[1];
                 break;
             case eventType.Trap:
-                gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.yellow);
+                tileButton.GetComponent<Image>().sprite = manager.levelData.icon[2];
                 break;
             case eventType.PositiveEvent:
-                gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.blue);
+                tileButton.GetComponent<Image>().sprite = manager.levelData.icon[3];
                 break;
             case eventType.NegativeEvent:
-                gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.black);
+                tileButton.GetComponent<Image>().sprite = manager.levelData.icon[4];
                 break;
             case eventType.RandomEvent:
-                gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.white);
+                tileButton.GetComponent<Image>().sprite = manager.levelData.icon[5];
                 break;
             case eventType.Random:
-                gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.green);
+                tileButton.GetComponent<Image>().sprite = manager.levelData.icon[6];
                 break;
             case eventType.Quest:
-                gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.cyan);
+                tileButton.GetComponent<Image>().sprite = manager.levelData.icon[7];
                 break;
         }
     }

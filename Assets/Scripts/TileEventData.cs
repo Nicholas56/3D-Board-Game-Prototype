@@ -16,7 +16,7 @@ public class TileEventData : ScriptableObject
     [TextArea(2, 10)]
     public string eventDescription = "";
 
-    public Image eventVisual;
+    public Sprite eventVisual;
 
     public int maxHealth;
     public int eventHealth;

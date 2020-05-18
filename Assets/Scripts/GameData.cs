@@ -21,4 +21,6 @@ public class GameData : ScriptableObject
     public List<int> abilitiesData;
 
     public List<CharacterSheet> savedCharacters;
+
+    public List<Sprite> icon;
 }

@@ -17,9 +17,9 @@ MonoBehaviour:
   eventDescription: 'A wild Goblin appears! He looks mean!
 
     It''s time to fight!'
-  eventVisual: {fileID: 0}
+  eventVisual: {fileID: 21300000, guid: 95257e96db9c5f64982b9620d129650e, type: 3}
   maxHealth: 6
-  eventHealth: 0
+  eventHealth: 6
   eventAttack: 4
   eventDefence: 1
   eventDamage: 0
@@ -36,3 +36,16 @@ MonoBehaviour:
     willTeleport: 0
     teleportTo: 0
     isAttack: 1
+    isStop: 0
+    isAddMove: 0
+    moveChange: 0
+    isInstaKill: 0
+    isAddAbility: 0
+    abilityIdNum: 0
+    isAddTempHP: 0
+    tempHP: 0
+    isAddTempAtk: 0
+    tempAtk: 0
+    isAddTempDef: 0
+    tempDef: 0
+    tempDuration: 0
