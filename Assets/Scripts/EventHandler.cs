@@ -31,6 +31,13 @@ public class EventHandler : MonoBehaviour
         {
             rollButton.SetActive(false);
             GetEventData();
+            if (data == null) 
+            {
+                rollButton.SetActive(true);
+                player.ResetTurn();
+                player.isEvent = false;
+                return;
+            }
             if (data.eventOptionList.Length > 0)
             {
                 for (int i = 0; i < data.eventOptionList.Length; i++)

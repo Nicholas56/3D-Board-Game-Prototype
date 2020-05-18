@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bed98f83a1540c46a1fc7976cedaa09, type: 3}
+  m_Name: Enemy3
+  m_EditorClassIdentifier: 
+  type: 1
+  eventName: Slime
+  eventDescription: A puddle before you begins to take shape. It's a Slime! And it's
+    angry!
+  eventVisual: {fileID: 21300000, guid: 95257e96db9c5f64982b9620d129650e, type: 3}
+  maxHealth: 8
+  eventHealth: 8
+  eventAttack: 3
+  eventDefence: 3
+  eventDamage: 0
+  eventReward: 20
+  eventOptionList:
+  - optionName: Fight
+    successRate: 1
+    successOutcomeText: You attack the slime!
+    failureOutcomeText: You missed!
+    willChangePower: 0
+    powerChange: 0
+    willChangeHealth: 0
+    healthChange: 0
+    willTeleport: 0
+    teleportTo: 0
+    isAttack: 1
+    isStop: 0
+    isAddMove: 0
+    moveChange: 0
+    isInstaKill: 0
+    isAddAbility: 0
+    abilityIdNum: 0
+    isAddTempHP: 0
+    tempHP: 0
+    isAddTempAtk: 0
+    tempAtk: 0
+    isAddTempDef: 0
+    tempDef: 0
+    tempDuration: 0

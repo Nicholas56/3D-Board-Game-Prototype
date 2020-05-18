@@ -18,7 +18,7 @@ public class GameData : ScriptableObject
     public List<int> itemData;
     public GameObject itemPrefab;
 
-    public List<int> abilitiesData;
+    //public List<int> abilitiesData;
 
     public List<CharacterSheet> savedCharacters;
 

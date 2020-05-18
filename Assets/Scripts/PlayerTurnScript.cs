@@ -36,7 +36,7 @@ public class PlayerTurnScript : MonoBehaviour
     public TMP_Text playerHealth;
 
     public List<int> itemList = new List<int>();
-    public List<int> abilityList = new List<int>();
+    //public List<int> abilityList = new List<int>();
     
 
     List<TileScript> tilesMovedOverInTurn = new List<TileScript>();
@@ -55,7 +55,7 @@ public class PlayerTurnScript : MonoBehaviour
         }
         UpdatePlayerHealth();
         itemList = new List<int>(FindObjectOfType<GameManager>().levelData.itemData);
-        abilityList = new List<int>(FindObjectOfType<GameManager>().levelData.abilitiesData);
+        //abilityList = new List<int>(FindObjectOfType<GameManager>().levelData.abilitiesData);
     }
     private void FixedUpdate()
     {

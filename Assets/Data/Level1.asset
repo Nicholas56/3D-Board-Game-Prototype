@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22fd4713d7eaeec43bd2c04b9ab3bfed, type: 3}
+  m_Name: Level1
+  m_EditorClassIdentifier: 
+  positiveEventsData:
+  - {fileID: 11400000, guid: c2c0e638ea15612488042e025f187231, type: 2}
+  - {fileID: 11400000, guid: 961053e0ccc889742800b328a3405bf4, type: 2}
+  negativeEventsData:
+  - {fileID: 11400000, guid: effae2e654c8f2d458fd49af7d481a5f, type: 2}
+  - {fileID: 11400000, guid: ad88a117da0b3d042ab39f63bbbb601e, type: 2}
+  enemyEventsData:
+  - {fileID: 11400000, guid: 7e817ad00197e244f87ddc4bc387f043, type: 2}
+  - {fileID: 11400000, guid: fb549c315e0e8d4478d30e52ca4a7c56, type: 2}
+  - {fileID: 11400000, guid: eaed4f5747321fb40b624e38b5ea0f64, type: 2}
+  - {fileID: 11400000, guid: 1d132eda811a4c34ea2619568f4816e6, type: 2}
+  - {fileID: 11400000, guid: eaed4f5747321fb40b624e38b5ea0f64, type: 2}
+  - {fileID: 11400000, guid: 1d132eda811a4c34ea2619568f4816e6, type: 2}
+  - {fileID: 11400000, guid: fb549c315e0e8d4478d30e52ca4a7c56, type: 2}
+  - {fileID: 11400000, guid: fb549c315e0e8d4478d30e52ca4a7c56, type: 2}
+  - {fileID: 11400000, guid: 7e817ad00197e244f87ddc4bc387f043, type: 2}
+  - {fileID: 11400000, guid: 7e817ad00197e244f87ddc4bc387f043, type: 2}
+  trapsEventsData:
+  - {fileID: 11400000, guid: 621badea4907d8c44be59dc55c45a680, type: 2}
+  - {fileID: 11400000, guid: 37084bae30e11ca46a8f91a417e4a336, type: 2}
+  - {fileID: 11400000, guid: 37084bae30e11ca46a8f91a417e4a336, type: 2}
+  - {fileID: 11400000, guid: 37084bae30e11ca46a8f91a417e4a336, type: 2}
+  - {fileID: 11400000, guid: 50867376c778cf645b7639cf0b75a6a4, type: 2}
+  - {fileID: 11400000, guid: 50867376c778cf645b7639cf0b75a6a4, type: 2}
+  - {fileID: 11400000, guid: 50867376c778cf645b7639cf0b75a6a4, type: 2}
+  - {fileID: 11400000, guid: 621badea4907d8c44be59dc55c45a680, type: 2}
+  - {fileID: 11400000, guid: a3e2e0ff6c17b7247a23309a92e1ecca, type: 2}
+  questEventsData: []
+  itemData: 00000000150000001f000000290000000b000000
+  itemPrefab: {fileID: 575302374768638504, guid: 9e7e28243d4cffe44aca963961c3c6f0,
+    type: 3}
+  icon:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 22770132167e16d439fe70de93c303e6, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
