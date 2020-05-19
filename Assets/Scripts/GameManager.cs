@@ -38,7 +38,12 @@ public class GameManager : MonoBehaviour
             tiles[i].GetComponent<TileScript>().LocateLocalTiles();
             tiles[i].GetComponentInChildren<Canvas>().worldCamera = eventCamera;
             //If the tile is an item holding tile, the item prefab will be created
-            if (mapTiles[i].hasItem) { Instantiate(levelData.itemPrefab, mapTiles[i].transform); }
+            if (mapTiles[i].hasItem) 
+            {
+                GameObject item = Instantiate(levelData.itemPrefab, mapTiles[i].transform);
+                //Corrects the scale on the item
+                item.transform.localScale = new Vector3(0.33f, 1, 0.33f);
+            }
         }
     }
 

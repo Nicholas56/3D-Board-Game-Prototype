@@ -32,6 +32,7 @@ public class PlayerTurnScript : MonoBehaviour
     public int rollFixValue;
     float rollTimer;
     int roll;
+    public bool canRoll;
 
     public TMP_Text playerHealth;
 
@@ -55,7 +56,7 @@ public class PlayerTurnScript : MonoBehaviour
         }
         UpdatePlayerHealth();
         itemList = new List<int>(FindObjectOfType<GameManager>().levelData.itemData);
-        //abilityList = new List<int>(FindObjectOfType<GameManager>().levelData.abilitiesData);
+        canRoll = true;
     }
     private void FixedUpdate()
     {
@@ -98,11 +99,15 @@ public class PlayerTurnScript : MonoBehaviour
 
     public void RollToggle()
     {
-        if (isRoll)
-        {
-            StopRoll();
+        if (canRoll)
+        {//Only allows the player to roll once
+            if (isRoll)
+            {
+                StopRoll();
+                canRoll = false;
+            }
+            else { BeginRoll(); }
         }
-        else { BeginRoll(); }
     }
 
     public void ToggleOptionMenu()
@@ -152,6 +157,8 @@ public class PlayerTurnScript : MonoBehaviour
         FindObjectOfType<CameraScript>().ResetToken();
         tileEvent = null;
         UpdatePlayerHealth();
+        //Allows the player to roll again
+        canRoll = true;
     }
 
     public void MoveCharacter(TileScript nextTile)
@@ -211,9 +218,16 @@ public class PlayerTurnScript : MonoBehaviour
 
     public void StartEvent()
     {
-        tileEvent = characters[player].currentTile.LandOnTile();
-        eventPanel.SetActive(true);
-        isEvent = true;
+        if (characters[player].currentTile.tileType == TileScript.eventType.None)
+        {//If the tile is none type, the event screen is not called and the turn resets
+            ResetTurn();
+        }
+        else
+        {
+            tileEvent = characters[player].currentTile.LandOnTile();
+            eventPanel.SetActive(true);
+            isEvent = true;
+        }
     }
 
     public void AddItem()

@@ -106,13 +106,23 @@ public class CharacterManagerScript : MonoBehaviour
         currentCharacter = GameManager.playerCharacters[currentPlayer];
         DisplayStats();
         playerCounter.text = "" + (currentPlayer + 1);
-        Debug.Log(GameManager.playerCharacters.Count);
     }
 
     public void DisplayCharacterSheet(int saveFile)
     {
         //When the character is selected from the list, the corresponding character sheet will be displayed
         CharSave sheet = manager.savedCharacters[saveFile];
+
+        if (GameManager.playerCharacters.Count > 1)
+        {
+            for (int i = 0; i < GameManager.playerCharacters.Count; i++)
+            {//This check runs for all but the current player
+                if (i != currentPlayer)
+                {//This checks the name of the load file against all other player names, if the same, the load fails
+                    if (sheet.characterName == GameManager.playerCharacters[i].characterName) { return; }
+                }
+            }
+        }
         if (sheet.abilityIndex.Count > 0)
         {
             List<int> abilities = new List<int>(sheet.abilityIndex);
@@ -209,9 +219,8 @@ public class CharacterManagerScript : MonoBehaviour
     }
 
     public void ChangeNumOfPlayers(Transform toggle)
-    {
+    {//This changes the num of players by using the toggle's position in the toggle group
         numOfPlayers = toggle.GetSiblingIndex() +1;
-        Debug.Log(numOfPlayers);
     }
 }
 
