@@ -22,7 +22,7 @@ public class PlayerTurnScript : MonoBehaviour
 
     //When the player clicks on a tile, it is stored here
     public int player=0;
-    public float tokenSpeed = 2f;
+    public float tokenSpeed = 4f;
     float tokenStep;
 
     public int spacesToMove = 0;
@@ -88,6 +88,9 @@ public class PlayerTurnScript : MonoBehaviour
         isRoll = true;
         if (characters[player].charSheet.moveVar != 0) { rollAddedValue = characters[player].charSheet.moveVar; } else { rollAddedValue = 0; }
         if (characters[player].charSheet.rollFix != 0) { rollFixValue = characters[player].charSheet.rollFix; } else { rollFixValue = 0; }
+        float randTime = Random.Range(0.1f, 0.9f);
+        //This will stop the dice at random
+        Invoke("StopRoll", randTime);
     }
     public void StopRoll() 
     { 
@@ -188,7 +191,7 @@ public class PlayerTurnScript : MonoBehaviour
             characters[player].currentTile = nextTile;
             //Resets the step counter for the token move function, allowing it to begin moving again
             tokenStep = 0;
-            StartCoroutine(WaitForMove(2f));
+            StartCoroutine(WaitForMove(1f));
         }
     }
 

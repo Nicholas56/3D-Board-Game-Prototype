@@ -111,15 +111,21 @@ public class EventHandler : MonoBehaviour
     {
         if (player.isRoll)
         {
-            player.StopRoll();
-            EventAction(optionNumber);
+            //player.StopRoll();
         }
         else
         {
             player.BeginRoll();
             ButtonHide(optionNum);
             optionNumber = optionNum;
+            StartCoroutine(PerformAction());
         } 
+    }
+
+    IEnumerator PerformAction()
+    {
+        yield return new WaitForSeconds(0.8f);
+        EventAction(optionNumber);
     }
 
     void EventAction(int optionNum) { 

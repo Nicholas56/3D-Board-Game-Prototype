@@ -1285,10 +1285,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3361503185271601555, guid: 37d87f3989d41d349bf9109973906149,
         type: 3}
+      propertyPath: audios.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361503185271601555, guid: 37d87f3989d41d349bf9109973906149,
+        type: 3}
       propertyPath: levelData
       value: 
       objectReference: {fileID: 11400000, guid: 06c96f48cb06c5043a8c82e49e613964,
         type: 2}
+    - target: {fileID: 3361503185271601555, guid: 37d87f3989d41d349bf9109973906149,
+        type: 3}
+      propertyPath: audios.Array.data[0]
+      value: 
+      objectReference: {fileID: 1391739851}
     - target: {fileID: 6386008716782599134, guid: 37d87f3989d41d349bf9109973906149,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -1426,6 +1436,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37d87f3989d41d349bf9109973906149, type: 3}
+--- !u!82 &1391739851 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8581700255671645230, guid: 37d87f3989d41d349bf9109973906149,
+    type: 3}
+  m_PrefabInstance: {fileID: 1391739850}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1672438999
 PrefabInstance:
   m_ObjectHideFlags: 0

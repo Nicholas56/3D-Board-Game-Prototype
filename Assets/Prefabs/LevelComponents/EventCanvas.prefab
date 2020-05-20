@@ -6476,7 +6476,7 @@ MonoBehaviour:
   isEvent: 0
   eventPanel: {fileID: 8519082344650603534}
   player: 0
-  tokenSpeed: 2
+  tokenSpeed: 4
   spacesToMove: 0
   movesToGo: {fileID: 8519082345418765352}
   isRoll: 0
