@@ -170,9 +170,10 @@ public class EventHandler : MonoBehaviour
         enemyTurnPanel.SetActive(true);
         yield return new WaitForSeconds(2);
         //The enemy rolls the dice and damage is calculated
-        player.BeginRoll();
-        yield return new WaitForSeconds(1);
-        player.StopRoll();
+        player.isRoll=true; 
+        float randTime = Random.Range(0.1f, 0.9f);
+        yield return new WaitForSeconds(randTime);
+        player.isRoll=false;
         Character chara = player.characters[player.player];
         int enemyAttack = (player.spacesToMove + data.eventAttack);
         int playerDef = (chara.Defence + chara.tempDefence);

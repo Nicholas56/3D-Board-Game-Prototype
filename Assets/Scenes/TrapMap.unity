@@ -497,7 +497,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &763878608
 PrefabInstance:
@@ -2372,6 +2372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8565517704956312070, guid: 37d87f3989d41d349bf9109973906149, type: 3}
+    - {fileID: 8581700255671645230, guid: 37d87f3989d41d349bf9109973906149, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 37d87f3989d41d349bf9109973906149, type: 3}
 --- !u!1 &3361503185134214342 stripped
 GameObject:
@@ -2389,7 +2390,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 88f623d441b70b840b8eb810f565b696, type: 3}
+  m_audioClip: {fileID: 8300000, guid: aa8585be9eee5f3409e313aa699554f9, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
