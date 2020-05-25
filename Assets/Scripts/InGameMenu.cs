@@ -102,6 +102,7 @@ public class InGameMenu : MonoBehaviour
     public void DisplayReturnOption()
     {
         returnOption.SetActive(!returnOption.activeSelf);
+        if (help) { help = false;helpBoxes.SetActive(help); }
         if (returnOption.activeSelf)
         {
             returnOption.transform.GetChild(0).GetComponent<TMP_Text>().text = "Are you sure you wish to return to the main menu? Doing so will cost you "
