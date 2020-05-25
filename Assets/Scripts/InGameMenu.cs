@@ -17,6 +17,8 @@ public class InGameMenu : MonoBehaviour
     public GameObject helpBoxes;
     public bool help;
 
+    public GameObject returnOption;
+
     GameObject[] inventorySlots;
     int startItem = 0;
 
@@ -96,4 +98,25 @@ public class InGameMenu : MonoBehaviour
             Help();
         }
     }
+
+    public void DisplayReturnOption()
+    {
+        returnOption.SetActive(!returnOption.activeSelf);
+        if (returnOption.activeSelf)
+        {
+            returnOption.transform.GetChild(0).GetComponent<TMP_Text>().text = "Are you sure you wish to return to the main menu? Doing so will cost you "
+                + player.characters[player.player].charSheet.returnPenalty + " power points. This increases every time you use this option.";
+        }
+    }
+
+    public void ReturnToMenu()
+    {
+        player.characters[player.player].charSheet.powerLevel -= player.characters[player.player].charSheet.returnPenalty;
+        //this limits the power level to zero
+        if (player.characters[player.player].charSheet.powerLevel <= 0) { player.characters[player.player].charSheet.powerLevel = 0; }
+        player.characters[player.player].charSheet.returnPenalty += 10;
+        LevelSelectScript.ReturnToMainMenu();
+    }
+
+
 }

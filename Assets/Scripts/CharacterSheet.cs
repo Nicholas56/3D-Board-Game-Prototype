@@ -17,6 +17,8 @@ public class CharacterSheet
     public int attack;
     public int defence;
 
+    public int returnPenalty;
+
     public GameObject token;
     public Sprite charVisual;
 
@@ -28,7 +30,7 @@ public class CharacterSheet
 
     //Other stats as later decided
 
-    public CharacterSheet(string defaultName, int powerLvl, int maxHP, int attk, int def, GameObject defaultToken)
+    public CharacterSheet(string defaultName, int powerLvl, int maxHP, int attk, int def, int penalty, GameObject defaultToken)
     {
         //Constructor for a new character sheet
         characterName = defaultName;
@@ -36,6 +38,7 @@ public class CharacterSheet
         maxHealth = maxHP;
         attack = attk;
         defence = def;
+        returnPenalty = penalty;
         token = defaultToken;
 
         itemList = new List<int>();
@@ -43,7 +46,7 @@ public class CharacterSheet
 
     }
 
-    public CharacterSheet(string defaultName, int powerLvl, int maxHP, int attk, int def, GameObject defaultToken, List<int> abilities)
+    public CharacterSheet(string defaultName, int powerLvl, int maxHP, int attk, int def, int penalty, GameObject defaultToken, List<int> abilities)
     {
         //Constructor for a new character sheet
         characterName = defaultName;
@@ -51,6 +54,7 @@ public class CharacterSheet
         maxHealth = maxHP;
         attack = attk;
         defence = def;
+        returnPenalty = penalty;
         token = defaultToken;
 
         itemList = new List<int>();

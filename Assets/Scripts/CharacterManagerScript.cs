@@ -55,20 +55,20 @@ public class CharacterManagerScript : MonoBehaviour
     {//The preset characters will be loaded here //Requires unique abilities and tokens!!
         if (manager.SaveCheck())
         {//The presets are only loaded the first time // Requires review!!
-            CharacterSheet presetArcher = new CharacterSheet("Archer", 0, 10, 6, 3, tokenObject[0]);
+            CharacterSheet presetArcher = new CharacterSheet("Archer", 0, 10, 6, 3, 0, tokenObject[0]);
             currentCharacter = presetArcher; SaveCharacter();
-            CharacterSheet presetMage = new CharacterSheet("Mage", 0, 8, 5, 4, tokenObject[0]);
+            CharacterSheet presetMage = new CharacterSheet("Mage", 0, 8, 5, 4, 0, tokenObject[0]);
             currentCharacter = presetMage; SaveCharacter();
             List<int> list = new List<int>();
             list.Add(300);
-            CharacterSheet presetStealth = new CharacterSheet("Stealth", 0, 9, 8, 2, tokenObject[0], list);
+            CharacterSheet presetStealth = new CharacterSheet("Stealth", 0, 9, 8, 2, 0, tokenObject[0], list);
             Debug.Log(presetStealth.abilityList[0]);
             currentCharacter = presetStealth; SaveCharacter();
-            CharacterSheet presetWarrior = new CharacterSheet("Warrior", 0, 12, 4, 6, tokenObject[0]);
+            CharacterSheet presetWarrior = new CharacterSheet("Warrior", 0, 12, 4, 6, 0, tokenObject[0]);
             currentCharacter = presetWarrior; SaveCharacter();
         }
         //Uses the CharacterSheet constructor to make a new character
-        CharacterSheet newCharacter = new CharacterSheet("CharName", 0, 10, 4, 4, tokenObject[0]);
+        CharacterSheet newCharacter = new CharacterSheet("CharName", 0, 10, 4, 4, 0, tokenObject[0]);
         currentCharacter = newCharacter;
         DisplayStats();
     }
@@ -95,7 +95,7 @@ public class CharacterManagerScript : MonoBehaviour
             GameManager.playerCharacters.Clear();
             for (int i = 0; i < numOfPlayers; i++)
             {//Lets the first player be the current character, but creates new characters for later players
-                if (i < 0) {GameManager.playerCharacters.Add( new CharacterSheet("CharName", 0, 10, 4, 4, tokenObject[0])); }
+                if (i < 0) {GameManager.playerCharacters.Add( new CharacterSheet("CharName", 0, 10, 4, 4, 0, tokenObject[0])); }
                 GameManager.playerCharacters.Add(currentCharacter);
             }
             currentPlayer++;
@@ -126,9 +126,9 @@ public class CharacterManagerScript : MonoBehaviour
         if (sheet.abilityIndex.Count > 0)
         {
             List<int> abilities = new List<int>(sheet.abilityIndex);
-            currentCharacter = new CharacterSheet(sheet.characterName, sheet.charLevel, sheet.charMaxHealth, sheet.charAttack, sheet.charDefence, tokenObject[sheet.tokenIndex], abilities);
+            currentCharacter = new CharacterSheet(sheet.characterName, sheet.charLevel, sheet.charMaxHealth, sheet.charAttack, sheet.charDefence,sheet.charPenalty, tokenObject[sheet.tokenIndex], abilities);
         }
-        else { currentCharacter = new CharacterSheet(sheet.characterName, sheet.charLevel, sheet.charMaxHealth, sheet.charAttack, sheet.charDefence, tokenObject[sheet.tokenIndex]); }
+        else { currentCharacter = new CharacterSheet(sheet.characterName, sheet.charLevel, sheet.charMaxHealth, sheet.charAttack, sheet.charDefence, sheet.charPenalty, tokenObject[sheet.tokenIndex]); }
         currentCharacter.charVisual = tokenImage[sheet.tokenIndex];
 
         DisplayStats();
@@ -197,7 +197,7 @@ public class CharacterManagerScript : MonoBehaviour
     {
         //Changes the data to save format and calls the save function from game manager
         CharSave save = new CharSave(currentCharacter.characterName, currentCharacter.powerLevel, currentCharacter.maxHealth, 
-            currentCharacter.attack, currentCharacter.defence, currentToken,currentCharacter.itemList, currentCharacter.abilityList, currentCharacter.moveVar,currentCharacter.rollFix);
+            currentCharacter.attack, currentCharacter.defence, currentCharacter.returnPenalty, currentToken,currentCharacter.itemList, currentCharacter.abilityList, currentCharacter.moveVar,currentCharacter.rollFix);
 
         if (NameCheck(currentCharacter.characterName)) { }
         else { fileSaveNum = manager.savedCharacters.Count; }
@@ -236,6 +236,8 @@ public class CharSave
     public int charAttack;
     public int charDefence;
 
+    public int charPenalty;
+
     public int tokenIndex;
 
     public List<int> itemList;
@@ -244,13 +246,14 @@ public class CharSave
     public int moveVar;
     public int rollFix;
 
-    public CharSave(string charName, int charLvl, int health, int attk, int def, int token, List<int>  items, List<int> abilities, int extraMove, int diceFix)
+    public CharSave(string charName, int charLvl, int health, int attk, int def,int penalty, int token, List<int>  items, List<int> abilities, int extraMove, int diceFix)
     {
         characterName = charName;
         charLevel = charLvl;
         charMaxHealth = health;
         charAttack = attk;
         charDefence = def;
+        charPenalty = penalty;
         tokenIndex = token;
         itemList = items;
         abilityIndex = abilities;
