@@ -85,6 +85,8 @@ public class PlayerTurnScript : MonoBehaviour
 
     public void BeginRoll() 
     {
+        gameObject.GetComponent<InGameMenu>().DisplayInventory(true);
+        gameObject.GetComponent<InGameMenu>().DisplayOptions(true);
         isRoll = true;
         if (characters[player].charSheet.moveVar != 0) { rollAddedValue = characters[player].charSheet.moveVar; } else { rollAddedValue = 0; }
         if (characters[player].charSheet.rollFix != 0) { rollFixValue = characters[player].charSheet.rollFix; } else { rollFixValue = 0; }
@@ -98,6 +100,7 @@ public class PlayerTurnScript : MonoBehaviour
         //If the dice roll has been fixed, the number is set
         if (rollFixValue > 0) { spacesToMove = rollFixValue; }
         UpdateMovesToGo();
+        canRoll = false;
     }
 
     public void RollToggle()
@@ -169,6 +172,8 @@ public class PlayerTurnScript : MonoBehaviour
         if (spacesToMove > 0  && !isRoll)
         {//If the inventory is open, it will be closed
             gameObject.GetComponent<InGameMenu>().DisplayInventory(true);
+            gameObject.GetComponent<InGameMenu>().DisplayOptions(true);
+            if (gameObject.GetComponent<InGameMenu>().help == true) { gameObject.GetComponent<InGameMenu>().Help(); }
             //The last tile will be exited and the new one will become the current one.
             characters[player].currentTile.LeaveTile();
             characters[player].currentTile.HideMoveSpaces();

@@ -13,6 +13,10 @@ public class InGameMenu : MonoBehaviour
     public GameObject options;
 
     public GameObject inventory;
+
+    public GameObject helpBoxes;
+    public bool help;
+
     GameObject[] inventorySlots;
     int startItem = 0;
 
@@ -31,6 +35,7 @@ public class InGameMenu : MonoBehaviour
     }
     public void DisplayInventory(bool close) { inventory.SetActive(!close); options.SetActive(false); }
     public void DisplayOptions() { options.SetActive(!options.activeSelf); inventory.SetActive(false); }
+    public void DisplayOptions(bool close) { options.SetActive(!close); inventory.SetActive(false); }
 
     public void GetItemList()
     {//This sets up the inventory for use
@@ -71,5 +76,24 @@ public class InGameMenu : MonoBehaviour
     public void ScrollDown()
     {//The list will scroll down until the last item is shown at the bottom
         if(player.characters[player.player].charSheet.itemList.Count> inventorySlots.Length + startItem) { startItem++; ShowItemList(); }
+    }
+    public void Help()
+    {
+        help = !help;
+        helpBoxes.SetActive(help);
+        if (help == true)
+        {//This will only start to wait if the boxes are visible
+            StartCoroutine(HideHelp());
+        }
+        else { StopAllCoroutines(); }
+    }
+
+    IEnumerator HideHelp()
+    {//This will wait 5 seconds before hiding the help boxes
+        yield return new WaitForSeconds(8);
+        if (help == true)
+        {
+            Help();
+        }
     }
 }

@@ -62,5 +62,10 @@ public class CameraScript : MonoBehaviour
             transform.position = token.position;
             transform.SetParent(token);
         }
+        else
+        {
+            player.gameObject.GetComponent<InGameMenu>().DisplayInventory(true);
+            player.gameObject.GetComponent<InGameMenu>().DisplayOptions(true);
+        }
     }
 }

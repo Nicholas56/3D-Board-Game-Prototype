@@ -66,7 +66,7 @@ public class MainMenuScript : MonoBehaviour
         {//This will only start to wait if the boxes are visible
             StartCoroutine(HideHelp());
         }
-        else { StopCoroutine(HideHelp()); }
+        else { StopAllCoroutines(); }
     }
 
     IEnumerator HideHelp()
