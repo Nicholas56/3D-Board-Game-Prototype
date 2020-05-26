@@ -134,6 +134,7 @@ public class EventHandler : MonoBehaviour
             //Actions to take if successful
             eventDescription.text = data.eventOptionList[optionNum].successOutcomeText;
             action.Effects(data.eventOptionList[optionNum], this);
+            transform.parent.GetComponent<GameManager>().SoundEffect(1);
         }
         else
         {

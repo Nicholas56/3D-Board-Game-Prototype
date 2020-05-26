@@ -85,6 +85,7 @@ public class PlayerTurnScript : MonoBehaviour
 
     public void BeginRoll() 
     {
+        transform.parent.GetComponent<GameManager>().SoundEffect(0);
         gameObject.GetComponent<InGameMenu>().DisplayInventory(true);
         gameObject.GetComponent<InGameMenu>().DisplayOptions(true);
         isRoll = true;
@@ -169,6 +170,7 @@ public class PlayerTurnScript : MonoBehaviour
 
     public void MoveCharacter(TileScript nextTile)
     {
+        transform.parent.GetComponent<GameManager>().SoundEffect(3);
         if (spacesToMove > 0  && !isRoll)
         {//If the inventory is open, it will be closed
             gameObject.GetComponent<InGameMenu>().DisplayInventory(true);

@@ -31,6 +31,7 @@ public class MainMenuScript : MonoBehaviour
             CloseMenus();
             levelSelectScreen.SetActive(true);
         }
+        GetComponent<GameManager>().SoundEffect(2);
     }
 
     public void OpenCharacterSheetMenu()
@@ -44,6 +45,7 @@ public class MainMenuScript : MonoBehaviour
             CloseMenus();
             characterSheetScreen.SetActive(true);
         }
+        GetComponent<GameManager>().SoundEffect(2);
     }
 
     public void OpenSettingsMenu()
@@ -57,6 +59,7 @@ public class MainMenuScript : MonoBehaviour
             CloseMenus();
             settingsScreen.SetActive(true);
         }
+        GetComponent<GameManager>().SoundEffect(2);
     }
 
     public void CloseMenus()
@@ -84,6 +87,7 @@ public class MainMenuScript : MonoBehaviour
             StartCoroutine(HideHelp());
         }
         else { StopAllCoroutines(); }
+        GetComponent<GameManager>().SoundEffect(2);
     }
 
     IEnumerator HideHelp()

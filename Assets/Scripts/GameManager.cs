@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     public List<TileScript> mapTiles = new List<TileScript>();
     public List<AudioSource> audios;
+    public List<AudioClip> sfx;
     public static bool muteMusic;
     public static bool muteSound;
 
@@ -103,6 +104,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SoundEffect(int effectNum)
+    {
+        audios[1].PlayOneShot(sfx[effectNum]);
+    }
+
     public void ToggleMuteMusic()
     {//Mutes the sound from main music track, true for other scenes
         audios[0].mute = !audios[0].mute;
@@ -111,10 +117,7 @@ public class GameManager : MonoBehaviour
 
     public void ToggleMuteSoundEffects()
     {
-        for (int i = 1; i < audios.Count; i++)
-        {
-            audios[i].mute = !audios[i].mute;
-        }
+        audios[1].mute = !audios[1].mute;
         muteSound = audios[1].mute;
     }
 }

@@ -228,11 +228,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 1980200731414320612, guid: 77dbc43979c912f469e219e4a2e287e5,
-        type: 3}
-      propertyPath: tileType
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1980200731414320613, guid: 77dbc43979c912f469e219e4a2e287e5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -288,6 +283,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1980200731414320612, guid: 77dbc43979c912f469e219e4a2e287e5,
+        type: 3}
+      propertyPath: tileType
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77dbc43979c912f469e219e4a2e287e5, type: 3}
 --- !u!114 &508110832 stripped
@@ -313,16 +313,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cube (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1980200731414320612, guid: 77dbc43979c912f469e219e4a2e287e5,
-        type: 3}
-      propertyPath: hasItem
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1980200731414320612, guid: 77dbc43979c912f469e219e4a2e287e5,
-        type: 3}
-      propertyPath: tileType
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1980200731414320613, guid: 77dbc43979c912f469e219e4a2e287e5,
         type: 3}
@@ -379,6 +369,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1980200731414320612, guid: 77dbc43979c912f469e219e4a2e287e5,
+        type: 3}
+      propertyPath: hasItem
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980200731414320612, guid: 77dbc43979c912f469e219e4a2e287e5,
+        type: 3}
+      propertyPath: tileType
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77dbc43979c912f469e219e4a2e287e5, type: 3}
 --- !u!114 &682756118 stripped
@@ -416,11 +416,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cube (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1980200731414320612, guid: 77dbc43979c912f469e219e4a2e287e5,
-        type: 3}
-      propertyPath: tileType
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1980200731414320613, guid: 77dbc43979c912f469e219e4a2e287e5,
         type: 3}
@@ -476,6 +471,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980200731414320612, guid: 77dbc43979c912f469e219e4a2e287e5,
+        type: 3}
+      propertyPath: tileType
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77dbc43979c912f469e219e4a2e287e5, type: 3}
@@ -582,11 +582,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube
       objectReference: {fileID: 0}
-    - target: {fileID: 1980200731414320612, guid: 77dbc43979c912f469e219e4a2e287e5,
-        type: 3}
-      propertyPath: tileType
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1980200731414320613, guid: 77dbc43979c912f469e219e4a2e287e5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -641,6 +636,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980200731414320612, guid: 77dbc43979c912f469e219e4a2e287e5,
+        type: 3}
+      propertyPath: tileType
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77dbc43979c912f469e219e4a2e287e5, type: 3}
@@ -719,7 +719,7 @@ PrefabInstance:
     - target: {fileID: 3361503185271601555, guid: 37d87f3989d41d349bf9109973906149,
         type: 3}
       propertyPath: audios.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3361503185271601555, guid: 37d87f3989d41d349bf9109973906149,
         type: 3}
@@ -756,6 +756,11 @@ PrefabInstance:
       propertyPath: audios.Array.data[0]
       value: 
       objectReference: {fileID: 1734474820}
+    - target: {fileID: 3361503185271601555, guid: 37d87f3989d41d349bf9109973906149,
+        type: 3}
+      propertyPath: audios.Array.data[1]
+      value: 
+      objectReference: {fileID: 1734474821}
     - target: {fileID: 6386008716782599134, guid: 37d87f3989d41d349bf9109973906149,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -1029,6 +1034,12 @@ AudioSource:
     type: 3}
   m_PrefabInstance: {fileID: 1734474819}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &1734474821 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6570305583064956029, guid: 37d87f3989d41d349bf9109973906149,
+    type: 3}
+  m_PrefabInstance: {fileID: 1734474819}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1831822952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1040,11 +1051,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cube (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1980200731414320612, guid: 77dbc43979c912f469e219e4a2e287e5,
-        type: 3}
-      propertyPath: tileType
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1980200731414320613, guid: 77dbc43979c912f469e219e4a2e287e5,
         type: 3}
@@ -1101,6 +1107,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1980200731414320612, guid: 77dbc43979c912f469e219e4a2e287e5,
+        type: 3}
+      propertyPath: tileType
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77dbc43979c912f469e219e4a2e287e5, type: 3}
 --- !u!1 &1851280819 stripped
@@ -1120,16 +1131,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cube (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1980200731414320612, guid: 77dbc43979c912f469e219e4a2e287e5,
-        type: 3}
-      propertyPath: tileType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1980200731414320612, guid: 77dbc43979c912f469e219e4a2e287e5,
-        type: 3}
-      propertyPath: endTile
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1980200731414320613, guid: 77dbc43979c912f469e219e4a2e287e5,
         type: 3}
@@ -1185,6 +1186,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980200731414320612, guid: 77dbc43979c912f469e219e4a2e287e5,
+        type: 3}
+      propertyPath: tileType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980200731414320612, guid: 77dbc43979c912f469e219e4a2e287e5,
+        type: 3}
+      propertyPath: endTile
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77dbc43979c912f469e219e4a2e287e5, type: 3}

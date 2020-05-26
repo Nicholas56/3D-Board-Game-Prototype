@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Level1.unity
     guid: 6bb44b618d7f6cc46bf712d98af99b7d
   - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: 1fe1bc575f571da4cbb527a7936e3630
+  - enabled: 1
     path: Assets/Scenes/TrapMap.unity
     guid: 39b1d6ebe48baa147a2643c4e4b7e2a0
   m_configObjects: {}

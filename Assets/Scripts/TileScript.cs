@@ -68,6 +68,7 @@ public class TileScript : MonoBehaviour
             hasItem = false;
             FindObjectOfType<PlayerTurnScript>().AddItem();
             Destroy(transform.GetChild(1).gameObject);
+            manager.SoundEffect(4);
         }
     }
     public void LeaveTile() 

@@ -34,10 +34,15 @@ public class InGameMenu : MonoBehaviour
         inventory.SetActive(!inventory.activeSelf); options.SetActive(false);
         startItem = 0;
         ShowItemList();
+        transform.parent.GetComponent<GameManager>().SoundEffect(2);
     }
-    public void DisplayInventory(bool close) { inventory.SetActive(!close); options.SetActive(false); }
-    public void DisplayOptions() { options.SetActive(!options.activeSelf); inventory.SetActive(false); }
-    public void DisplayOptions(bool close) { options.SetActive(!close); inventory.SetActive(false); }
+    public void DisplayInventory(bool close) { inventory.SetActive(!close); options.SetActive(false);
+    }
+    public void DisplayOptions() { options.SetActive(!options.activeSelf); inventory.SetActive(false);
+        transform.parent.GetComponent<GameManager>().SoundEffect(2);
+    }
+    public void DisplayOptions(bool close) { options.SetActive(!close); inventory.SetActive(false);
+    }
 
     public void GetItemList()
     {//This sets up the inventory for use
@@ -86,6 +91,7 @@ public class InGameMenu : MonoBehaviour
         if (help == true)
         {//This will only start to wait if the boxes are visible
             StartCoroutine(HideHelp());
+            transform.parent.GetComponent<GameManager>().SoundEffect(2);
         }
         else { StopAllCoroutines(); }
     }
@@ -108,6 +114,7 @@ public class InGameMenu : MonoBehaviour
             returnOption.transform.GetChild(0).GetComponent<TMP_Text>().text = "Are you sure you wish to return to the main menu? Doing so will cost you "
                 + player.characters[player.player].charSheet.returnPenalty + " power points. This increases every time you use this option.";
         }
+        transform.parent.GetComponent<GameManager>().SoundEffect(2);
     }
 
     public void ReturnToMenu()
