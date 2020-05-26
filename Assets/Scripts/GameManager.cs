@@ -44,6 +44,13 @@ public class GameManager : MonoBehaviour
                 //Corrects the scale on the item
                 item.transform.localScale = new Vector3(0.33f, 1, 0.33f);
             }
+            if (mapTiles[i].endTile)
+            {
+                GameObject goal = Instantiate(levelData.goalObject, mapTiles[i].transform);
+                //Corrects the scale on the item
+                goal.transform.localScale = new Vector3(0.33f, 1, 0.33f);
+                goal.transform.LookAt(mapTiles[i].localTiles[0].transform);
+            }
         }
     }
 

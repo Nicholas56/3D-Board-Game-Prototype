@@ -24,7 +24,8 @@ MonoBehaviour:
   itemData: 3c0000003c0000003c0000003c0000003c000000
   itemPrefab: {fileID: 575302374768638504, guid: 9e7e28243d4cffe44aca963961c3c6f0,
     type: 3}
-  abilitiesData: 0000000000000000000000000000000000000000
+  goalObject: {fileID: 6346550006226237677, guid: 96e225c79904b584ab43853b112be828,
+    type: 3}
   icon:
   - {fileID: 0}
   - {fileID: 21300000, guid: 22770132167e16d439fe70de93c303e6, type: 3}

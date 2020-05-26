@@ -9,6 +9,7 @@ using TMPro;
 
 public class MainMenuScript : MonoBehaviour
 {
+    public GameObject startScreen;
     public GameObject levelSelectScreen;
     public GameObject characterSheetScreen;
     public GameObject settingsScreen;
@@ -17,35 +18,51 @@ public class MainMenuScript : MonoBehaviour
     public GameObject characterSheetHelp;
     public GameObject settingsHelp;
     public bool help;
-    int screen;
+    int screen = -1;
 
     public void OpenLevelSelectMenu()
     {
-        screen = 0;
-        //This will open the levelselectmenu after closing any open menu
-        CloseMenus();
-        levelSelectScreen.SetActive(true);
+        if (screen == 0) 
+        { levelSelectScreen.SetActive(false); screen = -1; startScreen.SetActive(true); }
+        else
+        {
+            screen = 0;
+            //This will open the levelselectmenu after closing any open menu
+            CloseMenus();
+            levelSelectScreen.SetActive(true);
+        }
     }
 
     public void OpenCharacterSheetMenu()
     {
-        screen = 1;
-        //This will open the charactersheetmenu after closing any open menu
-        CloseMenus();
-        characterSheetScreen.SetActive(true);
+        if (screen == 1) 
+        { characterSheetScreen.SetActive(false); screen = -1; startScreen.SetActive(true); }
+        else
+        {
+            screen = 1;
+            //This will open the charactersheetmenu after closing any open menu
+            CloseMenus();
+            characterSheetScreen.SetActive(true);
+        }
     }
 
     public void OpenSettingsMenu()
     {
-        screen = 2;
-        //This will open the settingsmenu after closing any open menu
-        CloseMenus();
-        settingsScreen.SetActive(true);
+        if (screen == 2) 
+        { settingsScreen.SetActive(false); screen = -1; startScreen.SetActive(true); }
+        else
+        {
+            screen = 2;
+            //This will open the settingsmenu after closing any open menu
+            CloseMenus();
+            settingsScreen.SetActive(true);
+        }
     }
 
     public void CloseMenus()
     {
         //This will close all menus
+        startScreen.SetActive(false);
         levelSelectScreen.SetActive(false);
         characterSheetScreen.SetActive(false);
         settingsScreen.SetActive(false);
