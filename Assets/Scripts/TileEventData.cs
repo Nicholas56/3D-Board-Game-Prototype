@@ -27,12 +27,12 @@ public class TileEventData : ScriptableObject
 
     public int eventReward;
 
-    public eventOption[] eventOptionList = new eventOption[3];
+    public EventOption[] eventOptions;
     
 }
 
 [System.Serializable]
-public class eventOption
+public class EventOption
 {
     public string optionName;
     public int successRate;
@@ -41,32 +41,9 @@ public class eventOption
     [TextArea(2, 5)]
     public string failureOutcomeText;
 
-    public bool willChangePower;
-    public int powerChange;
-    public bool willChangeHealth;
-    public int healthChange;
-
-    public bool willTeleport;
-    [Tooltip("This number should be lower than number of map tiles")]
-    public int teleportTo;
-
-    public bool isAttack;
-
-    //For Items
-    public bool isStop;
-    public bool isAddMove;
-    public int moveChange;
-
-    public bool isInstaKill;
-    public bool isAddAbility;
-    public int abilityIdNum;
-
-    public bool isAddTempHP;
-    public int tempHP;
-    public bool isAddTempAtk;
-    public int tempAtk;
-    public bool isAddTempDef;
-    public int tempDef;
-    [Tooltip("This is the number of turns, the temp boost will last")]
-    public int tempDuration;
+    public enum eventType { None, Attack, Heal, Power, AddAbility, TempHP, TempAtk, TempDef, Teleport, TempDuration  }
+    public eventType effect1;
+    public int effect1Value;
+    public eventType effect2;
+    public int effect2Value;
 }

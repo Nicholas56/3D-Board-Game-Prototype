@@ -16,59 +16,27 @@ MonoBehaviour:
   eventName: Shady Blacksmith
   eventDescription: A shady blacksmith approaches you. It looks like he wants to show
     you something. This won't end well.
-  eventVisual: {fileID: 0}
+  eventVisual: {fileID: 21300000, guid: cbd5c592e6336a64289e1441b8bea04d, type: 3}
   maxHealth: 0
   eventHealth: 0
   eventAttack: 0
   eventDefence: 0
   eventDamage: 0
   eventReward: 0
-  eventOptionList:
-  - optionName: Pay attention
+  eventOptions:
+  - optionName: Pay Attention
     successRate: 4
     successOutcomeText: He explains the mysteries of combat. you are enlightened!
     failureOutcomeText: You don't understand a word he says. This was pointless!
-    willChangePower: 0
-    powerChange: 0
-    willChangeHealth: 0
-    healthChange: 0
-    willTeleport: 0
-    teleportTo: 0
-    isAttack: 0
-    isStop: 0
-    isAddMove: 0
-    moveChange: 0
-    isInstaKill: 0
-    isAddAbility: 0
-    abilityIdNum: 0
-    isAddTempHP: 0
-    tempHP: 0
-    isAddTempAtk: 1
-    tempAtk: 5
-    isAddTempDef: 0
-    tempDef: 0
-    tempDuration: 5
+    effect1: 6
+    effect1Value: 5
+    effect2: 9
+    effect2Value: 5
   - optionName: Attack him
     successRate: 2
     successOutcomeText: He goes beserk! He cripples your leg and runs off!
     failureOutcomeText: "He runs away crying! \nThat was weird."
-    willChangePower: 0
-    powerChange: 0
-    willChangeHealth: 0
-    healthChange: 0
-    willTeleport: 0
-    teleportTo: 0
-    isAttack: 0
-    isStop: 0
-    isAddMove: 0
-    moveChange: 0
-    isInstaKill: 0
-    isAddAbility: 1
-    abilityIdNum: 501
-    isAddTempHP: 0
-    tempHP: 0
-    isAddTempAtk: 0
-    tempAtk: 0
-    isAddTempDef: 0
-    tempDef: 0
-    tempDuration: 0
+    effect1: 4
+    effect1Value: 501
+    effect2: 0
+    effect2Value: 0

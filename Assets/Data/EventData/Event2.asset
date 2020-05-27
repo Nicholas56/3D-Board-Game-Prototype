@@ -16,41 +16,36 @@ MonoBehaviour:
   eventName: Full course meal
   eventDescription: You find a full course meal laid out in front of you. Here, in
     the middle of nowhere.
-  eventVisual: {fileID: 0}
+  eventVisual: {fileID: 21300000, guid: cbd5c592e6336a64289e1441b8bea04d, type: 3}
+  maxHealth: 0
   eventHealth: 0
   eventAttack: 0
   eventDefence: 0
   eventDamage: 0
   eventReward: 0
-  eventOptionList:
+  eventOptions:
   - optionName: Eat everything
     successRate: 5
     successOutcomeText: This is just what you needed. The food heals you so much.
     failureOutcomeText: Um, you ate too much. It has no effect. Bad luck.
-    willChangePower: 0
-    powerChange: 0
-    willChangeHealth: 1
-    healthChange: 5
-    willTeleport: 0
-    teleportTo: 0
+    effect1: 2
+    effect1Value: 5
+    effect2: 0
+    effect2Value: 0
   - optionName: Eat dessert
     successRate: 2
     successOutcomeText: Yum. Dessert is the best. You feel the sugary healing.
     failureOutcomeText: Leaving your vegetables! I don't think so. No healing for
       you!
-    willChangePower: 0
-    powerChange: 0
-    willChangeHealth: 1
-    healthChange: 1
-    willTeleport: 0
-    teleportTo: 0
+    effect1: 2
+    effect1Value: 2
+    effect2: 0
+    effect2Value: 0
   - optionName: Pass
     successRate: 0
     successOutcomeText: You walk away. This is just too damn suspicious!
     failureOutcomeText: 
-    willChangePower: 0
-    powerChange: 0
-    willChangeHealth: 0
-    healthChange: 0
-    willTeleport: 0
-    teleportTo: 0
+    effect1: 0
+    effect1Value: 0
+    effect2: 0
+    effect2Value: 0

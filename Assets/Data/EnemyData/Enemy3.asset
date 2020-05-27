@@ -16,35 +16,19 @@ MonoBehaviour:
   eventName: Slime
   eventDescription: A puddle before you begins to take shape. It's a Slime! And it's
     angry!
-  eventVisual: {fileID: 21300000, guid: 95257e96db9c5f64982b9620d129650e, type: 3}
-  maxHealth: 8
-  eventHealth: 8
-  eventAttack: 3
-  eventDefence: 3
+  eventVisual: {fileID: 21300000, guid: 0338d1f3c05cb86408ef89ba0969c2e3, type: 3}
+  maxHealth: 10
+  eventHealth: 2
+  eventAttack: 5
+  eventDefence: 5
   eventDamage: 0
   eventReward: 20
-  eventOptionList:
+  eventOptions:
   - optionName: Fight
     successRate: 1
     successOutcomeText: You attack the slime!
     failureOutcomeText: You missed!
-    willChangePower: 0
-    powerChange: 0
-    willChangeHealth: 0
-    healthChange: 0
-    willTeleport: 0
-    teleportTo: 0
-    isAttack: 1
-    isStop: 0
-    isAddMove: 0
-    moveChange: 0
-    isInstaKill: 0
-    isAddAbility: 0
-    abilityIdNum: 0
-    isAddTempHP: 0
-    tempHP: 0
-    isAddTempAtk: 0
-    tempAtk: 0
-    isAddTempDef: 0
-    tempDef: 0
-    tempDuration: 0
+    effect1: 1
+    effect1Value: 0
+    effect2: 0
+    effect2Value: 0

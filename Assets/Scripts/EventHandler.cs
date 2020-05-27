@@ -38,12 +38,12 @@ public class EventHandler : MonoBehaviour
                 player.isEvent = false;
                 return;
             }
-            if (data.eventOptionList.Length > 0)
+            if (data.eventOptions.Length > 0)
             {
-                for (int i = 0; i < data.eventOptionList.Length; i++)
+                for (int i = 0; i < data.eventOptions.Length; i++)
                 {//Sets Active the buttons required for this event
                     actionButtons[i].SetActive(true);
-                    actionButtons[i].GetComponentInChildren<TMP_Text>().text = data.eventOptionList[i].optionName;
+                    actionButtons[i].GetComponentInChildren<TMP_Text>().text = data.eventOptions[i].optionName;
                 }
             }
             else
@@ -129,17 +129,17 @@ public class EventHandler : MonoBehaviour
     }
 
     void EventAction(int optionNum) { 
-        if (player.spacesToMove > data.eventOptionList[optionNum].successRate)
+        if (player.spacesToMove > data.eventOptions[optionNum].successRate)
         {
             //Actions to take if successful
-            eventDescription.text = data.eventOptionList[optionNum].successOutcomeText;
-            action.Effects(data.eventOptionList[optionNum], this);
+            eventDescription.text = data.eventOptions[optionNum].successOutcomeText;
+            action.Effects(data.eventOptions[optionNum]);
             transform.parent.GetComponent<GameManager>().SoundEffect(1);
         }
         else
         {
             //Actions to take if not successful
-            eventDescription.text = data.eventOptionList[optionNum].failureOutcomeText;
+            eventDescription.text = data.eventOptions[optionNum].failureOutcomeText;
         }
         //COMBAT
         if (data.type == TileEventData.tileEventType.Enemy && data.eventHealth > 0)

@@ -16,30 +16,27 @@ MonoBehaviour:
   eventName: Magic Ring
   eventDescription: You see a magic ring on the floor. I wonder what happens when
     you step on it?
-  eventVisual: {fileID: 0}
+  eventVisual: {fileID: 21300000, guid: cbd5c592e6336a64289e1441b8bea04d, type: 3}
+  maxHealth: 0
   eventHealth: 0
   eventAttack: 0
   eventDefence: 0
   eventDamage: 0
   eventReward: 0
-  eventOptionList:
+  eventOptions:
   - optionName: Step on it
-    successRate: 1
+    successRate: 2
     successOutcomeText: The ring lights up. Seems like you're going on a trip!
     failureOutcomeText: The magic fizzles. Huh, that was a disappointment!
-    willChangePower: 0
-    powerChange: 0
-    willChangeHealth: 0
-    healthChange: 0
-    willTeleport: 1
-    teleportTo: 3
+    effect1: 8
+    effect1Value: 3
+    effect2: 0
+    effect2Value: 0
   - optionName: Pass
     successRate: 0
     successOutcomeText: You walk past the ring, giving it a wide berth.
     failureOutcomeText: 
-    willChangePower: 0
-    powerChange: 0
-    willChangeHealth: 0
-    healthChange: 0
-    willTeleport: 0
-    teleportTo: 0
+    effect1: 0
+    effect1Value: 0
+    effect2: 0
+    effect2Value: 0

@@ -15,35 +15,19 @@ MonoBehaviour:
   type: 1
   eventName: Bat
   eventDescription: It's an evil Bat! That thing has to die!
-  eventVisual: {fileID: 21300000, guid: 95257e96db9c5f64982b9620d129650e, type: 3}
+  eventVisual: {fileID: 21300000, guid: 0338d1f3c05cb86408ef89ba0969c2e3, type: 3}
   maxHealth: 6
   eventHealth: 6
   eventAttack: 2
   eventDefence: 3
   eventDamage: 0
   eventReward: 10
-  eventOptionList:
+  eventOptions:
   - optionName: Fight
     successRate: 3
     successOutcomeText: You strike the bat!
     failureOutcomeText: You missed!
-    willChangePower: 0
-    powerChange: 0
-    willChangeHealth: 0
-    healthChange: 0
-    willTeleport: 0
-    teleportTo: 0
-    isAttack: 1
-    isStop: 0
-    isAddMove: 0
-    moveChange: 0
-    isInstaKill: 0
-    isAddAbility: 0
-    abilityIdNum: 0
-    isAddTempHP: 0
-    tempHP: 0
-    isAddTempAtk: 0
-    tempAtk: 0
-    isAddTempDef: 0
-    tempDef: 0
-    tempDuration: 0
+    effect1: 1
+    effect1Value: 0
+    effect2: 0
+    effect2Value: 0

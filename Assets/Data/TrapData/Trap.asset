@@ -15,18 +15,11 @@ MonoBehaviour:
   type: 2
   eventName: Spike Pit
   eventDescription: "You have fallen into a spike pit. \nHow careless!"
-  eventVisual: {fileID: 0}
+  eventVisual: {fileID: 21300000, guid: ea99534e65c2a0041b5dab4c9e29f423, type: 3}
+  maxHealth: 0
   eventHealth: 0
   eventAttack: 0
   eventDefence: 0
   eventDamage: 5
   eventReward: 0
-  eventOptionList:
-  - optionName: No effect
-    successRate: 0
-    successOutcomeText: Nothing happened
-    failureOutcomeText: 
-  - optionName: Moan
-    successRate: 0
-    successOutcomeText: That solves nothing
-    failureOutcomeText: 
+  eventOptions: []

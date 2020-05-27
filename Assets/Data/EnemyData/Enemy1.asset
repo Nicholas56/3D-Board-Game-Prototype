@@ -24,28 +24,12 @@ MonoBehaviour:
   eventDefence: 1
   eventDamage: 0
   eventReward: 10
-  eventOptionList:
+  eventOptions:
   - optionName: Fight
     successRate: 2
     successOutcomeText: You strike the goblin!
     failureOutcomeText: You missed!
-    willChangePower: 0
-    powerChange: 0
-    willChangeHealth: 0
-    healthChange: 0
-    willTeleport: 0
-    teleportTo: 0
-    isAttack: 1
-    isStop: 0
-    isAddMove: 0
-    moveChange: 0
-    isInstaKill: 0
-    isAddAbility: 0
-    abilityIdNum: 0
-    isAddTempHP: 0
-    tempHP: 0
-    isAddTempAtk: 0
-    tempAtk: 0
-    isAddTempDef: 0
-    tempDef: 0
-    tempDuration: 0
+    effect1: 1
+    effect1Value: 0
+    effect2: 0
+    effect2Value: 0

@@ -16,11 +16,11 @@ MonoBehaviour:
   eventName: Boulder
   eventDescription: You hear a noise! A giant boulder falls upon you! That could've
     killed someone!
-  eventVisual: {fileID: 0}
+  eventVisual: {fileID: 21300000, guid: ea99534e65c2a0041b5dab4c9e29f423, type: 3}
   maxHealth: 0
   eventHealth: 0
   eventAttack: 0
   eventDefence: 0
   eventDamage: 10
   eventReward: 0
-  eventOptionList: []
+  eventOptions: []

@@ -17,30 +17,27 @@ MonoBehaviour:
   eventDescription: 'You found a well of power! Well done!
 
     Will you drink?'
-  eventVisual: {fileID: 0}
+  eventVisual: {fileID: 21300000, guid: cbd5c592e6336a64289e1441b8bea04d, type: 3}
+  maxHealth: 0
   eventHealth: 0
   eventAttack: 0
   eventDefence: 0
   eventDamage: 0
   eventReward: 0
-  eventOptionList:
+  eventOptions:
   - optionName: Drink
     successRate: 3
     successOutcomeText: You feel the power coursing through you. Nice!
     failureOutcomeText: Hmm, it just tastes like regular water.
-    willChangePower: 1
-    powerChange: 10
-    willChangeHealth: 0
-    healthChange: 0
-    willTeleport: 0
-    teleportTo: 0
+    effect1: 3
+    effect1Value: 10
+    effect2: 0
+    effect2Value: 0
   - optionName: Pass
     successRate: 0
     successOutcomeText: You move on. You weren't thirsty anyway
     failureOutcomeText: 
-    willChangePower: 0
-    powerChange: 0
-    willChangeHealth: 0
-    healthChange: 0
-    willTeleport: 0
-    teleportTo: 0
+    effect1: 0
+    effect1Value: 0
+    effect2: 0
+    effect2Value: 0
