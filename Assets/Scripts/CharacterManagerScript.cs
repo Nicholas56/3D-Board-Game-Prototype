@@ -15,12 +15,13 @@ public class CharacterManagerScript : MonoBehaviour
 
     GameManager manager;
     public int numOfPlayers;
-    int currentPlayer=-1;
+    int currentPlayer = -1;
     public TMP_Text playerCounter;
 
     int fileSaveNum = -1;
 
     public GameObject charSelectHolder;
+    public GameObject tokenSelectHolder;
 
     public TMP_InputField charNameInput;
 
@@ -80,7 +81,7 @@ public class CharacterManagerScript : MonoBehaviour
             charSelectHolder.transform.GetChild(i).gameObject.SetActive(true);
             charSelectHolder.transform.GetChild(i).gameObject.GetComponentInChildren<TMP_Text>().text = manager.savedCharacters[i].characterName;
         }
-        for(int i = manager.savedCharacters.Count; i < charSelectHolder.transform.childCount; i++)
+        for (int i = manager.savedCharacters.Count; i < charSelectHolder.transform.childCount; i++)
         {//This will set all boxes not being used to inactive
             charSelectHolder.transform.GetChild(i).gameObject.SetActive(false);
         }
@@ -90,12 +91,12 @@ public class CharacterManagerScript : MonoBehaviour
     {
         Debug.Log(GameManager.playerCharacters.Count);
         //This allows several players to choose their characterSheet
-        if(currentPlayer == -1)
+        if (currentPlayer == -1)
         {//This runs the first time this button is clicked
             GameManager.playerCharacters.Clear();
             for (int i = 0; i < numOfPlayers; i++)
             {//Lets the first player be the current character, but creates new characters for later players
-                if (i < 0) {GameManager.playerCharacters.Add( new CharacterSheet("CharName", 0, 10, 4, 4, 0, tokenObject[0])); }
+                if (i < 0) { GameManager.playerCharacters.Add(new CharacterSheet("CharName", 0, 10, 4, 4, 0, tokenObject[0])); }
                 GameManager.playerCharacters.Add(currentCharacter);
             }
             currentPlayer++;
@@ -126,7 +127,7 @@ public class CharacterManagerScript : MonoBehaviour
         if (sheet.abilityIndex.Count > 0)
         {
             List<int> abilities = new List<int>(sheet.abilityIndex);
-            currentCharacter = new CharacterSheet(sheet.characterName, sheet.charLevel, sheet.charMaxHealth, sheet.charAttack, sheet.charDefence,sheet.charPenalty, tokenObject[sheet.tokenIndex], abilities);
+            currentCharacter = new CharacterSheet(sheet.characterName, sheet.charLevel, sheet.charMaxHealth, sheet.charAttack, sheet.charDefence, sheet.charPenalty, tokenObject[sheet.tokenIndex], abilities);
         }
         else { currentCharacter = new CharacterSheet(sheet.characterName, sheet.charLevel, sheet.charMaxHealth, sheet.charAttack, sheet.charDefence, sheet.charPenalty, tokenObject[sheet.tokenIndex]); }
         currentCharacter.charVisual = tokenImage[sheet.tokenIndex];
@@ -147,9 +148,9 @@ public class CharacterManagerScript : MonoBehaviour
         level = Mathf.CeilToInt(currentCharacter.powerLevel / 50);
         charNameInput.text = currentCharacter.characterName;
         charPower.text = "" + currentCharacter.powerLevel;
-        charHealth.text = "" + (currentCharacter.maxHealth +(5 * level));
+        charHealth.text = "" + (currentCharacter.maxHealth + (5 * level));
         charAttack.text = "" + (currentCharacter.attack + (2 * level));
-        charDefence.text = "" + (currentCharacter.defence +(2 * level));
+        charDefence.text = "" + (currentCharacter.defence + (2 * level));
 
         for (int i = 0; i < abilityBoxHolder.childCount; i++)
         {
@@ -162,13 +163,29 @@ public class CharacterManagerScript : MonoBehaviour
         }
     }
 
+    public void ShowTokenSelection()
+    {
+        tokenSelectHolder.GetComponent<Animator>().SetBool("Menu", true);
+        GetComponent<GameManager>().SoundEffect(2);
+    }
+
     public void ChooseToken(int tokenIndex)
     {
         //The selected token is chosen as the current character sheet's token
-        currentCharacter.token = tokenObject[tokenIndex];
-        charTokenImage.sprite = tokenImage[tokenIndex];
-        currentCharacter.charVisual = tokenImage[tokenIndex];
-        currentToken = tokenIndex;
+        if (tokenObject[tokenIndex] != null)
+        {
+            currentCharacter.token = tokenObject[tokenIndex];
+            charTokenImage.sprite = tokenImage[tokenIndex];
+            currentCharacter.charVisual = tokenImage[tokenIndex];
+            currentToken = tokenIndex;
+        }
+        //This allows the start code to run, without the animator component being active
+        if (Time.time>1)
+        {
+            //This closes the menu, if it is open to begin with
+            tokenSelectHolder.GetComponent<Animator>().SetBool("Menu", false);
+        }
+        GetComponent<GameManager>().SoundEffect(2);
     }
 
     public void ChangeName()
