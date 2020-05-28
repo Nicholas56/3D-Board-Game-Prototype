@@ -6,7 +6,7 @@ using UnityEngine.UI;
  * This scriptable object will be stored in lists for use in the TileScript. 
  * This will hold eventDescription and eventOption with corresponding option successRate and optionOutcome 
  */
- [CreateAssetMenu]
+[CreateAssetMenu]
 public class TileEventData : ScriptableObject
 {
     public enum tileEventType { Event, Enemy, Trap, Quest, Item }
@@ -28,7 +28,7 @@ public class TileEventData : ScriptableObject
     public int eventReward;
 
     public EventOption[] eventOptions;
-    
+
 }
 
 [System.Serializable]
@@ -41,7 +41,7 @@ public class EventOption
     [TextArea(2, 5)]
     public string failureOutcomeText;
 
-    public enum eventType { None, Attack, Heal, Power, AddAbility, TempHP, TempAtk, TempDef, Teleport, TempDuration  }
+    public enum eventType { None, Attack, Run, Heal, Power, AddAbility, TempHP, TempAtk, TempDef, Teleport, TempDuration }
     public eventType effect1;
     public int effect1Value;
     public eventType effect2;

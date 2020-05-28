@@ -19,16 +19,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: effae2e654c8f2d458fd49af7d481a5f, type: 2}
   - {fileID: 11400000, guid: ad88a117da0b3d042ab39f63bbbb601e, type: 2}
   enemyEventsData:
-  - {fileID: 11400000, guid: 7e817ad00197e244f87ddc4bc387f043, type: 2}
-  - {fileID: 11400000, guid: fb549c315e0e8d4478d30e52ca4a7c56, type: 2}
-  - {fileID: 11400000, guid: eaed4f5747321fb40b624e38b5ea0f64, type: 2}
-  - {fileID: 11400000, guid: fb549c315e0e8d4478d30e52ca4a7c56, type: 2}
-  - {fileID: 11400000, guid: eaed4f5747321fb40b624e38b5ea0f64, type: 2}
-  - {fileID: 11400000, guid: fb549c315e0e8d4478d30e52ca4a7c56, type: 2}
-  - {fileID: 11400000, guid: fb549c315e0e8d4478d30e52ca4a7c56, type: 2}
-  - {fileID: 11400000, guid: fb549c315e0e8d4478d30e52ca4a7c56, type: 2}
-  - {fileID: 11400000, guid: 7e817ad00197e244f87ddc4bc387f043, type: 2}
-  - {fileID: 11400000, guid: 7e817ad00197e244f87ddc4bc387f043, type: 2}
+  - {fileID: 11400000, guid: 4164d92d1b0220342aaef31bd1ef5a35, type: 2}
+  - {fileID: 11400000, guid: 62b21c88c058b214baa86bec3c8e09f9, type: 2}
+  - {fileID: 11400000, guid: 19ba83b155407094e8b9c10c9e6056d7, type: 2}
+  - {fileID: 11400000, guid: 62b21c88c058b214baa86bec3c8e09f9, type: 2}
+  - {fileID: 11400000, guid: 19ba83b155407094e8b9c10c9e6056d7, type: 2}
+  - {fileID: 11400000, guid: 62b21c88c058b214baa86bec3c8e09f9, type: 2}
+  - {fileID: 11400000, guid: 62b21c88c058b214baa86bec3c8e09f9, type: 2}
+  - {fileID: 11400000, guid: 62b21c88c058b214baa86bec3c8e09f9, type: 2}
+  - {fileID: 11400000, guid: 4164d92d1b0220342aaef31bd1ef5a35, type: 2}
+  - {fileID: 11400000, guid: 4164d92d1b0220342aaef31bd1ef5a35, type: 2}
   trapsEventsData:
   - {fileID: 11400000, guid: 621badea4907d8c44be59dc55c45a680, type: 2}
   - {fileID: 11400000, guid: 37084bae30e11ca46a8f91a417e4a336, type: 2}

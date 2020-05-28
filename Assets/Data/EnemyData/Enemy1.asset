@@ -33,3 +33,11 @@ MonoBehaviour:
     effect1Value: 0
     effect2: 0
     effect2Value: 0
+  - optionName: Run
+    successRate: 1
+    successOutcomeText: Run for the hills! It's a Goblin!!
+    failureOutcomeText: The Goblin just stares at you.
+    effect1: 2
+    effect1Value: 0
+    effect2: 0
+    effect2Value: 0

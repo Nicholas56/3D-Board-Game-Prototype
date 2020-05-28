@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22fd4713d7eaeec43bd2c04b9ab3bfed, type: 3}
-  m_Name: Level2
+  m_Name: Level4
   m_EditorClassIdentifier: 
   positiveEventsData:
-  - {fileID: 11400000, guid: c2c0e638ea15612488042e025f187231, type: 2}
-  - {fileID: 11400000, guid: 961053e0ccc889742800b328a3405bf4, type: 2}
+  - {fileID: 11400000, guid: d31ec5aff2a7b9b4884dcf4a8f033c7a, type: 2}
+  - {fileID: 11400000, guid: 6c06b4199c419a54e9c1b282d63d4b8e, type: 2}
   - {fileID: 11400000, guid: bb964ae08b3bc93499c507d9e03e886d, type: 2}
   - {fileID: 11400000, guid: b90489ecd0c20fe42bb1940e12ea67c3, type: 2}
   - {fileID: 11400000, guid: 39620cdf81010054ab4eaf701fc30257, type: 2}
   negativeEventsData:
-  - {fileID: 11400000, guid: effae2e654c8f2d458fd49af7d481a5f, type: 2}
-  - {fileID: 11400000, guid: ad88a117da0b3d042ab39f63bbbb601e, type: 2}
+  - {fileID: 11400000, guid: 27adf74f9bcc3624ba0a0b33f493d02c, type: 2}
+  - {fileID: 11400000, guid: cab7a54bb544b3943a6306ea3eafd01a, type: 2}
   - {fileID: 11400000, guid: 629f97ffaa5c202489e2f1e63165ee17, type: 2}
   - {fileID: 11400000, guid: 923b7c1f95c19724db188298f7598679, type: 2}
   - {fileID: 11400000, guid: 2439eca866889cd4e9f8675e48c9845d, type: 2}
@@ -36,23 +36,23 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1d132eda811a4c34ea2619568f4816e6, type: 2}
   - {fileID: 11400000, guid: 1d132eda811a4c34ea2619568f4816e6, type: 2}
   trapsEventsData:
+  - {fileID: 11400000, guid: 59d738e2a00d5834dba1ae67b9a61547, type: 2}
+  - {fileID: 11400000, guid: 59d738e2a00d5834dba1ae67b9a61547, type: 2}
+  - {fileID: 11400000, guid: 59d738e2a00d5834dba1ae67b9a61547, type: 2}
+  - {fileID: 11400000, guid: 59d738e2a00d5834dba1ae67b9a61547, type: 2}
+  - {fileID: 11400000, guid: 59d738e2a00d5834dba1ae67b9a61547, type: 2}
   - {fileID: 11400000, guid: a3e2e0ff6c17b7247a23309a92e1ecca, type: 2}
-  - {fileID: 11400000, guid: 37084bae30e11ca46a8f91a417e4a336, type: 2}
-  - {fileID: 11400000, guid: 37084bae30e11ca46a8f91a417e4a336, type: 2}
-  - {fileID: 11400000, guid: 37084bae30e11ca46a8f91a417e4a336, type: 2}
-  - {fileID: 11400000, guid: 50867376c778cf645b7639cf0b75a6a4, type: 2}
-  - {fileID: 11400000, guid: a3e2e0ff6c17b7247a23309a92e1ecca, type: 2}
-  - {fileID: 11400000, guid: 37084bae30e11ca46a8f91a417e4a336, type: 2}
-  - {fileID: 11400000, guid: a3e2e0ff6c17b7247a23309a92e1ecca, type: 2}
-  - {fileID: 11400000, guid: a3e2e0ff6c17b7247a23309a92e1ecca, type: 2}
-  - {fileID: 11400000, guid: a3e2e0ff6c17b7247a23309a92e1ecca, type: 2}
+  - {fileID: 11400000, guid: 3ba1bae62ea46e24a809459361756223, type: 2}
+  - {fileID: 11400000, guid: 3ba1bae62ea46e24a809459361756223, type: 2}
+  - {fileID: 11400000, guid: 3ba1bae62ea46e24a809459361756223, type: 2}
+  - {fileID: 11400000, guid: 3ba1bae62ea46e24a809459361756223, type: 2}
   - {fileID: 11400000, guid: aa181feb739f5d249811456086ba874b, type: 2}
   - {fileID: 11400000, guid: aa181feb739f5d249811456086ba874b, type: 2}
   - {fileID: 11400000, guid: aa181feb739f5d249811456086ba874b, type: 2}
   - {fileID: 11400000, guid: ed2a8a17cd22161428fe26a9a50a60fe, type: 2}
   - {fileID: 11400000, guid: ed2a8a17cd22161428fe26a9a50a60fe, type: 2}
   questEventsData: []
-  itemData: 0000000016000000200000002a0000000c0000000d0000003c0000003d0000004000000043000000460000004e000000
+  itemData: 0000000018000000220000002c0000000e0000000d0000003e0000003d0000004100000044000000470000004e000000320000004d000000
   itemPrefab: {fileID: 575302374768638504, guid: 9e7e28243d4cffe44aca963961c3c6f0,
     type: 3}
   goalObject: {fileID: 6346550006226237677, guid: 96e225c79904b584ab43853b112be828,

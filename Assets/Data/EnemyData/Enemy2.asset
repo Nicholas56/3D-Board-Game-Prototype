@@ -31,3 +31,11 @@ MonoBehaviour:
     effect1Value: 0
     effect2: 0
     effect2Value: 0
+  - optionName: Run
+    successRate: 2
+    successOutcomeText: You ran away from a bat. Well done!
+    failureOutcomeText: The bat flies around you. You're stuck!
+    effect1: 2
+    effect1Value: 0
+    effect2: 0
+    effect2Value: 0

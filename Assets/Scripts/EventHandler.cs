@@ -24,14 +24,16 @@ public class EventHandler : MonoBehaviour
     public GameObject rollButton;
     public GameObject enemyHealth;
     public GameObject enemyTurnPanel;
-    
+
+    public bool isRunning = false;
+
     private void Update()
     {
         if (player.isEvent)
         {
             rollButton.SetActive(false);
             GetEventData();
-            if (data == null) 
+            if (data == null)
             {
                 rollButton.SetActive(true);
                 player.ResetTurn();
@@ -40,11 +42,7 @@ public class EventHandler : MonoBehaviour
             }
             if (data.eventOptions.Length > 0)
             {
-                for (int i = 0; i < data.eventOptions.Length; i++)
-                {//Sets Active the buttons required for this event
-                    actionButtons[i].SetActive(true);
-                    actionButtons[i].GetComponentInChildren<TMP_Text>().text = data.eventOptions[i].optionName;
-                }
+                ButtonShow();
             }
             else
             {
@@ -76,7 +74,7 @@ public class EventHandler : MonoBehaviour
                     break;
             }
             eventVisual.sprite = data.eventVisual;
-            
+
             player.isEvent = false;
         }
     }
@@ -91,7 +89,7 @@ public class EventHandler : MonoBehaviour
         }
         else
         {
-            int dealtDamage = (data.eventDamage - (chara.Defence+chara.tempDefence));
+            int dealtDamage = (data.eventDamage - (chara.Defence + chara.tempDefence));
             //Checks that defence isn't greater than damage, else deal no damage, not negative damage
             if (dealtDamage < 0) { dealtDamage = 0; }
             //Checks to see if temp health can be used to mitigate damage
@@ -106,7 +104,7 @@ public class EventHandler : MonoBehaviour
             }
         }
     }
-    
+
     public void CheckSuccess(int optionNum)
     {
         if (player.isRoll)
@@ -119,7 +117,7 @@ public class EventHandler : MonoBehaviour
             ButtonHide(optionNum);
             optionNumber = optionNum;
             StartCoroutine(PerformAction());
-        } 
+        }
     }
 
     IEnumerator PerformAction()
@@ -128,7 +126,8 @@ public class EventHandler : MonoBehaviour
         EventAction(optionNumber);
     }
 
-    void EventAction(int optionNum) { 
+    void EventAction(int optionNum)
+    {
         if (player.spacesToMove > data.eventOptions[optionNum].successRate)
         {
             //Actions to take if successful
@@ -154,7 +153,7 @@ public class EventHandler : MonoBehaviour
 
     IEnumerator WaitForEventEnd()
     {
-        if(data.type == TileEventData.tileEventType.Enemy)
+        if (data.type == TileEventData.tileEventType.Enemy && !isRunning)
         {
             eventDescription.text = "The battle is over! You survived!";
             //Gives the victory message and grants a reward to the player
@@ -162,34 +161,43 @@ public class EventHandler : MonoBehaviour
         }
         yield return new WaitForSeconds(2);
         UpdateEnemyHealth();
+        isRunning = false;
         rollButton.SetActive(true);
         player.ResetTurn();
     }
 
     IEnumerator EnemyTurn()
     {
+        if (isRunning)
+        {//Ends the event if is running
+            EndEvent();
+            yield break;
+        }
+
+        isRunning = false;
         enemyTurnPanel.SetActive(true);
         yield return new WaitForSeconds(2);
         //The enemy rolls the dice and damage is calculated
-        player.isRoll=true; 
+        player.isRoll = true;
         float randTime = Random.Range(0.1f, 0.9f);
         yield return new WaitForSeconds(randTime);
-        player.isRoll=false;
+        player.isRoll = false;
         Character chara = player.characters[player.player];
         int enemyAttack = (player.spacesToMove + data.eventAttack);
         int playerDef = (chara.Defence + chara.tempDefence);
         int damageDealt = enemyAttack - playerDef;
         if (damageDealt < 0) { damageDealt = 0; }
         //Allows temp health to mitigate damage
-        if(chara.tempHealth> damageDealt) { chara.tempHealth -= damageDealt; } else 
+        if (chara.tempHealth > damageDealt) { chara.tempHealth -= damageDealt; }
+        else
         { chara.health -= damageDealt - chara.tempHealth; }
         player.UpdatePlayerHealth();
 
         //Depending on the outcome of the attack, the battle message is read, if dead, player is sent to main menu
         if (chara.health > 0)
         {
-            eventDescription.text = "The enemy attacks! It deals: " + ((player.spacesToMove + data.eventAttack) - 
-                (chara.Defence + chara.tempDefence)) + 
+            eventDescription.text = "The enemy attacks! It deals: " + ((player.spacesToMove + data.eventAttack) -
+                (chara.Defence + chara.tempDefence)) +
                 " damage!\n" + "The enemy has " + data.eventHealth + " health left.";
         }
         else
@@ -199,6 +207,7 @@ public class EventHandler : MonoBehaviour
             PlayerDeath();
         }
         enemyTurnPanel.SetActive(false);
+        ButtonShow();
     }
 
     IEnumerator Death()
@@ -209,6 +218,8 @@ public class EventHandler : MonoBehaviour
         yield return new WaitForSeconds(1);
         PlayerDeath();
     }
+
+
 
     void PlayerDeath()
     {
@@ -244,6 +255,16 @@ public class EventHandler : MonoBehaviour
                 actionButtons[i].SetActive(false);
             }
         }
+    }
+
+    void ButtonShow()
+    {
+        for (int i = 0; i < data.eventOptions.Length; i++)
+        {//Sets Active the buttons required for this event
+            actionButtons[i].SetActive(true);
+            actionButtons[i].GetComponentInChildren<TMP_Text>().text = data.eventOptions[i].optionName;
+        }
+
     }
 
     public void EndEvent()
