@@ -38,6 +38,9 @@ public class EventEffects: MonoBehaviour
                     data.eventHealth -= (chara.Attack + chara.tempAttack + player.spacesToMove - data.eventDefence);
                     player.gameObject.GetComponent<EventHandler>().enemyHealth.GetComponentInChildren<TMP_Text>().text = "" + data.eventHealth + "/" + data.maxHealth;
                     break;
+                case EventOption.eventType.Run:
+                    player.gameObject.GetComponent<EventHandler>().isRunning = true;
+                    break;
                 case EventOption.eventType.AddAbility:
                     player.AddAbility(optionValues[i]);
                     break;

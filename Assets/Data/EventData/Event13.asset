@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2bed98f83a1540c46a1fc7976cedaa09, type: 3}
-  m_Name: Event3
+  m_Name: Event13
   m_EditorClassIdentifier: 
   type: 0
-  eventName: Magic Ring
-  eventDescription: You see a magic ring on the floor. I wonder what happens when
-    you step on it?
+  eventName: Pool of Lava
+  eventDescription: There's a large pool of lava right in front of you. You know what
+    to do.
   eventVisual: {fileID: 21300000, guid: cbd5c592e6336a64289e1441b8bea04d, type: 3}
   maxHealth: 0
   eventHealth: 0
@@ -24,17 +24,25 @@ MonoBehaviour:
   eventDamage: 0
   eventReward: 0
   eventOptions:
-  - optionName: Step on it
-    successRate: 2
-    successOutcomeText: The ring lights up. Seems like you're going on a trip!
-    failureOutcomeText: The magic fizzles. Huh, that was a disappointment!
-    effect1: 9
-    effect1Value: 3
+  - optionName: Take a dip
+    successRate: 5
+    successOutcomeText: Only a master of adventure would know to do this!
+    failureOutcomeText: By the gods! What do you think you're doing!
+    effect1: 5
+    effect1Value: 301
+    effect2: 0
+    effect2Value: 0
+  - optionName: Drink it
+    successRate: 4
+    successOutcomeText: It's like drinking the soul of the volcano. The power!
+    failureOutcomeText: Are you daft! You don't drink lava!!
+    effect1: 4
+    effect1Value: 20
     effect2: 0
     effect2Value: 0
   - optionName: Pass
     successRate: 0
-    successOutcomeText: You walk past the ring, giving it a wide berth.
+    successOutcomeText: Ah, the sensible choice. Good for you!
     failureOutcomeText: 
     effect1: 0
     effect1Value: 0

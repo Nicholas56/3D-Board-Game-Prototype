@@ -29,7 +29,7 @@ MonoBehaviour:
     successRate: 3
     successOutcomeText: You feel the power coursing through you. Nice!
     failureOutcomeText: Hmm, it just tastes like regular water.
-    effect1: 3
+    effect1: 4
     effect1Value: 10
     effect2: 0
     effect2Value: 0

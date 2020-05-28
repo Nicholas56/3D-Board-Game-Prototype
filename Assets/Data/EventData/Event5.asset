@@ -29,7 +29,7 @@ MonoBehaviour:
     failureOutcomeText: 'Your feeble mind cannot comprehend.
 
       You gain nothing!'
-    effect1: 4
+    effect1: 5
     effect1Value: 202
     effect2: 0
     effect2Value: 0

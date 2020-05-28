@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.IO;
 /*EAS12337350
  * This script will handle save data 
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     public List<TileScript> mapTiles = new List<TileScript>();
     public List<AudioSource> audios;
     public List<AudioClip> sfx;
+    public List<Slider> sliders;
     public static bool muteMusic;
     public static bool muteSound;
 
@@ -27,6 +29,7 @@ public class GameManager : MonoBehaviour
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         FindAllMapTiles(mainCamera);
         if (muteMusic) { audios[0].mute = true; }
+        if (muteSound) { audios[1].mute = true; }
     }
     public void FindAllMapTiles(Camera eventCamera)
     {
@@ -109,15 +112,14 @@ public class GameManager : MonoBehaviour
         audios[1].PlayOneShot(sfx[effectNum]);
     }
 
-    public void ToggleMuteMusic()
+    public void ToggleMute(int audio)
     {//Mutes the sound from main music track, true for other scenes
-        audios[0].mute = !audios[0].mute;
-        muteMusic = audios[0].mute;
+        audios[audio].mute = !audios[audio].mute;
+        muteMusic = audios[audio].mute;
     }
 
-    public void ToggleMuteSoundEffects()
+    public void ChangeVolume(int audio)
     {
-        audios[1].mute = !audios[1].mute;
-        muteSound = audios[1].mute;
+        audios[audio].volume = sliders[audio].value / 10;
     }
 }

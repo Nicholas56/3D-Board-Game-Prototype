@@ -27,7 +27,7 @@ MonoBehaviour:
     successRate: 4
     successOutcomeText: You learn the truth! It's not good. You have new ability!
     failureOutcomeText: This is just some old guys diary! And it's really personal!
-    effect1: 4
+    effect1: 5
     effect1Value: 105
     effect2: 0
     effect2Value: 0

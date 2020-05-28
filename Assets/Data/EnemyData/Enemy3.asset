@@ -32,3 +32,11 @@ MonoBehaviour:
     effect1Value: 0
     effect2: 0
     effect2Value: 0
+  - optionName: Run
+    successRate: 3
+    successOutcomeText: You turn around and flee!
+    failureOutcomeText: You try to move, but the slime has got you! You can't run!
+    effect1: 2
+    effect1Value: 0
+    effect2: 0
+    effect2Value: 0

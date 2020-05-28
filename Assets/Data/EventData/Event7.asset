@@ -28,7 +28,7 @@ MonoBehaviour:
     successOutcomeText: The words fly off the page and attach to your body. You have
       a new ability!
     failureOutcomeText: The words look blurry. Maybe you need glasses?
-    effect1: 4
+    effect1: 5
     effect1Value: 105
     effect2: 0
     effect2Value: 0

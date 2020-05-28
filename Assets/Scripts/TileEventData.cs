@@ -41,7 +41,7 @@ public class EventOption
     [TextArea(2, 5)]
     public string failureOutcomeText;
 
-    public enum eventType { None, Attack, Heal, Power, AddAbility, TempHP, TempAtk, TempDef, Teleport, TempDuration  }
+    public enum eventType { None, Attack, Run, Heal, Power, AddAbility, TempHP, TempAtk, TempDef, Teleport, TempDuration  }
     public eventType effect1;
     public int effect1Value;
     public eventType effect2;

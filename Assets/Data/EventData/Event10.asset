@@ -30,7 +30,7 @@ MonoBehaviour:
       did something to you too!
     failureOutcomeText: You prance about, but nothing happens. Jeez, I hope nobody
       saw that. How embarrassing!
-    effect1: 4
+    effect1: 5
     effect1Value: 503
     effect2: 0
     effect2Value: 0
@@ -38,7 +38,7 @@ MonoBehaviour:
     successRate: 2
     successOutcomeText: Ow! You got a splinter! You walk away in a huff.
     failureOutcomeText: It's locked. Maybe somebody actually lives here?
-    effect1: 2
+    effect1: 3
     effect1Value: -1
     effect2: 0
     effect2Value: 0

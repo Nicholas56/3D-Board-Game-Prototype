@@ -24,6 +24,8 @@ public class EventHandler : MonoBehaviour
     public GameObject rollButton;
     public GameObject enemyHealth;
     public GameObject enemyTurnPanel;
+
+    public bool isRunning = false;
     
     private void Update()
     {
@@ -40,11 +42,7 @@ public class EventHandler : MonoBehaviour
             }
             if (data.eventOptions.Length > 0)
             {
-                for (int i = 0; i < data.eventOptions.Length; i++)
-                {//Sets Active the buttons required for this event
-                    actionButtons[i].SetActive(true);
-                    actionButtons[i].GetComponentInChildren<TMP_Text>().text = data.eventOptions[i].optionName;
-                }
+                ButtonShow();
             }
             else
             {
@@ -154,7 +152,7 @@ public class EventHandler : MonoBehaviour
 
     IEnumerator WaitForEventEnd()
     {
-        if(data.type == TileEventData.tileEventType.Enemy)
+        if(data.type == TileEventData.tileEventType.Enemy && !isRunning)
         {
             eventDescription.text = "The battle is over! You survived!";
             //Gives the victory message and grants a reward to the player
@@ -162,12 +160,20 @@ public class EventHandler : MonoBehaviour
         }
         yield return new WaitForSeconds(2);
         UpdateEnemyHealth();
+        isRunning = false;
         rollButton.SetActive(true);
         player.ResetTurn();
     }
 
     IEnumerator EnemyTurn()
     {
+        if (isRunning)
+        {//Ends the event if is running
+            EndEvent();
+            yield break;            
+        }
+
+        isRunning = false;
         enemyTurnPanel.SetActive(true);
         yield return new WaitForSeconds(2);
         //The enemy rolls the dice and damage is calculated
@@ -199,6 +205,7 @@ public class EventHandler : MonoBehaviour
             PlayerDeath();
         }
         enemyTurnPanel.SetActive(false);
+        ButtonShow();
     }
 
     IEnumerator Death()
@@ -209,6 +216,8 @@ public class EventHandler : MonoBehaviour
         yield return new WaitForSeconds(1);
         PlayerDeath();
     }
+
+
 
     void PlayerDeath()
     {
@@ -244,6 +253,16 @@ public class EventHandler : MonoBehaviour
                 actionButtons[i].SetActive(false);
             }
         }
+    }
+
+    void ButtonShow()
+    {
+        for (int i = 0; i < data.eventOptions.Length; i++)
+        {//Sets Active the buttons required for this event
+            actionButtons[i].SetActive(true);
+            actionButtons[i].GetComponentInChildren<TMP_Text>().text = data.eventOptions[i].optionName;
+        }
+
     }
 
     public void EndEvent()

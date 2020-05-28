@@ -31,3 +31,11 @@ MonoBehaviour:
     effect1Value: 0
     effect2: 0
     effect2Value: 0
+  - optionName: Run
+    successRate: 4
+    successOutcomeText: Good thinking! You didn't stand a chance!
+    failureOutcomeText: 'The Dragon looks at you. You freeze in terror! '
+    effect1: 2
+    effect1Value: 0
+    effect2: 0
+    effect2Value: 0
