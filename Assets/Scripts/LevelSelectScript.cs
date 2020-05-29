@@ -9,9 +9,6 @@ using UnityEngine.SceneManagement;
 
 public class LevelSelectScript : MonoBehaviour
 {
-    //This will hold all the scenes available
-    public List<Level> levels = new List<Level>();
-
     public void LoadLevel(int levelNum)
     {
         //This will take an input and select from the list above which level to load
@@ -24,17 +21,4 @@ public class LevelSelectScript : MonoBehaviour
         //This will load the first scene
         SceneManager.LoadScene(0);
     }
-}
-
-//This is if the need for more description, so an new UI panel can be filled with info
-[System.Serializable]
-public class Level
-{
-    public string levelName;
-    [TextArea(5,15)]
-    public string levelDescription;
-    public int levelSceneIndex;
-
-    public bool randomItemDistribution;
-    public int numOfItems;
 }
