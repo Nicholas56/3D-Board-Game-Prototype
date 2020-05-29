@@ -180,12 +180,12 @@ public class CharacterManagerScript : MonoBehaviour
             currentToken = tokenIndex;
         }
         //This allows the start code to run, without the animator component being active
-        if (Time.time>2)
+        if (Time.time>3)
         {
             //This closes the menu, if it is open to begin with
             tokenSelectHolder.GetComponent<Animator>().SetBool("Menu", false);
+            GetComponent<GameManager>().SoundEffect(2);
         }
-        GetComponent<GameManager>().SoundEffect(2);
     }
 
     public void ChangeName()
