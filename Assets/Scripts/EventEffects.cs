@@ -29,20 +29,25 @@ public class EventEffects : MonoBehaviour
                     break;
                 case EventOption.eventType.Heal:
                     chara.health += optionValues[i];
+                    transform.parent.GetComponent<GameManager>().SoundEffect(1);
                     break;
                 case EventOption.eventType.Power:
                     chara.charSheet.powerLevel += optionValues[i];
+                    transform.parent.GetComponent<GameManager>().SoundEffect(1);
                     break;
                 case EventOption.eventType.Attack:
                     TileEventData data = player.GetTileData();
                     data.eventHealth -= (chara.Attack + chara.tempAttack + player.spacesToMove - data.eventDefence);
                     player.gameObject.GetComponent<EventHandler>().enemyHealth.GetComponentInChildren<TMP_Text>().text = "" + data.eventHealth + "/" + data.maxHealth;
+                    transform.parent.GetComponent<GameManager>().SoundEffect(5);
                     break;
                 case EventOption.eventType.Run:
                     player.gameObject.GetComponent<EventHandler>().isRunning = true;
+                    transform.parent.GetComponent<GameManager>().SoundEffect(1);
                     break;
                 case EventOption.eventType.AddAbility:
                     player.AddAbility(optionValues[i]);
+                    transform.parent.GetComponent<GameManager>().SoundEffect(7);
                     break;
                 case EventOption.eventType.TempHP:
                     chara.tempHealth += optionValues[i];
@@ -58,6 +63,7 @@ public class EventEffects : MonoBehaviour
                     break;
                 case EventOption.eventType.TempDuration:
                     chara.tempCounter += optionValues[i];
+                    transform.parent.GetComponent<GameManager>().SoundEffect(1);
                     break;
             }
         }

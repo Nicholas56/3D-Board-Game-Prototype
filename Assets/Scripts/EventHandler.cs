@@ -133,7 +133,6 @@ public class EventHandler : MonoBehaviour
             //Actions to take if successful
             eventDescription.text = data.eventOptions[optionNum].successOutcomeText;
             action.Effects(data.eventOptions[optionNum]);
-            transform.parent.GetComponent<GameManager>().SoundEffect(1);
         }
         else
         {
@@ -199,10 +198,12 @@ public class EventHandler : MonoBehaviour
             eventDescription.text = "The enemy attacks! It deals: " + ((player.spacesToMove + data.eventAttack) -
                 (chara.Defence + chara.tempDefence)) +
                 " damage!\n" + "The enemy has " + data.eventHealth + " health left.";
+            transform.parent.GetComponent<GameManager>().SoundEffect(6);
         }
         else
         {
             eventDescription.text = "The enemy has killed you! Oh dear!";
+            transform.parent.GetComponent<GameManager>().SoundEffect(8);
             yield return new WaitForSeconds(1);
             PlayerDeath();
         }
@@ -215,6 +216,7 @@ public class EventHandler : MonoBehaviour
         //Ends the event prematurely, Reads the death message and sends te player back to the main menu
         EndEvent();
         eventDescription.text = "You appear to have died! Bad luck!";
+        transform.parent.GetComponent<GameManager>().SoundEffect(8);
         yield return new WaitForSeconds(1);
         PlayerDeath();
     }

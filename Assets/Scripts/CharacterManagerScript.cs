@@ -33,6 +33,7 @@ public class CharacterManagerScript : MonoBehaviour
     public Transform abilityBoxHolder;
 
     public Image charTokenImage;
+    float tokenAnimNum;
 
     public int currentToken;
     public List<GameObject> tokenObject;
@@ -48,6 +49,7 @@ public class CharacterManagerScript : MonoBehaviour
         }
         else { currentCharacter = GameManager.playerCharacters[0]; }
         DisplayStats();
+        tokenAnimNum = Time.time;
         ChooseToken(0);
         manager.LoadCharacters();
         CharacterSelectBoxes();
@@ -180,7 +182,7 @@ public class CharacterManagerScript : MonoBehaviour
             currentToken = tokenIndex;
         }
         //This allows the start code to run, without the animator component being active
-        if (Time.time>3)
+        if (Time.time>tokenAnimNum+ 3)
         {
             //This closes the menu, if it is open to begin with
             tokenSelectHolder.GetComponent<Animator>().SetBool("Menu", false);
