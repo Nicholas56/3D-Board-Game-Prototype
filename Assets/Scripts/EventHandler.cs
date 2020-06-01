@@ -89,6 +89,7 @@ public class EventHandler : MonoBehaviour
         }
         else
         {
+            transform.parent.GetComponent<GameManager>().SoundEffect(10);
             int dealtDamage = (data.eventDamage - (chara.Defence + chara.tempDefence));
             //Checks that defence isn't greater than damage, else deal no damage, not negative damage
             if (dealtDamage < 0) { dealtDamage = 0; }
@@ -138,6 +139,7 @@ public class EventHandler : MonoBehaviour
         {
             //Actions to take if not successful
             eventDescription.text = data.eventOptions[optionNum].failureOutcomeText;
+            transform.parent.GetComponent<GameManager>().SoundEffect(9);
         }
         //COMBAT
         if (data.type == TileEventData.tileEventType.Enemy && data.eventHealth > 0)
@@ -229,13 +231,14 @@ public class EventHandler : MonoBehaviour
         {
             //The player health is restored, power is taken away and the player is sent to the main menu
             player.characters[player.player].health = player.characters[player.player].MaxHealth;
-            player.characters[player.player].charSheet.powerLevel -= 10;
+            player.characters[player.player].charSheet.powerLevel = Mathf.Max(player.characters[player.player].charSheet.powerLevel - 10, 0);
 
             LevelSelectScript.ReturnToMainMenu();
         }
         else
         {
             Character deadChar = player.characters[player.player];
+            player.characters[player.player].charSheet.powerLevel = Mathf.Max(player.characters[player.player].charSheet.powerLevel - 10, 0);
             player.ResetTurn();
             Destroy(deadChar.gameToken);
             player.characters.Remove(deadChar);
