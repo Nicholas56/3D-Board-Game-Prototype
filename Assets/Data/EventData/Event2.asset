@@ -16,7 +16,7 @@ MonoBehaviour:
   eventName: Full course meal
   eventDescription: You find a full course meal laid out in front of you. Here, in
     the middle of nowhere.
-  eventVisual: {fileID: 21300000, guid: cbd5c592e6336a64289e1441b8bea04d, type: 3}
+  eventVisual: {fileID: 21300000, guid: f31eba68d167705408664e51f585edb7, type: 3}
   maxHealth: 0
   eventHealth: 0
   eventAttack: 0
