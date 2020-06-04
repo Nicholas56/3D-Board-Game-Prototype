@@ -28,7 +28,7 @@ MonoBehaviour:
     successRate: 3
     successOutcomeText: Wow. These look really good. You feel faster too. Neat!
     failureOutcomeText: The creature says no. I guess you're not worthy!
-    effect1: 4
+    effect1: 5
     effect1Value: 401
     effect2: 0
     effect2Value: 0
@@ -36,9 +36,9 @@ MonoBehaviour:
     successRate: 4
     successOutcomeText: You find an old set of armour. This won't last long!
     failureOutcomeText: It's garbage. It's all garbage! And you bought it. Worthless!
-    effect1: 5
+    effect1: 6
     effect1Value: 5
-    effect2: 9
+    effect2: 10
     effect2Value: 5
   - optionName: Pass
     successRate: 0

@@ -28,15 +28,15 @@ MonoBehaviour:
     successRate: 4
     successOutcomeText: He explains the mysteries of combat. you are enlightened!
     failureOutcomeText: You don't understand a word he says. This was pointless!
-    effect1: 6
+    effect1: 7
     effect1Value: 5
-    effect2: 9
+    effect2: 10
     effect2Value: 5
   - optionName: Attack him
     successRate: 2
     successOutcomeText: He goes beserk! He cripples your leg and runs off!
     failureOutcomeText: "He runs away crying! \nThat was weird."
-    effect1: 4
+    effect1: 5
     effect1Value: 501
     effect2: 0
     effect2Value: 0

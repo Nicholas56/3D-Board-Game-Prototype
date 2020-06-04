@@ -28,7 +28,7 @@ public class EventEffects : MonoBehaviour
                 case EventOption.eventType.None:
                     break;
                 case EventOption.eventType.Heal:
-                    chara.health += optionValues[i];
+                    chara.health = Mathf.Min(chara.MaxHealth,chara.health + optionValues[i]);
                     transform.parent.GetComponent<GameManager>().SoundEffect(1);
                     break;
                 case EventOption.eventType.Power:

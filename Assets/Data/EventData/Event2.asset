@@ -28,7 +28,7 @@ MonoBehaviour:
     successRate: 5
     successOutcomeText: This is just what you needed. The food heals you so much.
     failureOutcomeText: Um, you ate too much. It has no effect. Bad luck.
-    effect1: 2
+    effect1: 3
     effect1Value: 5
     effect2: 0
     effect2Value: 0
@@ -37,7 +37,7 @@ MonoBehaviour:
     successOutcomeText: Yum. Dessert is the best. You feel the sugary healing.
     failureOutcomeText: Leaving your vegetables! I don't think so. No healing for
       you!
-    effect1: 2
+    effect1: 3
     effect1Value: 2
     effect2: 0
     effect2Value: 0

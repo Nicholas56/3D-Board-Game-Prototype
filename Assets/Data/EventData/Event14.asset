@@ -37,7 +37,7 @@ MonoBehaviour:
     successRate: 0
     successOutcomeText: Hmm? Yeah, you have no idea what it is! What a waste of time!
     failureOutcomeText: 
-    effect1: 4
+    effect1: 0
     effect1Value: 20
     effect2: 0
     effect2Value: 0

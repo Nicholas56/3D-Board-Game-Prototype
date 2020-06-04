@@ -28,7 +28,7 @@ MonoBehaviour:
     successRate: 2
     successOutcomeText: The ring lights up. Seems like you're going on a trip!
     failureOutcomeText: The magic fizzles. Huh, that was a disappointment!
-    effect1: 8
+    effect1: 9
     effect1Value: 3
     effect2: 0
     effect2Value: 0

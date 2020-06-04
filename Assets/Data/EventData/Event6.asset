@@ -27,7 +27,7 @@ MonoBehaviour:
     successRate: 4
     successOutcomeText: Your blood burns with knowledge! You have a new ability!
     failureOutcomeText: You don't understand the language. Great!
-    effect1: 4
+    effect1: 5
     effect1Value: 102
     effect2: 0
     effect2Value: 0

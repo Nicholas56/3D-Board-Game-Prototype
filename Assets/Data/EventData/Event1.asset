@@ -17,7 +17,7 @@ MonoBehaviour:
   eventDescription: 'You found a well of power! Well done!
 
     Will you drink?'
-  eventVisual: {fileID: 21300000, guid: cbd5c592e6336a64289e1441b8bea04d, type: 3}
+  eventVisual: {fileID: 21300000, guid: 40e161d50a78aff46b8f20cfe08c105b, type: 3}
   maxHealth: 0
   eventHealth: 0
   eventAttack: 0
@@ -29,7 +29,7 @@ MonoBehaviour:
     successRate: 3
     successOutcomeText: You feel the power coursing through you. Nice!
     failureOutcomeText: Hmm, it just tastes like regular water.
-    effect1: 3
+    effect1: 4
     effect1Value: 10
     effect2: 0
     effect2Value: 0
