@@ -29,7 +29,6 @@ public class CameraScript : MonoBehaviour
             if (transform.parent == token) { transform.SetParent(null); }
             if (Input.GetAxis("Mouse X") > 0)
             {
-                Debug.Log("happens");
                 transform.position += new Vector3(Input.GetAxisRaw("Mouse X") * Time.deltaTime * cameraSpeed, 0.0f,
                     Input.GetAxisRaw("Mouse Y") * Time.deltaTime * cameraSpeed);
             }
