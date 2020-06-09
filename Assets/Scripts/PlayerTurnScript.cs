@@ -78,7 +78,7 @@ public class PlayerTurnScript : MonoBehaviour
         //This function will represent the dice roll. This will produce a random number as an outcome
         //The dice roll can be influenced by number of dice, abilities or some other factor. The script will need to accomodate this!!
         //int roll = Random.Range(1 + rollAddedValue, 7 + rollAddedValue);
-        roll = (roll+1) % 6+rollAddedValue;
+        roll = (roll+1) % (6+rollAddedValue);
         spacesToMove = roll+1;
         UpdateMovesToGo();
     }

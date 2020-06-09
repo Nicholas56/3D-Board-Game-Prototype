@@ -73,6 +73,8 @@ public class InGameMenu : MonoBehaviour
         InventoryEffects.ItemEffect(ItemScript.GetItem(sheet.itemList[itemIndex + startItem]), player);
         //Then the item is removed and the list updated
         player.characters[player.player].charSheet.itemList.RemoveAt(itemIndex + startItem);
+        //if the item is the last in the list, the list has to shift up one, unless there is no more list to shift up
+        if (itemIndex == inventorySlots.Length-1) { ScrollUp(); }
         ShowItemList();
     }
 
